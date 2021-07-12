@@ -1,6 +1,195 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import Header from "./header/Header";
+import styled from "styled-components";
+import MainCard from "./components/MainCard";
+import { formatDate } from "./lib/factory";
+import Footer from "./footer/Footer";
+//레이아웃 영역
+const section2Layout = [
+  {
+    title: "화성그랜드파크 시공",
+    image:
+      "https://images.pexels.com/photos/1323615/pexels-photo-1323615.jpeg?cs=srgb&dl=pexels-macki-ladrera-1323615.jpg&fm=jpg",
+  },
+  {
+    title: "아주종합건설 \n공사실적",
+    sub:
+      "어느 누구도 자신의 집을 대충 짓지 않듯이\n 내 집처럼 고객의 입장에서 함께합니다",
+  },
+  {
+    title: "화성그랜드파크 시공",
+    image:
+      "https://cdn.crowdpic.net/detail-thumb/thumb_d_17EDE2C64AF7BFD76367AEE581408A6E.jpg",
+  },
+  {
+    title: "화성그랜드파크 시공",
+    image:
+      "https://cdn.crowdpic.net/detail-thumb/thumb_d_3499D019D11D061A2C923EE589C60365.jpg",
+  },
+  {
+    title: "화성그랜드파크 시공",
+    image:
+      "https://www.su-wan.co.kr/wp-content/uploads/2021/03/main_visual.png",
+  },
+  {
+    title: "화성그랜드파크 시공",
+    image: "https://www.shillahotels.com/images/en/hub/sub/seoulMainImg.jpg",
+  },
+];
+const noticeArr = [
+  { title: "아주종합건설의 다양한 소식을 만나보세요", time: Date.now() },
+  { title: "아주종합건설의 다양한 소식을 만나보세요", time: Date.now() },
+  { title: "아주종합건설의 다양한 소식을 만나보세요", time: Date.now() },
+  { title: "아주종합건설의 다양한 소식을 만나보세요", time: Date.now() },
+  { title: "아주종합건설의 다양한 소식을 만나보세요", time: Date.now() },
+];
+// 스타일 영역
+const Section1 = styled.div`
+  width: 100%;
+  height: 767px;
+  background-image: url("/assets/main.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: -webkit-image-set(
+    url("/assets/main@2x.png") 2x,
+    url("/assets/main@3x.png") 3x
+  );
+`;
+const Container = styled.div`
+  max-width: 1366px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  color: white;
+  padding-top: 238px;
+  padding-left: 186px;
+  box-sizing: border-box;
+  .left {
+    white-space: nowrap;
+    font-size: 35px;
+    line-height: 1.37;
+    font-weight: bold;
+    div {
+      font-weight: normal;
+      font-size: 16px;
+      margin-top: 8px;
+      line-height: 1.63;
+    }
+  }
+  .main-video {
+    width: 871px;
+    height: 529px;
+    background-color: black;
+    margin-left: 54px;
+    background-image: url("https://data.1freewallpapers.com/download/tall-buildings-in-the-city.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+`;
+const Section2 = styled.div`
+  max-width: 993px;
+  padding-top: 145px;
+  padding-bottom: 134px;
+  display: grid;
+  grid-template-columns: 533px 460px;
+`;
+const Section3 = styled.div`
+  width: 100%;
+  padding: 87px 186px 152px 186px;
+  background-color: #f2f3f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .wrapper {
+    width: 993px;
+    height: 100%;
+    display: flex;
+    .left {
+      background-color: white;
+      width: 657px;
+      height: 306px;
+      box-sizing: border-box;
+      padding: 22px 29px 32px 32px;
+      .left-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 22px;
+        font-weight: bold;
+        & > img {
+          cursor: pointer;
+        }
+      }
+      .notice {
+        margin-top: 25px;
+        max-height: 184px;
+        display: grid;
+        row-gap: 20px;
+        .notice-card {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 15px;
+          font-weight: 500;
+          .title {
+            color: #434343;
+          }
+          .time {
+            color: #bfbfbf;
+          }
+        }
+      }
+    }
+    .right {
+      padding: 27px 23.5px 38px 29.5px;
+      box-sizing: border-box;
+      margin-left: 15px;
+      color: white;
+      width: 321px;
+      height: 306px;
+      background-image: url("/assets/main-call.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: -webkit-image-set(
+        url("/assets/main-call@2x.jpg") 2x,
+        url("/assets/main-call@3x.jpg") 3x
+      );
+      .white-bar {
+        width: 100%;
+        height: 1px;
+        background-color: white;
+      }
+      .top {
+        display: flex;
+        align-items: center;
+        span {
+          margin-left: 3px;
+          font-size: 22px;
+          font-weight: bold;
+        }
+      }
+      .content {
+        font-size: 17px;
+        font-weight: bold;
+        margin-top: 13.3px;
+        margin-bottom: 51.7px;
+        line-height: 1.71;
+        height: 54px;
+      }
+      .sub {
+        font-size: 15px;
+        font-weight: 500;
+        margin-top: 14.8px;
+      }
+    }
+  }
+`;
 
 export default function Home() {
   return (
@@ -10,74 +199,73 @@ export default function Home() {
         <meta name="description" content="Generated by create next app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <Header />
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="/main" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <div
-            className={styles.card}
-            onClick={() => {
-              fetch("/api/hello/popo", {
-                method: "POST",
-                body: JSON.stringify({
-                  name: "우마이",
-                  opop: "어마이갓",
-                }),
-              })
-                .then((res) => res.json())
-                .then((result) => {
-                  console.log(result);
-                });
-            }}
-          >
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
+        <Section1>
+          <Container>
+            <div className="left">
+              내 집, 내 공장을 <br /> 짓는다는 마음으로 <br /> 아주종합건설
+              <br />
+              <div>
+                내 집, 내 공장을 짓는다는 마음으로 <br /> 함께하는 종합건설기업
+                (주) 아주산업개발
+              </div>
+            </div>
+            <div className="main-video"></div>
+          </Container>
+        </Section1>
+        <Section2>
+          {section2Layout.map(({ image, title, sub }, idx) => {
+            return (
+              <MainCard
+                image={image ? image : ""}
+                sub={sub ? sub : ""}
+                title={title}
+                key={idx}
+                index={idx}
+              />
+            );
+          })}
+        </Section2>
+        <Section3>
+          <div className="wrapper">
+            <div className="left">
+              <div className="left-top">
+                <span>공지사항</span>
+                <img src="/assets/grey-plus.svg" alt="더보기" />
+              </div>
+              <div className="notice">
+                {noticeArr.map(({ title, time }, idx) => {
+                  return (
+                    <div key={idx} className="notice-card">
+                      <span className="title">{title}</span>
+                      <span className="time">{formatDate(time, ".")}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="right">
+              <div className="top">
+                <img src="/assets/white-call.svg" alt="call" />
+                <span>문의</span>
+              </div>
+              <div className="white-bar" style={{ marginTop: "9.7px" }} />
+              <div className="content">
+                Call 010-1234-1234 <br /> Fax &nbsp;054-123-4567
+              </div>
+              <div className="top">
+                <img src="/assets/white-pin.svg" alt="gps" />
+                <span>오시는 길</span>
+              </div>
+              <div className="white-bar" style={{ marginTop: "10px" }} />
+              <div className="sub">경북 구미시 형곡로 8길 14, 301호</div>
+            </div>
           </div>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        </Section3>
       </main>
-
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
+        <Footer />
       </footer>
     </div>
   );
