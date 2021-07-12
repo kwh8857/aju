@@ -191,7 +191,7 @@ const Section3 = styled.div`
   }
 `;
 
-export default function Home() {
+function Home() {
   return (
     <div className={styles.container}>
       <Head>
@@ -270,3 +270,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;

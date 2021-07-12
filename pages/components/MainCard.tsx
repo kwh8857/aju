@@ -76,7 +76,7 @@ function MainCard({ title, image, sub, index }: cardProps) {
     return (
       <LeftCard
         style={{
-          backgroundImage: `linear-gradient(to top, rgb(5,10,10),15%, rgba(84, 84, 84, 0)),url(${image});`,
+          backgroundImage: `linear-gradient(to top, rgb(5,10,10),15%, rgba(84, 84, 84, 0)),url(${image})`,
         }}
       >
         <Bottom>
@@ -105,7 +105,7 @@ function MainCard({ title, image, sub, index }: cardProps) {
     return (
       <RightCard
         style={{
-          backgroundImage: `linear-gradient(to top, rgb(5,10,10),15%, rgba(84, 84, 84, 0)),url(${image});`,
+          backgroundImage: `linear-gradient(to top, rgb(5,10,10),15%, rgba(84, 84, 84, 0)),url(${image})`,
           height: index === 5 ? "483px" : undefined,
         }}
       >

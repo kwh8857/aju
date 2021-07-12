@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 const menu_layout = [
   { title: "회사소개", link: "/about" },
   { title: "공사실적", link: "/history" },
@@ -52,7 +53,8 @@ function Header() {
       // agent, dispatch
     ]
   );
-
+  const test = useSelector((state) => state);
+  console.log(test);
   useEffect(() => {
     window.addEventListener("resize", __updateAgent);
     return () => {
