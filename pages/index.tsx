@@ -1,12 +1,44 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Header from "./header/Header";
 import styled from "styled-components";
 import MainCard from "./components/MainCard";
 import { formatDate } from "./lib/factory";
 import Footer from "./footer/Footer";
+import { useSelector } from "react-redux";
+import { RootState } from "./reducer";
 //레이아웃 영역
+const section2Mb = [
+  {
+    title: "아주종합건설 \n공사실적",
+    sub:
+      "어느 누구도 자신의 집을 대충 짓지 않듯이\n 내 집처럼 고객의 입장에서 함께합니다",
+  },
+  {
+    title: "화성그랜드파크 시공",
+    image:
+      "https://images.pexels.com/photos/1323615/pexels-photo-1323615.jpeg?cs=srgb&dl=pexels-macki-ladrera-1323615.jpg&fm=jpg",
+  },
+  {
+    title: "화성그랜드파크 시공",
+    image:
+      "https://cdn.crowdpic.net/detail-thumb/thumb_d_17EDE2C64AF7BFD76367AEE581408A6E.jpg",
+  },
+  {
+    title: "화성그랜드파크 시공",
+    image:
+      "https://cdn.crowdpic.net/detail-thumb/thumb_d_3499D019D11D061A2C923EE589C60365.jpg",
+  },
+  {
+    title: "화성그랜드파크 시공",
+    image:
+      "https://www.su-wan.co.kr/wp-content/uploads/2021/03/main_visual.png",
+  },
+  {
+    title: "화성그랜드파크 시공",
+    image: "https://www.shillahotels.com/images/en/hub/sub/seoulMainImg.jpg",
+  },
+];
 const section2Layout = [
   {
     title: "화성그랜드파크 시공",
@@ -57,6 +89,9 @@ const Section1 = styled.div`
     url("/assets/main@2x.png") 2x,
     url("/assets/main@3x.png") 3x
   );
+  @media screen and (max-width: 1366px) {
+    height: 427px;
+  }
 `;
 const Container = styled.div`
   max-width: 1366px;
@@ -78,17 +113,50 @@ const Container = styled.div`
       margin-top: 8px;
       line-height: 1.63;
     }
+    img {
+      margin-top: 45px;
+      cursor: pointer;
+    }
   }
   .main-video {
     width: 871px;
     height: 529px;
-    background-color: black;
     margin-left: 54px;
     background-image: url("https://data.1freewallpapers.com/download/tall-buildings-in-the-city.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
   }
+  @media screen and (max-width: 1365px) {
+    max-width: 768px;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 136px;
+    padding-left: 0;
+    .left {
+      text-align: center;
+      font-size: 24px;
+      div {
+        margin-top: 14px;
+        font-size: 14px;
+      }
+      img {
+        margin-top: 50px;
+      }
+    }
+  }
+  @media screen and (max-width: 767px) {
+    max-width: 320px;
+  }
+`;
+const MainVideo = styled.div`
+  width: 100%;
+  /* margin: 0 auto; */
+  height: 467px;
+  background-image: url("https://data.1freewallpapers.com/download/tall-buildings-in-the-city.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 const Section2 = styled.div`
   max-width: 993px;
@@ -96,6 +164,22 @@ const Section2 = styled.div`
   padding-bottom: 134px;
   display: grid;
   grid-template-columns: 533px 460px;
+
+  @media screen and (max-width: 1365px) {
+    max-width: 720px;
+    padding-top: 117px;
+    padding-bottom: 109px;
+    grid-template-columns: 360px 360px;
+    grid-template-rows: 240px;
+  }
+  @media screen and (max-width: 767px) {
+    max-width: 360px;
+    padding-top: 0;
+    padding-bottom: 90px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 const Section3 = styled.div`
   width: 100%;
@@ -125,6 +209,8 @@ const Section3 = styled.div`
         }
       }
       .notice {
+        white-space: nowrap;
+
         margin-top: 25px;
         max-height: 184px;
         display: grid;
@@ -137,6 +223,8 @@ const Section3 = styled.div`
           font-size: 15px;
           font-weight: 500;
           .title {
+            text-overflow: ellipsis;
+            overflow: hidden;
             color: #434343;
           }
           .time {
@@ -189,9 +277,65 @@ const Section3 = styled.div`
       }
     }
   }
+  @media screen and (max-width: 1365px) {
+    padding: 101px 24px 134px 24px;
+    .wrapper {
+      width: 720px;
+      .left {
+        background-color: white;
+        width: 381px;
+        height: 326px;
+        padding: 29px 26px 37px 28px;
+        .left-top {
+          & > img {
+            cursor: pointer;
+            width: 34px;
+          }
+        }
+        .notice {
+          margin-top: 26px;
+          max-height: 184px;
+          row-gap: 25px;
+          .notice-card {
+            font-size: 14px;
+            .title {
+              width: 182px;
+            }
+          }
+        }
+      }
+      .right {
+        padding: 27px 26.7px 60px 26.7px;
+        margin-left: 19px;
+        width: 320px;
+        height: 326px;
+        .sub {
+          font-size: 14px;
+          margin-top: 14.5px;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 767px) {
+    padding: 71px 20px 190px 20px;
+    .wrapper {
+      flex-direction: column;
+      width: 320px;
+      .left {
+        width: 100%;
+      }
+      .right {
+        margin-top: 28px;
+        margin-left: 0;
+      }
+    }
+  }
 `;
 
 function Home() {
+  const agent = useSelector(
+    (state: RootState) => state.config.identification.agent
+  );
   return (
     <div className={styles.container}>
       <Head>
@@ -199,7 +343,7 @@ function Home() {
         <meta name="description" content="Generated by create next app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <Header agent={agent} />
       <main className={styles.main}>
         <Section1>
           <Container>
@@ -210,22 +354,38 @@ function Home() {
                 내 집, 내 공장을 짓는다는 마음으로 <br /> 함께하는 종합건설기업
                 (주) 아주산업개발
               </div>
+              <img src="/assets/pause.svg" alt="재생" />
             </div>
-            <div className="main-video"></div>
+            {agent === "pc" ? <div className="main-video"></div> : undefined}
           </Container>
         </Section1>
+        {agent !== "pc" ? <MainVideo /> : undefined}
         <Section2>
-          {section2Layout.map(({ image, title, sub }, idx) => {
-            return (
-              <MainCard
-                image={image ? image : ""}
-                sub={sub ? sub : ""}
-                title={title}
-                key={idx}
-                index={idx}
-              />
-            );
-          })}
+          {agent !== "mobile"
+            ? section2Layout.map(({ image, title, sub }, idx) => {
+                return (
+                  <MainCard
+                    image={image ? image : ""}
+                    sub={sub ? sub : ""}
+                    title={title}
+                    key={idx}
+                    index={idx}
+                    agent={agent}
+                  />
+                );
+              })
+            : section2Mb.map(({ image, title, sub }, idx) => {
+                return (
+                  <MainCard
+                    image={image ? image : ""}
+                    sub={sub ? sub : ""}
+                    title={title}
+                    key={idx}
+                    index={idx}
+                    agent={agent}
+                  />
+                );
+              })}
         </Section2>
         <Section3>
           <div className="wrapper">
@@ -265,7 +425,7 @@ function Home() {
         </Section3>
       </main>
       <footer className={styles.footer}>
-        <Footer />
+        <Footer agent={agent} />
       </footer>
     </div>
   );

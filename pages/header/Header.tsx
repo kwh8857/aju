@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 const menu_layout = [
   { title: "회사소개", link: "/about" },
   { title: "공사실적", link: "/history" },
@@ -20,6 +20,12 @@ const HeadStyle = styled.div`
   justify-content: space-between;
   box-sizing: border-box;
   padding: 0 75px;
+  .logo {
+    cursor: pointer;
+  }
+  @media screen and (max-width: 1366px) {
+    padding: 0 32px;
+  }
 `;
 const MenuStyle = styled.div`
   display: grid;
@@ -27,35 +33,46 @@ const MenuStyle = styled.div`
   grid-template-columns: repeat(4, auto);
   font-size: 13px;
   font-weight: bold;
+  @media screen and (max-width: 1366px) {
+    display: flex;
+    column-gap: 0;
+    cursor: pointer;
+  }
 `;
-function Header() {
-  const __updateAgent = useCallback(
-    () => {
-      // if (agent === "pc") {
-      //   if (window.innerWidth < 1280) {
-      //     // console.log('pc to mobile!');
-      //     dispatch({
-      //       type: __UPDATE_AGENT__,
-      //       payload: "mobile",
-      //     });
-      //   }
-      // } else {
-      //   if (window.innerWidth > 1280) {
-      //     // console.log('mobile to pc!');
-      //     dispatch({
-      //       type: __UPDATE_AGENT__,
-      //       payload: "pc",
-      //     });
-      //   }
-      // }
-    },
-    [
-      // agent, dispatch
-    ]
-  );
-  const test = useSelector((state) => state);
-  console.log(test);
+type HeadProps = {
+  agent: string;
+};
+function Header({ agent }: HeadProps) {
+  const dispatch = useDispatch();
+
+  const __updateAgent = useCallback(() => {
+    if (
+      agent !== "tablet" &&
+      767 < window.innerWidth &&
+      window.innerWidth < 1366
+    ) {
+      // console.log('pc to mobile!');
+      dispatch({
+        type: "CONFIG/UPDATE/AGENT",
+        payload: "tablet",
+      });
+    }
+    if (agent !== "pc" && window.innerWidth > 1365) {
+      // console.log('mobile to pc!');
+      dispatch({
+        type: "CONFIG/UPDATE/AGENT",
+        payload: "pc",
+      });
+    }
+    if (agent !== "mobile" && window.innerWidth < 768) {
+      dispatch({
+        type: "CONFIG/UPDATE/AGENT",
+        payload: "mobile",
+      });
+    }
+  }, [agent, dispatch]);
   useEffect(() => {
+    __updateAgent();
     window.addEventListener("resize", __updateAgent);
     return () => {
       window.removeEventListener("resize", __updateAgent);
@@ -63,15 +80,23 @@ function Header() {
   }, [__updateAgent]);
   return (
     <HeadStyle>
-      <img src="/assets/logo.svg" alt="Aju" />
+      <Link href={"/"}>
+        <img src="/assets/logo.svg" alt="Aju" className="logo" />
+      </Link>
       <MenuStyle>
-        {menu_layout.map(({ link, title }, idx) => {
-          return (
-            <Link href={link} key={idx}>
-              <a>{title}</a>
-            </Link>
-          );
-        })}
+        {agent === "pc" ? (
+          menu_layout.map(({ link, title }, idx) => {
+            return (
+              <Link href={link} key={idx}>
+                <a>{title}</a>
+              </Link>
+            );
+          })
+        ) : (
+          <div className="menu-icon">
+            <img src="/assets/menu.svg" alt="메뉴" />
+          </div>
+        )}
       </MenuStyle>
     </HeadStyle>
   );

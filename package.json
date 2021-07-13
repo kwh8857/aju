@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-redux": "^7.1.18",
     "@types/redux-logger": "^3.0.9",
     "@types/styled-components": "^5.1.11",
     "babel-plugin-styled-components": "^1.13.1",

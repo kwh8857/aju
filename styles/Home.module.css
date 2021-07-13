@@ -12,6 +12,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: white;
 }
 
 .footer {
@@ -107,5 +108,11 @@
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 1365px) {
+  .footer {
+    height: 282px;
   }
 }

@@ -5,6 +5,7 @@ const initialState = {
     version: "1.0.11",
   },
 };
+
 const config = (state = initialState, { type, payload }) => {
   switch (type) {
     case "CONFIG/UPDATE/AGENT":
