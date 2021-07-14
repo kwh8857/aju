@@ -7,6 +7,7 @@ import reducer from "./reducer";
 const configureStore = () => {
   const logger = createLogger();
   const enhancer = compose(composeWithDevTools(applyMiddleware(logger)));
+
   const store = createStore(reducer, enhancer);
   return store;
 };

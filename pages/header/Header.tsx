@@ -23,7 +23,7 @@ const HeadStyle = styled.div`
   .logo {
     cursor: pointer;
   }
-  @media screen and (max-width: 1366px) {
+  @media screen and (max-width: 1365px) {
     padding: 0 32px;
   }
 `;
@@ -33,7 +33,7 @@ const MenuStyle = styled.div`
   grid-template-columns: repeat(4, auto);
   font-size: 13px;
   font-weight: bold;
-  @media screen and (max-width: 1366px) {
+  @media screen and (max-width: 1365px) {
     display: flex;
     column-gap: 0;
     cursor: pointer;
@@ -42,6 +42,7 @@ const MenuStyle = styled.div`
 type HeadProps = {
   agent: string;
 };
+
 function Header({ agent }: HeadProps) {
   const dispatch = useDispatch();
 
@@ -71,6 +72,7 @@ function Header({ agent }: HeadProps) {
       });
     }
   }, [agent, dispatch]);
+
   useEffect(() => {
     __updateAgent();
     window.addEventListener("resize", __updateAgent);

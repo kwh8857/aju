@@ -81,16 +81,29 @@ const noticeArr = [
 const Section1 = styled.div`
   width: 100%;
   height: 767px;
-  background-image: url("/assets/main.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: -webkit-image-set(
-    url("/assets/main@2x.png") 2x,
-    url("/assets/main@3x.png") 3x
-  );
-  @media screen and (max-width: 1366px) {
+  .wrapper {
+    width: 100%;
+    height: 767px;
+    background-image: url("/assets/main.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: -webkit-image-set(
+      url("/assets/main@2x.png") 2x,
+      url("/assets/main@3x.png") 3x
+    );
+  }
+  @media screen and (max-width: 1365px) {
+    height: 894px;
+    .wrapper {
+      height: 65.6vw;
+    }
+  }
+  @media screen and (max-width: 767px) {
     height: 427px;
+    .wrapper {
+      height: 100%;
+    }
   }
 `;
 const Container = styled.div`
@@ -150,13 +163,20 @@ const Container = styled.div`
   }
 `;
 const MainVideo = styled.div`
-  width: 100%;
+  width: 768px;
   /* margin: 0 auto; */
   height: 467px;
   background-image: url("https://data.1freewallpapers.com/download/tall-buildings-in-the-city.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  position: absolute;
+  top: 427px;
+  @media screen and (max-width: 767px) {
+    position: unset;
+    width: 100%;
+    height: 61vw;
+  }
 `;
 const Section2 = styled.div`
   max-width: 993px;
@@ -346,18 +366,20 @@ function Home() {
       <Header agent={agent} />
       <main className={styles.main}>
         <Section1>
-          <Container>
-            <div className="left">
-              내 집, 내 공장을 <br /> 짓는다는 마음으로 <br /> 아주종합건설
-              <br />
-              <div>
-                내 집, 내 공장을 짓는다는 마음으로 <br /> 함께하는 종합건설기업
-                (주) 아주산업개발
+          <div className="wrapper">
+            <Container>
+              <div className="left">
+                내 집, 내 공장을 <br /> 짓는다는 마음으로 <br /> 아주종합건설
+                <br />
+                <div>
+                  내 집, 내 공장을 짓는다는 마음으로 <br /> 함께하는
+                  종합건설기업 (주) 아주산업개발
+                </div>
+                <img src="/assets/pause.svg" alt="재생" />
               </div>
-              <img src="/assets/pause.svg" alt="재생" />
-            </div>
-            {agent === "pc" ? <div className="main-video"></div> : undefined}
-          </Container>
+              {agent === "pc" ? <div className="main-video"></div> : undefined}
+            </Container>
+          </div>
         </Section1>
         {agent !== "pc" ? <MainVideo /> : undefined}
         <Section2>
