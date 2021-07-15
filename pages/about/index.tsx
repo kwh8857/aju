@@ -5,13 +5,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../reducer";
 import styles from "../../styles/Home.module.css";
 import Header from "../header/Header";
-import { server } from "../../components/config/config";
+// import { server } from "../../components/config/config";
 import { useRouter } from "next/dist/client/router";
 
 const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
   background-color: white;
+  overflow: hidden;
 `;
 const Top = styled.div`
   padding-top: 144px;
@@ -41,63 +40,73 @@ const Top = styled.div`
 
 const Section1 = styled.div`
   height: 535px;
-  display: flex;
-  width: 993px;
-  margin: 0 auto;
-  align-items: center;
-  .left {
-    .title {
-      font-size: 32px;
-      font-weight: bold;
-      line-height: 1.5;
-    }
-    .grey-bar {
-      width: 405px;
-      height: 1px;
-      background-color: #bfbfbf;
-      margin-top: 24.5px;
-      margin-bottom: 16.5px;
-    }
-    .sub {
-      font-size: 15px;
-      color: #434343;
-      line-height: 1.73;
-    }
-  }
-  img {
-    width: 588px;
-    height: 222px;
-  }
-  @media screen and (max-width: 1365px) {
-    width: 720px;
-    height: 739px;
-    flex-direction: column;
-    text-align: center;
-    padding-top: 82px;
-    box-sizing: border-box;
+  width: 100%;
+  background-color: white;
+  .wrapper {
+    width: 993px;
+    height: 100%;
+    margin: 0 auto;
+    align-items: center;
+    background-color: white;
+    display: flex;
     .left {
       .title {
-        font-size: 26px;
+        font-size: 32px;
+        font-weight: bold;
+        line-height: 1.5;
+      }
+      .grey-bar {
+        width: 405px;
+        height: 1px;
+        background-color: #bfbfbf;
+        margin-top: 24.5px;
+        margin-bottom: 16.5px;
       }
       .sub {
-        margin-top: 19px;
-        line-height: 1.87;
-        margin-bottom: 55px;
+        font-size: 15px;
+        color: #434343;
+        line-height: 1.73;
+      }
+    }
+    img {
+      width: 588px;
+      height: 222px;
+    }
+  }
+  @media screen and (max-width: 1365px) {
+    height: 739px;
+    .wrapper {
+      width: 720px;
+      flex-direction: column;
+      text-align: center;
+      padding-top: 82px;
+      box-sizing: border-box;
+      .left {
+        .title {
+          font-size: 26px;
+        }
+        .sub {
+          margin-top: 19px;
+          line-height: 1.87;
+          margin-bottom: 55px;
+        }
       }
     }
   }
   @media screen and (max-width: 767px) {
-    width: 320px;
     height: 855px;
-    .left {
-      .sub {
-        line-height: 1.87;
-        margin-bottom: 35px;
+    .wrapper {
+      width: 320px;
+      .left {
+        .sub {
+          line-height: 1.87;
+          margin-bottom: 35px;
+        }
       }
-    }
-    img {
-      width: 190px;
-      height: 437px;
+      img {
+        width: 190px;
+        height: 437px;
+      }
     }
   }
 `;
@@ -509,8 +518,9 @@ const Section5 = styled.div`
       white-space: nowrap;
     }
     .image {
-      width: 790px;
-      height: 275px;
+      /* width: 790px;
+      height: 275px; */
+      margin-top: 46.8px;
     }
     .bottom {
       margin-top: 80px;
@@ -571,8 +581,6 @@ const Section5 = styled.div`
         white-space: pre-line;
       }
       .image {
-        width: 674px;
-        height: 235px;
         margin-top: 53px;
       }
       .bottom {
@@ -622,8 +630,7 @@ const Section5 = styled.div`
         font-size: 25px;
       }
       .image {
-        width: 245px;
-        height: 505px;
+        margin-top: 75px;
       }
       .bottom {
         margin-top: 113px;
@@ -656,19 +663,106 @@ interface S4Type {
   year: string;
   list: Array<ArrType>;
 }
-type propType = {
-  s2: Array<ArrType>;
-  s3: Array<ArrType>;
-  s4: Array<S4Type>;
-};
+// type propType = {
+//   s2: Array<ArrType>;
+//   s3: Array<ArrType>;
+//   s4: Array<S4Type>;
+// };
 
-export async function getStaticProps() {
-  const res = await fetch(`${server}/api/hello`);
-  const result = await res.json();
-  return { props: { s2: result.s2, s3: result.s3, s4: result.s4 } };
-}
+// export async function getStaticProps() {
+//   const res = await fetch(`${server}/api/hello`);
+//   const result = await res.json();
+//   return { props: { s2: result.s2, s3: result.s3, s4: result.s4 } };
+// }
 
-function Index({ s2, s3, s4 }: propType) {
+const s2 = [
+  { title: "공장신축 및 개축공사", sub: "공장 / 창고 등의 조립식 건축공사" },
+
+  { title: "상가 및 주택 신축공사", sub: "공장 / 창고 등의 조립식 건축공사" },
+
+  {
+    title: "기존 건축물 내외부 리모델링",
+    sub: "공장 / 창고 등의 조립식 건축공사",
+  },
+
+  { title: "기타 토목공사", sub: "공장 / 창고 등의 조립식 건축공사" },
+
+  { title: "부동산 개발업", sub: "공장 / 창고 등의 조립식 건축공사" },
+
+  { title: "부동산 임대업", sub: "공장 / 창고 등의 조립식 건축공사" },
+];
+const s3 = [
+  { title: "회사명", sub: "(주)아주산업개발" },
+  { title: "사업자등록번호", sub: "513-81-15880" },
+  { title: "대표이사", sub: "전상현" },
+  { title: "설립일", sub: "1999년 7월 15일" },
+  { title: "소재지", sub: "경북 구미시 형곡로 8길 14, 301호" },
+  {
+    title: "주요사업내용",
+    sub: `·공장신축 및 개축공사
+·상가 및 주택 신축공사
+·기존건축물 내 외부 리모델링 공사
+·기타 토목공사
+·부동산 개발업
+·부동산 임대업`,
+  },
+];
+const s4 = [
+  { year: "1998", list: [{ title: "10월", sub: "아주건설 설립" }] },
+  {
+    year: "1999",
+    list: [
+      { title: "7월", sub: "(주)아주산업개발로\n 법인 설립 및 상호변경" },
+      { title: "12월", sub: "자본금증자\n (자본금 3억 500만원)" },
+      { title: "12월", sub: "건축공사업\n 면허취득 (16-0026호)" },
+    ],
+  },
+  {
+    year: "2004",
+    list: [{ title: "12월", sub: "자본금증자\n (자본금 5억 500만원)" }],
+  },
+  {
+    year: "2008",
+    list: [{ title: "3월", sub: "납세자의 날 표창장 수여 \n(구미 세무서장)" }],
+  },
+  {
+    year: "2013",
+    list: [
+      {
+        title: "3월",
+        sub: "납세자의 날 표창장 수여 \n(대구 지방국세청장)",
+      },
+    ],
+  },
+  {
+    year: "2016",
+    list: [
+      {
+        title: "4월",
+        sub: "본사사옥 구입 및 이전",
+      },
+    ],
+  },
+  {
+    year: "2020",
+    list: [
+      {
+        title: "6월",
+        sub: "관계회사 (주) 아주종합건설\n 설립 (자본금 5억)",
+      },
+      {
+        title: "7월",
+        sub: "(주) 아주 종합건설 건축\n 공사업 면허 취득 (16-0745)",
+      },
+      {
+        title: "10월",
+        sub: "경쟁력강화를 위해 건설사업\n부분 분할로 (주)아주건설 설립",
+      },
+    ],
+  },
+];
+
+function Index() {
   const route = useRouter();
   const agent = useSelector(
     (state: RootState) => state.config.identification.agent
@@ -702,28 +796,30 @@ function Index({ s2, s3, s4 }: propType) {
         <div className="title">회사소개</div>
       </Top>
       <Section1>
-        <div className="left">
-          <div className="title">
-            사소한 부분이라도 <br /> 내 집처럼 꼼꼼하게
+        <div className="wrapper">
+          <div className="left">
+            <div className="title">
+              사소한 부분이라도 <br /> 내 집처럼 꼼꼼하게
+            </div>
+            {agent === "pc" ? <div className="grey-bar" /> : undefined}
+            <div className="sub">
+              저희 아주는 회사 설립 때부터 내 집, 내 공장을 짓는
+              <br /> 다는 창립이념을 바탕으로 어느 누구도 자신의 집을 <br />{" "}
+              대충 짓지 않듯이 고객의 입장에서 내 집을 짓는다는 <br /> 마음을
+              가지고 사소한 부분이라도 대충 지나치지 않<br /> 을 각오와 다짐으로
+              회사 상호를 아주로 정했습니다.
+            </div>
           </div>
-          {agent === "pc" ? <div className="grey-bar" /> : undefined}
-          <div className="sub">
-            저희 아주는 회사 설립 때부터 내 집, 내 공장을 짓는
-            <br /> 다는 창립이념을 바탕으로 어느 누구도 자신의 집을 <br /> 대충
-            짓지 않듯이 고객의 입장에서 내 집을 짓는다는 <br /> 마음을 가지고
-            사소한 부분이라도 대충 지나치지 않<br /> 을 각오와 다짐으로 회사
-            상호를 아주로 정했습니다.
-          </div>
+          <img
+            src={`/assets/about-s1${agent === "mobile" ? "mb" : ""}.png`}
+            srcSet={`/assets/about-s1${
+              agent === "mobile" ? "mb" : ""
+            }@2x.png 2x ,/assets/about-s1${
+              agent === "mobile" ? "mb" : ""
+            }@3x.png 3x`}
+            alt="image"
+          />
         </div>
-        <img
-          src={`/assets/about-s1${agent === "mobile" ? "mb" : ""}.png`}
-          srcSet={`/assets/about-s1${
-            agent === "mobile" ? "mb" : ""
-          }@2x.png 2x ,/assets/about-s1${
-            agent === "mobile" ? "mb" : ""
-          }@3x.png 3x`}
-          alt="image"
-        />
       </Section1>
       <Section2>
         <div className="wrapper">
@@ -833,9 +929,9 @@ function Index({ s2, s3, s4 }: propType) {
           <img
             src={`/assets/about-s5${agent === "mobile" ? "mb" : ""}.png`}
             srcSet={`/assets/about-s5${
-              agent === "mobile" ? "mb" : ""
+              agent === "mobile" ? "mb" : agent === "tablet" ? "tb" : ""
             }@2x.png 2x ,/assets/about-s5${
-              agent === "mobile" ? "mb" : ""
+              agent === "mobile" ? "mb" : agent === "tablet" ? "tb" : ""
             }@3x.png 3x`}
             alt="image"
             className="image"

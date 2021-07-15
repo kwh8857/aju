@@ -18,8 +18,8 @@ const Wrapper = styled.div`
   z-index: 900;
   overflow: hidden;
   touch-action: none;
-  top: -100%;
-  transition: top 0.2s ease-in-out;
+  left: 100%;
+  transition: left 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,7 +62,7 @@ function MbMenu() {
     return () => {};
   }, [route, __close]);
   return (
-    <Wrapper style={isMenu ? { top: 0 } : undefined}>
+    <Wrapper style={isMenu ? { left: 0 } : undefined}>
       {menu_layout.map(({ title, link }, idx) => {
         return (
           <Link key={idx} href={link}>
