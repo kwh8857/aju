@@ -663,7 +663,7 @@ type propType = {
 };
 
 export async function getStaticProps() {
-  const res = await fetch(`/api/hello`);
+  const res = await fetch(`${server}/api/hello`);
   const result = await res.json();
   return { props: { s2: result.s2, s3: result.s3, s4: result.s4 } };
 }
