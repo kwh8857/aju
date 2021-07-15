@@ -5,13 +5,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../reducer";
 import styles from "../../styles/Home.module.css";
 import Header from "../header/Header";
-import { server } from "../../components/config/config";
+// import { server } from "../../components/config/config";
 import { useRouter } from "next/dist/client/router";
 
 const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
   background-color: white;
+  overflow: hidden;
 `;
 const Top = styled.div`
   padding-top: 144px;
@@ -41,63 +40,73 @@ const Top = styled.div`
 
 const Section1 = styled.div`
   height: 535px;
-  display: flex;
-  width: 993px;
-  margin: 0 auto;
-  align-items: center;
-  .left {
-    .title {
-      font-size: 32px;
-      font-weight: bold;
-      line-height: 1.5;
-    }
-    .grey-bar {
-      width: 405px;
-      height: 1px;
-      background-color: #bfbfbf;
-      margin-top: 24.5px;
-      margin-bottom: 16.5px;
-    }
-    .sub {
-      font-size: 15px;
-      color: #434343;
-      line-height: 1.73;
-    }
-  }
-  img {
-    width: 588px;
-    height: 222px;
-  }
-  @media screen and (max-width: 1365px) {
-    width: 720px;
-    height: 739px;
-    flex-direction: column;
-    text-align: center;
-    padding-top: 82px;
-    box-sizing: border-box;
+  width: 100%;
+  background-color: white;
+  .wrapper {
+    width: 993px;
+    height: 100%;
+    margin: 0 auto;
+    align-items: center;
+    background-color: white;
+    display: flex;
     .left {
       .title {
-        font-size: 26px;
+        font-size: 32px;
+        font-weight: bold;
+        line-height: 1.5;
+      }
+      .grey-bar {
+        width: 405px;
+        height: 1px;
+        background-color: #bfbfbf;
+        margin-top: 24.5px;
+        margin-bottom: 16.5px;
       }
       .sub {
-        margin-top: 19px;
-        line-height: 1.87;
-        margin-bottom: 55px;
+        font-size: 15px;
+        color: #434343;
+        line-height: 1.73;
+      }
+    }
+    img {
+      width: 588px;
+      height: 222px;
+    }
+  }
+  @media screen and (max-width: 1365px) {
+    height: 739px;
+    .wrapper {
+      width: 720px;
+      flex-direction: column;
+      text-align: center;
+      padding-top: 82px;
+      box-sizing: border-box;
+      .left {
+        .title {
+          font-size: 26px;
+        }
+        .sub {
+          margin-top: 19px;
+          line-height: 1.87;
+          margin-bottom: 55px;
+        }
       }
     }
   }
   @media screen and (max-width: 767px) {
-    width: 320px;
     height: 855px;
-    .left {
-      .sub {
-        line-height: 1.87;
-        margin-bottom: 35px;
+    .wrapper {
+      width: 320px;
+      .left {
+        .sub {
+          line-height: 1.87;
+          margin-bottom: 35px;
+        }
       }
-    }
-    img {
-      width: 190px;
-      height: 437px;
+      img {
+        width: 190px;
+        height: 437px;
+      }
     }
   }
 `;
@@ -509,8 +518,9 @@ const Section5 = styled.div`
       white-space: nowrap;
     }
     .image {
-      width: 790px;
-      height: 275px;
+      /* width: 790px;
+      height: 275px; */
+      margin-top: 46.8px;
     }
     .bottom {
       margin-top: 80px;
@@ -571,8 +581,6 @@ const Section5 = styled.div`
         white-space: pre-line;
       }
       .image {
-        width: 674px;
-        height: 235px;
         margin-top: 53px;
       }
       .bottom {
@@ -622,8 +630,7 @@ const Section5 = styled.div`
         font-size: 25px;
       }
       .image {
-        width: 245px;
-        height: 505px;
+        margin-top: 75px;
       }
       .bottom {
         margin-top: 113px;
@@ -789,28 +796,30 @@ function Index() {
         <div className="title">회사소개</div>
       </Top>
       <Section1>
-        <div className="left">
-          <div className="title">
-            사소한 부분이라도 <br /> 내 집처럼 꼼꼼하게
+        <div className="wrapper">
+          <div className="left">
+            <div className="title">
+              사소한 부분이라도 <br /> 내 집처럼 꼼꼼하게
+            </div>
+            {agent === "pc" ? <div className="grey-bar" /> : undefined}
+            <div className="sub">
+              저희 아주는 회사 설립 때부터 내 집, 내 공장을 짓는
+              <br /> 다는 창립이념을 바탕으로 어느 누구도 자신의 집을 <br />{" "}
+              대충 짓지 않듯이 고객의 입장에서 내 집을 짓는다는 <br /> 마음을
+              가지고 사소한 부분이라도 대충 지나치지 않<br /> 을 각오와 다짐으로
+              회사 상호를 아주로 정했습니다.
+            </div>
           </div>
-          {agent === "pc" ? <div className="grey-bar" /> : undefined}
-          <div className="sub">
-            저희 아주는 회사 설립 때부터 내 집, 내 공장을 짓는
-            <br /> 다는 창립이념을 바탕으로 어느 누구도 자신의 집을 <br /> 대충
-            짓지 않듯이 고객의 입장에서 내 집을 짓는다는 <br /> 마음을 가지고
-            사소한 부분이라도 대충 지나치지 않<br /> 을 각오와 다짐으로 회사
-            상호를 아주로 정했습니다.
-          </div>
+          <img
+            src={`/assets/about-s1${agent === "mobile" ? "mb" : ""}.png`}
+            srcSet={`/assets/about-s1${
+              agent === "mobile" ? "mb" : ""
+            }@2x.png 2x ,/assets/about-s1${
+              agent === "mobile" ? "mb" : ""
+            }@3x.png 3x`}
+            alt="image"
+          />
         </div>
-        <img
-          src={`/assets/about-s1${agent === "mobile" ? "mb" : ""}.png`}
-          srcSet={`/assets/about-s1${
-            agent === "mobile" ? "mb" : ""
-          }@2x.png 2x ,/assets/about-s1${
-            agent === "mobile" ? "mb" : ""
-          }@3x.png 3x`}
-          alt="image"
-        />
       </Section1>
       <Section2>
         <div className="wrapper">
@@ -920,9 +929,9 @@ function Index() {
           <img
             src={`/assets/about-s5${agent === "mobile" ? "mb" : ""}.png`}
             srcSet={`/assets/about-s5${
-              agent === "mobile" ? "mb" : ""
+              agent === "mobile" ? "mb" : agent === "tablet" ? "tb" : ""
             }@2x.png 2x ,/assets/about-s5${
-              agent === "mobile" ? "mb" : ""
+              agent === "mobile" ? "mb" : agent === "tablet" ? "tb" : ""
             }@3x.png 3x`}
             alt="image"
             className="image"
