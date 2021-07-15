@@ -1,12 +1,12 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Header from "../header/Header";
 import { useSelector } from "react-redux";
-import { RootState } from "../reducer";
-import { Top, Section1, Section2 } from "./style/style";
-import { boxlayout, mblayout } from "./layout/layout";
+import { RootState } from "../../reducer";
+import { Top, Section1, Section2 } from "../../components/question/style/style";
+import { boxlayout, mblayout } from "../../components/question/layout/layout";
 import styles from "../../styles/Home.module.css";
 import Footer from "../footer/Footer";
-function index() {
+function Index() {
   const agent = useSelector(
     (state: RootState) => state.config.identification.agent
   );
@@ -127,4 +127,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;

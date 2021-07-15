@@ -2,11 +2,11 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Header from "./header/Header";
 import styled from "styled-components";
-import MainCard from "./components/MainCard";
-import { formatDate } from "./lib/factory";
+import MainCard from "../components/MainCard";
+import { formatDate } from "../lib/factory";
 import Footer from "./footer/Footer";
 import { useSelector } from "react-redux";
-import { RootState } from "./reducer";
+import { RootState } from "../reducer";
 import { useEffect, useCallback, useState } from "react";
 //레이아웃 영역
 const section2Mb = [

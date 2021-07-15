@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../reducer";
+import { RootState } from "../../reducer";
 const menu_layout = [
   { title: "회사소개", link: "/about" },
   { title: "공사실적", link: "/history" },

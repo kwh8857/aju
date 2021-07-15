@@ -2,10 +2,11 @@ import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import Footer from "../footer/Footer";
 import { useSelector } from "react-redux";
-import { RootState } from "../reducer";
+import { RootState } from "../../reducer";
 import styles from "../../styles/Home.module.css";
 import Header from "../header/Header";
-import { server } from "../config/config";
+import { server } from "../../components/config/config";
+import { useRouter } from "next/dist/client/router";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -660,7 +661,15 @@ type propType = {
   s3: Array<ArrType>;
   s4: Array<S4Type>;
 };
-function index({ s2, s3, s4 }: propType) {
+
+export async function getStaticProps() {
+  const res = await fetch(`/api/hello`);
+  const result = await res.json();
+  return { props: { s2: result.s2, s3: result.s3, s4: result.s4 } };
+}
+
+function Index({ s2, s3, s4 }: propType) {
+  const route = useRouter();
   const agent = useSelector(
     (state: RootState) => state.config.identification.agent
   );
@@ -676,13 +685,16 @@ function index({ s2, s3, s4 }: propType) {
         setIsHead(true);
       }
     }
-  }, [isHead, agent]);
+  }, [isHead]);
   useEffect(() => {
     document.addEventListener("scroll", __scrollHandle);
     return () => {
       document.removeEventListener("scroll", __scrollHandle);
     };
   }, [__scrollHandle]);
+  if (route.isFallback) {
+    return <div></div>;
+  }
   return (
     <Wrapper>
       <Header agent={agent} isHead={isHead} />
@@ -860,9 +872,4 @@ function index({ s2, s3, s4 }: propType) {
   );
 }
 
-export async function getStaticProps() {
-  const res = await fetch(`${server}/api/hello`);
-  const result = await res.json();
-  return { props: { s2: result.s2, s3: result.s3, s4: result.s4 } };
-}
-export default index;
+export default Index;
