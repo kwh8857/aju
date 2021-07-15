@@ -4,6 +4,7 @@ const initialState = {
     agent: "pc",
     version: "1.0.11",
   },
+  isMenu: false,
 };
 
 const config = (state = initialState, { type, payload }) => {
@@ -15,6 +16,11 @@ const config = (state = initialState, { type, payload }) => {
           ...state.identification,
           agent: payload,
         },
+      };
+    case "CONFIG/MENU/CHANGE":
+      return {
+        ...state,
+        isMenu: payload,
       };
     default:
       return state;

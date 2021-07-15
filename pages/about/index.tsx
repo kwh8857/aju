@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import Footer from "../footer/Footer";
 import { useSelector } from "react-redux";
@@ -518,7 +518,7 @@ const Section5 = styled.div`
       .box {
         position: relative;
         white-space: nowrap;
-        padding-left: 64px;
+        padding-left: 62px;
         box-sizing: border-box;
         display: flex;
         align-items: center;
@@ -539,11 +539,11 @@ const Section5 = styled.div`
           font-weight: bold;
         }
         hr {
-          height: 80px;
+          height: 85px;
           margin-top: 0;
           margin-bottom: 0;
-          margin-left: 50px;
-          margin-right: 28px;
+          margin-left: 52px;
+          margin-right: 32px;
           width: 1px;
         }
         .content {
@@ -664,9 +664,28 @@ function index({ s2, s3, s4 }: propType) {
   const agent = useSelector(
     (state: RootState) => state.config.identification.agent
   );
+  const [isHead, setIsHead] = useState(false);
+  const __scrollHandle = useCallback(() => {
+    if (window.scrollY <= 157) {
+      if (isHead) {
+        setIsHead(false);
+      }
+    }
+    if (window.scrollY >= 158) {
+      if (!isHead) {
+        setIsHead(true);
+      }
+    }
+  }, [isHead, agent]);
+  useEffect(() => {
+    document.addEventListener("scroll", __scrollHandle);
+    return () => {
+      document.removeEventListener("scroll", __scrollHandle);
+    };
+  }, [__scrollHandle]);
   return (
     <Wrapper>
-      <Header agent={agent} />
+      <Header agent={agent} isHead={isHead} />
       <Top>
         <div className="title">회사소개</div>
       </Top>

@@ -1,7 +1,8 @@
 import React, { useEffect, useCallback } from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../reducer";
 const menu_layout = [
   { title: "회사소개", link: "/about" },
   { title: "공사실적", link: "/history" },
@@ -20,6 +21,8 @@ const HeadStyle = styled.div`
   justify-content: space-between;
   box-sizing: border-box;
   padding: 0 75px;
+  z-index: 1000;
+  transition: background-color 0.2s ease-in-out;
   .logo {
     cursor: pointer;
   }
@@ -41,11 +44,12 @@ const MenuStyle = styled.div`
 `;
 type HeadProps = {
   agent: string;
+  isHead: boolean;
 };
 
-function Header({ agent }: HeadProps) {
+function Header({ agent, isHead }: HeadProps) {
   const dispatch = useDispatch();
-
+  const isMenu = useSelector((state: RootState) => state.config.isMenu);
   const __updateAgent = useCallback(() => {
     if (
       agent !== "tablet" &&
@@ -81,22 +85,49 @@ function Header({ agent }: HeadProps) {
     };
   }, [__updateAgent]);
   return (
-    <HeadStyle>
+    <HeadStyle
+      style={
+        isHead && !isMenu
+          ? {
+              backgroundColor: "white",
+            }
+          : undefined
+      }
+    >
       <Link href={"/"}>
-        <img src="/assets/logo.svg" alt="Aju" className="logo" />
+        <img
+          src={`/assets/logo${isHead && !isMenu ? "black" : ""}.svg`}
+          alt="Aju"
+          className="logo"
+        />
       </Link>
       <MenuStyle>
         {agent === "pc" ? (
           menu_layout.map(({ link, title }, idx) => {
             return (
               <Link href={link} key={idx}>
-                <a>{title}</a>
+                <a style={isHead && !isMenu ? { color: "black" } : undefined}>
+                  {title}
+                </a>
               </Link>
             );
           })
         ) : (
-          <div className="menu-icon">
-            <img src="/assets/menu.svg" alt="메뉴" />
+          <div
+            className="menu-icon"
+            onClick={() => {
+              dispatch({
+                type: "CONFIG/MENU/CHANGE",
+                payload: !isMenu,
+              });
+            }}
+          >
+            <img
+              src={`/assets/menu${
+                isMenu ? "-cancel" : isHead ? "black" : ""
+              }.svg`}
+              alt="메뉴"
+            />
           </div>
         )}
       </MenuStyle>
