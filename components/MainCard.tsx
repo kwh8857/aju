@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import Link from "next/link";
+import Image from "next/image";
 
 type cardProps = {
   title: string;
@@ -16,6 +18,22 @@ const LeftCard = styled.div`
   background-repeat: no-repeat;
   position: relative;
   cursor: pointer;
+  z-index: 2;
+  .image-wrapper {
+    & > div {
+      background-image: linear-gradient(
+        to top,
+        rgb(5, 10, 10),
+        15%,
+        rgba(84, 84, 84, 0)
+      );
+    }
+
+    img {
+      z-index: -1;
+    }
+  }
+
   @media screen and (max-width: 1365px) {
     height: 240px;
   }
@@ -86,6 +104,21 @@ const RightCard = styled.div`
   height: 355px;
   position: relative;
   cursor: pointer;
+  z-index: 2;
+  .image-wrapper {
+    & > div {
+      background-image: linear-gradient(
+        to top,
+        rgb(5, 10, 10),
+        15%,
+        rgba(84, 84, 84, 0)
+      );
+    }
+
+    img {
+      z-index: -1;
+    }
+  }
   @media screen and (max-width: 1365px) {
     height: 278px;
   }
@@ -122,18 +155,34 @@ function MainCard({ title, image, sub, index, agent }: cardProps) {
   const filt = index % 2;
   if (filt === 0 && sub.length === 0) {
     return (
-      <LeftCard
-        style={{
-          backgroundImage: `linear-gradient(to top, rgb(5,10,10),15%, rgba(84, 84, 84, 0)),url(${image})`,
-          transform:
-            agent === "tablet" && index === 4 ? `translateY(-38px)` : undefined,
-        }}
-      >
-        <Bottom>
-          <div className="title">{title}</div>
-          <img src="/assets/white-plus.svg" alt="이동" />
-        </Bottom>
-      </LeftCard>
+      <Link href={`/detail/history-${index}`}>
+        <a>
+          <LeftCard
+            style={{
+              transform:
+                agent === "tablet" && index === 4
+                  ? `translateY(-38px)`
+                  : undefined,
+            }}
+          >
+            <div className="image-wrapper">
+              <Image
+                className="test"
+                src={image}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center"
+                placeholder="blur"
+                blurDataURL="https://us.123rf.com/450wm/jakkapan/jakkapan1604/jakkapan160400006/54923627-%EC%B6%94%EC%83%81-%ED%9A%8C%EC%83%89-%EB%B0%B0%EA%B2%BD-%EB%AA%A8%EC%85%98-%EB%B8%94%EB%9F%AC-%ED%9A%A8%EA%B3%BC.jpg?ver=6"
+              />
+            </div>
+            <Bottom>
+              <div className="title">{title}</div>
+              <img src="/assets/white-plus.svg" alt="이동" />
+            </Bottom>
+          </LeftCard>
+        </a>
+      </Link>
     );
   } else if (sub.length > 1) {
     return (
@@ -145,32 +194,47 @@ function MainCard({ title, image, sub, index, agent }: cardProps) {
           어느 누구도 자신의 집을 대충 짓지 않듯이 <br /> 내 집처럼 고객의
           입장에서 함께합니다
         </div>
-        <div className="btn">
-          공사실적 전체보기
-          <img src="/assets/card-shortarrow.svg" alt="arrow" />
-        </div>
+        <Link href="/history">
+          <a className="btn">
+            공사실적 전체보기
+            <img src="/assets/card-shortarrow.svg" alt="arrow" />
+          </a>
+        </Link>
       </SecondCard>
     );
   } else {
     return (
-      <RightCard
-        style={{
-          backgroundImage: `linear-gradient(to top, rgb(5,10,10),15%, rgba(84, 84, 84, 0)),url(${image})`,
-          height:
-            index === 5
-              ? agent === "pc"
-                ? "483px"
-                : "378px"
-              : index === 3 && agent === "mobile"
-              ? "278px"
-              : undefined,
-        }}
-      >
-        <Bottom>
-          <div className="title">{title}</div>
-          <img src="/assets/white-plus.svg" alt="이동" />
-        </Bottom>
-      </RightCard>
+      <Link href={`/detail/history-${index}`}>
+        <a>
+          <RightCard
+            style={{
+              height:
+                index === 5
+                  ? agent === "pc"
+                    ? "483px"
+                    : "378px"
+                  : index === 3 && agent === "mobile"
+                  ? "278px"
+                  : undefined,
+            }}
+          >
+            <div className="image-wrapper">
+              <Image
+                src={image}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center"
+                placeholder="blur"
+                blurDataURL="https://us.123rf.com/450wm/jakkapan/jakkapan1604/jakkapan160400006/54923627-%EC%B6%94%EC%83%81-%ED%9A%8C%EC%83%89-%EB%B0%B0%EA%B2%BD-%EB%AA%A8%EC%85%98-%EB%B8%94%EB%9F%AC-%ED%9A%A8%EA%B3%BC.jpg?ver=6"
+              />
+            </div>
+            <Bottom>
+              <div className="title">{title}</div>
+              <img src="/assets/white-plus.svg" alt="이동" />
+            </Bottom>
+          </RightCard>
+        </a>
+      </Link>
     );
   }
 }

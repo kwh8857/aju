@@ -8,6 +8,8 @@ import Footer from "./footer/Footer";
 import { useSelector } from "react-redux";
 import { RootState } from "../reducer";
 import { useEffect, useCallback, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 //레이아웃 영역
 const section2Mb = [
   {
@@ -136,10 +138,7 @@ const Container = styled.div`
     width: 871px;
     height: 529px;
     margin-left: 54px;
-    background-image: url("https://data.1freewallpapers.com/download/tall-buildings-in-the-city.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    position: relative;
   }
   @media screen and (max-width: 1365px) {
     max-width: 768px;
@@ -167,12 +166,14 @@ const MainVideo = styled.div`
   width: 768px;
   /* margin: 0 auto; */
   height: 467px;
-  background-image: url("https://data.1freewallpapers.com/download/tall-buildings-in-the-city.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+
   position: absolute;
   top: 427px;
+  .wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
   @media screen and (max-width: 767px) {
     position: unset;
     width: 100%;
@@ -225,9 +226,6 @@ const Section3 = styled.div`
         justify-content: space-between;
         font-size: 22px;
         font-weight: bold;
-        & > img {
-          cursor: pointer;
-        }
       }
       .notice {
         white-space: nowrap;
@@ -308,9 +306,13 @@ const Section3 = styled.div`
         height: 326px;
         padding: 29px 26px 37px 28px;
         .left-top {
-          & > img {
-            cursor: pointer;
+          a {
             width: 34px;
+            height: 34px;
+
+            & > img {
+              width: 100%;
+            }
           }
         }
         .notice {
@@ -410,11 +412,37 @@ function Home() {
                 </div>
                 <img src="/assets/pause.svg" alt="재생" />
               </div>
-              {agent === "pc" ? <div className="main-video"></div> : undefined}
+              {agent === "pc" ? (
+                <div className="main-video">
+                  <Image
+                    sizes="850px"
+                    src="https://data.1freewallpapers.com/download/tall-buildings-in-the-city.jpg"
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="center"
+                    placeholder="blur"
+                    blurDataURL="https://us.123rf.com/450wm/jakkapan/jakkapan1604/jakkapan160400006/54923627-%EC%B6%94%EC%83%81-%ED%9A%8C%EC%83%89-%EB%B0%B0%EA%B2%BD-%EB%AA%A8%EC%85%98-%EB%B8%94%EB%9F%AC-%ED%9A%A8%EA%B3%BC.jpg?ver=6"
+                  />
+                </div>
+              ) : undefined}
             </Container>
           </div>
         </Section1>
-        {agent !== "pc" ? <MainVideo /> : undefined}
+        {agent !== "pc" ? (
+          <MainVideo>
+            <div className="wrapper">
+              <Image
+                src="https://data.1freewallpapers.com/download/tall-buildings-in-the-city.jpg"
+                layout="fill"
+                sizes="768px"
+                objectFit="cover"
+                objectPosition="center"
+                placeholder="blur"
+                blurDataURL="https://us.123rf.com/450wm/jakkapan/jakkapan1604/jakkapan160400006/54923627-%EC%B6%94%EC%83%81-%ED%9A%8C%EC%83%89-%EB%B0%B0%EA%B2%BD-%EB%AA%A8%EC%85%98-%EB%B8%94%EB%9F%AC-%ED%9A%A8%EA%B3%BC.jpg?ver=6"
+              />
+            </div>
+          </MainVideo>
+        ) : undefined}
         <Section2>
           {agent !== "mobile"
             ? section2Layout.map(({ image, title, sub }, idx) => {
@@ -447,7 +475,11 @@ function Home() {
             <div className="left">
               <div className="left-top">
                 <span>공지사항</span>
-                <img src="/assets/grey-plus.svg" alt="더보기" />
+                <Link href="/notice">
+                  <a>
+                    <img src="/assets/grey-plus.svg" alt="더보기" />
+                  </a>
+                </Link>
               </div>
               <div className="notice">
                 {noticeArr.map(({ title, time }, idx) => {

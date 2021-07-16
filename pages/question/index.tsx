@@ -11,26 +11,16 @@ function Index() {
     (state: RootState) => state.config.identification.agent
   );
   const [isHead, setIsHead] = useState(false);
-
+  const __clipboard = useCallback(() => {
+    document.execCommand("경북 구미시 형곡로 8길 14, 301호");
+  }, []);
   const __scrollHandle = useCallback(() => {
-    if (
-      agent === "pc"
-        ? window.scrollY <= 690
-        : agent === "tablet"
-        ? window.scrollY <= 599
-        : window.scrollY <= 550
-    ) {
+    if (window.scrollY <= 163) {
       if (isHead) {
         setIsHead(false);
       }
     }
-    if (
-      agent === "pc"
-        ? window.scrollY >= 691
-        : agent === "tablet"
-        ? window.scrollY >= 600
-        : window.scrollY >= 551
-    ) {
+    if (window.scrollY >= 164) {
       if (!isHead) {
         setIsHead(true);
       }
@@ -114,7 +104,9 @@ function Index() {
                 <img src="/assets/white-pin.svg" alt="pin" />
                 <div className="address">경북 구미시 형곡로 8길 14, 301호</div>
               </div>
-              <div className="clip">주소복사</div>
+              <div className="clip" onClick={__clipboard}>
+                주소복사
+              </div>
             </div>
           </div>
           <div className="map"></div>

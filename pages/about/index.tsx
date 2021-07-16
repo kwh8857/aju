@@ -7,6 +7,7 @@ import styles from "../../styles/Home.module.css";
 import Header from "../header/Header";
 // import { server } from "../../components/config/config";
 import { useRouter } from "next/dist/client/router";
+import Image from "next/image";
 
 const Wrapper = styled.div`
   background-color: white;
@@ -68,10 +69,6 @@ const Section1 = styled.div`
         line-height: 1.73;
       }
     }
-    img {
-      width: 588px;
-      height: 222px;
-    }
   }
   @media screen and (max-width: 1365px) {
     height: 739px;
@@ -102,10 +99,6 @@ const Section1 = styled.div`
           line-height: 1.87;
           margin-bottom: 35px;
         }
-      }
-      img {
-        width: 190px;
-        height: 437px;
       }
     }
   }
@@ -810,14 +803,15 @@ function Index() {
               회사 상호를 아주로 정했습니다.
             </div>
           </div>
-          <img
-            src={`/assets/about-s1${agent === "mobile" ? "mb" : ""}.png`}
-            srcSet={`/assets/about-s1${
-              agent === "mobile" ? "mb" : ""
-            }@2x.png 2x ,/assets/about-s1${
-              agent === "mobile" ? "mb" : ""
-            }@3x.png 3x`}
+          <Image
+            src={`/assets/about-s1${agent === "mobile" ? "mb" : ""}@3x.png`}
+            width={agent !== "mobile" ? 588 : 193}
+            height={agent !== "mobile" ? 222 : 437}
             alt="image"
+            placeholder="blur"
+            blurDataURL={`/assets/about-s1${
+              agent === "mobile" ? "mb" : ""
+            }.png`}
           />
         </div>
       </Section1>
