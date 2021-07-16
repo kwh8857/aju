@@ -42,6 +42,9 @@ const Wrapper = styled.div`
 function MbMenu() {
   const dispatch = useDispatch();
   const isMenu = useSelector((state: RootState) => state.config.isMenu);
+  const agent = useSelector(
+    (state: RootState) => state.config.identification.agent
+  );
   const route = useRouter();
   const __close = useCallback(() => {
     dispatch({
@@ -58,9 +61,11 @@ function MbMenu() {
     return () => {};
   }, [isMenu]);
   useEffect(() => {
-    __close();
+    if (agent !== "pc") {
+      __close();
+    }
     return () => {};
-  }, [route, __close]);
+  }, [route.pathname, __close, agent]);
   return (
     <Wrapper style={isMenu ? { left: 0 } : undefined}>
       {menu_layout.map(({ title, link }, idx) => {
