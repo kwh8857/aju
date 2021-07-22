@@ -7,6 +7,7 @@ module.exports = {
     deviceSizes: [360, 768, 1366],
     imageSizes: [767, 1365, 1920],
     domains: [
+      "firebasestorage.googleapis.com",
       "idoojin.co.kr",
       "data.1freewallpapers.com",
       "images.pexels.com",
@@ -14,6 +15,7 @@ module.exports = {
       "www.su-wan.co.kr",
       "www.shillahotels.com",
       "images.pexels.com",
+      "steadee-pf.appspot.com",
     ],
   },
 };
