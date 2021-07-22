@@ -14,7 +14,7 @@
     "@types/redux-logger": "^3.0.9",
     "@types/styled-components": "^5.1.11",
     "babel-plugin-styled-components": "^1.13.1",
-    "next": "^11.0.2",
+    "next": "^11.0.2-canary.4",
     "next-images": "^1.8.1",
     "next-redux-wrapper": "^6.0.2",
     "react": "^17.0.2",
