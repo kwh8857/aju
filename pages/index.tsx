@@ -8,9 +8,9 @@ import Footer from "./footer/Footer";
 import { useSelector } from "react-redux";
 import { RootState } from "../reducer";
 import { useEffect, useCallback, useState } from "react";
+import {getEditor} from '../firebase/store'
 import Image from "next/image";
 import Link from "next/link";
-//레이아웃 영역
 const section2Mb = [
   {
     title: "아주종합건설 \n공사실적",
@@ -391,6 +391,14 @@ function Home() {
       document.removeEventListener("scroll", __scrollHandle);
     };
   }, [__scrollHandle]);
+  useEffect(() => {
+    getEditor().then((result)=>{
+      console.log(result)
+    })
+    return () => {
+      
+    }
+  }, [])
   return (
     <div className={styles.container}>
       <Head>
