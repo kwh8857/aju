@@ -1,8 +1,8 @@
-import React from "react";
+import React, { forwardRef, Ref, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 type Props = {
-  content: string | object;
+  content: string | any;
 };
 const Wrapper = styled.div`
   width: 100%;
@@ -13,7 +13,17 @@ const Wrapper = styled.div`
   line-height: 2.06;
 `;
 function Title({ content }: Props) {
-  return <Wrapper>{content}</Wrapper>;
+  const contentRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (contentRef) {
+      contentRef.current.innerHTML = content;
+    }
+    return () => {
+    }
+  }, [contentRef])
+
+  return <Wrapper ref={contentRef}>{content}</Wrapper>
+;
 }
 
 export default Title;

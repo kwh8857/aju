@@ -12,86 +12,12 @@ import Title from "../../components/detail/components/Title";
 import Image from "../../components/detail/components/Image";
 import Video from "../../components/detail/components/Video";
 import Summary from "../../components/detail/components/Summary";
-
+import {getDetail, getEditor} from "../../firebase/store"
+import { GetStaticPaths, GetStaticProps, GetStaticPropsResult } from "next";
 type Props = {
-  type: string;
-  content: any;
+  data:any;
 };
-
-function Detail({ dummy }: { dummy: Array<Props> }) {
-  const route = useRouter();
-  const { id } = route.query;
-
-  const type = id?.toString().split("-")[0];
-  const agent = useSelector(
-    (state: RootState) => state.config.identification.agent
-  );
-  const [isHead, setIsHead] = useState(false);
-
-  const __scrollHandle = useCallback(() => {
-    if (window.scrollY <= 163) {
-      if (isHead) {
-        setIsHead(false);
-      }
-    }
-    if (window.scrollY >= 164) {
-      if (!isHead) {
-        setIsHead(true);
-      }
-    }
-  }, [isHead, agent]);
-  useEffect(() => {
-    document.addEventListener("scroll", __scrollHandle);
-    return () => {
-      document.removeEventListener("scroll", __scrollHandle);
-    };
-  }, [__scrollHandle]);
-  return (
-    <div
-      style={{
-        width: "100%",
-        height: "auto",
-      }}
-    >
-      <Header agent={agent} isHead={isHead} />
-      {type === "history" ? (
-        <Top>공사실적</Top>
-      ) : (
-        <NoticeTop>공지사항</NoticeTop>
-      )}
-      <Body>
-        <div className="wrapper">
-          <div className="top">
-            <div className="title">명절연휴안내</div>
-            <div className="time-wrapper">
-              <div className="time">2020.02.05 ~ 2021.02.05</div>
-              <div className="view">조회수 342</div>
-            </div>
-            <div className="grey-bar" />
-          </div>
-          <div className="templates">
-            {dummy.map(({ type, content }, idx) => {
-              if (type === "TITLE") {
-                return <Title key={idx} content={content} />;
-              } else if (type === "IMAGE") {
-                return <Image key={idx} content={content} />;
-              } else if (type === "VIDEO") {
-                return <Video key={idx} content={content} />;
-              } else if (type === "SUMMARY") {
-                return <Summary key={idx} content={content} />;
-              }
-            })}
-          </div>
-        </div>
-      </Body>
-      <footer className={styles.footer}>
-        <Footer agent={agent} />
-      </footer>
-    </div>
-  );
-}
-export async function getServerSideProps() {
-  const dummy = [
+ const dummy = [
     {
       type: "TITLE",
       content: `국가는 노인과 청소년의 복지향상을 위한 정책을 실시할 의무를 진다. 언론·출판에 대한 허가나 검열과 집회·결사에 대한 허가는 인정되지 아니한다. 학교교육 및 평생교육을 포함한 교육제도와 그 운영, 교육재정 및 교원의 지위에 관한 기본적인 사항은 법률로 정한다. 신체장애자 및 질병·노령 기타의 사유로 생활능력이 없는 국민은 법률이 정하는 바에 의하여 국가의 보호를 받는다. 대통령은 제3항과 제4항의 사유를 지체없이 공포하여야 한다.
@@ -138,18 +64,114 @@ export async function getServerSideProps() {
       },
     },
   ];
-  // Call an external API endpoint to get posts
-  // const res = await fetch("https://aju-kwh8857.vercel.app/details");
-  // console.log(res);
-  // const posts = await res.json();
+function Detail(
+ {data}:Props
+  ) {
+  const {
+    state,
+    template,
+    timestamp
+  }=data
+  const agent = useSelector(
+    (state: RootState) => state.config.identification.agent
+  );
+  const [isHead, setIsHead] = useState(false);
 
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
-  return {
-    props: {
-      dummy,
-    },
-  };
+  const __scrollHandle = useCallback(() => {
+    if (window.scrollY <= 163) {
+      if (isHead) {
+        setIsHead(false);
+      }
+    }
+    if (window.scrollY >= 164) {
+      if (!isHead) {
+        setIsHead(true);
+      }
+    }
+  }, [isHead, agent]);
+
+  useEffect(() => {
+    document.addEventListener("scroll", __scrollHandle);
+    return () => {
+      document.removeEventListener("scroll", __scrollHandle);
+    };
+  }, [__scrollHandle]);
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "auto",
+      }}
+    >
+      <Header agent={agent} isHead={isHead} />
+      {state === "portfolio" ? (
+        <Top>공사실적</Top>
+      ) : (
+        <NoticeTop>공지사항</NoticeTop>
+      )}
+      <Body>
+        <div className="wrapper">
+          <div className="top">
+            <div className="title">명절연휴안내</div>
+            <div className="time-wrapper">
+              <div className="time">2020.02.05 ~ 2021.02.05</div>
+              <div className="view">조회수 342</div>
+            </div>
+            <div className="grey-bar" />
+          </div>
+          <div className="templates">
+            {template.map(({ type, content }:{type:string; content:string;}, idx:number) => {
+              if (type === "TITLE") {
+                return <Title key={idx} content={content} />;
+              } else if (type === "IMAGE") {
+                return <Image key={idx} content={content} />;
+              } else if (type === "VIDEO") {
+                return <Video key={idx} content={content} />;
+              } else if (type === "SUMMARY") {
+                return <Summary key={idx} content={content} />;
+              }
+            })}
+          </div>
+        </div>
+      </Body>
+      <footer className={styles.footer}>
+        <Footer agent={agent} />
+      </footer>
+    </div>
+  );
 }
+
+// You should use getStaticPaths if you’re statically pre-rendering pages that use dynamic routes
+
+
+export const getStaticPaths: GetStaticPaths<any> = async (context) => {
+  
+   const popo = await getEditor().then((res)=>{
+      return res
+  })
+
+  const paths = await popo.map((post:string,idx:number)=>({
+   params:{id:post}
+  }))
+  return {
+    paths,
+    fallback: false
+  }
+}
+
+export async function getStaticProps(params:{params:{id:string}}): Promise<GetStaticPropsResult<Props>> {
+  const temId = params.params.id.split("-")
+    let data
+   await getDetail(temId[1]).then((result)=>{
+      data = result
+    })
+    console.log(data)
+    return {
+        props: {
+            data,
+        },
+    };
+}
+
 
 export default Detail;

@@ -23,6 +23,7 @@ type Props = {
 function Image({ content: { resize, url } }: Props) {
   const [now, setNow] = useState(resize);
 
+  
   return (
     <Temimg>
       <img

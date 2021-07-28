@@ -810,6 +810,7 @@ function Index() {
             </div>
           </div>
           <Image
+                  loading='eager'
             src={`/assets/about-s1${agent === "mobile" ? "mb" : ""}@3x.png`}
             width={agent !== "mobile" ? 588 : 193}
             height={agent !== "mobile" ? 222 : 437}
