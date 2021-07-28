@@ -16,7 +16,8 @@ function Title({ content }: Props) {
   const contentRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (contentRef) {
-      contentRef.current.innerHTML = content;
+      const cop =content.current as HTMLDivElement
+      cop.innerHTML = content;
     }
     return () => {
     }
