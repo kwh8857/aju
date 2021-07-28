@@ -7,72 +7,13 @@ import { formatDate } from "../lib/factory";
 import Footer from "./footer/Footer";
 import { useSelector } from "react-redux";
 import { RootState } from "../reducer";
-import { useEffect, useCallback, useState } from "react";
-import {getEditor} from '../firebase/store'
+import { useEffect, useCallback, useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-const section2Mb = [
-  {
-    title: "아주종합건설 \n공사실적",
-    sub:
-      "어느 누구도 자신의 집을 대충 짓지 않듯이\n 내 집처럼 고객의 입장에서 함께합니다",
-  },
-  {
-    title: "화성그랜드파크 시공",
-    image:
-      "https://images.pexels.com/photos/1323615/pexels-photo-1323615.jpeg?cs=srgb&dl=pexels-macki-ladrera-1323615.jpg&fm=jpg",
-  },
-  {
-    title: "화성그랜드파크 시공",
-    image:
-      "https://cdn.crowdpic.net/detail-thumb/thumb_d_17EDE2C64AF7BFD76367AEE581408A6E.jpg",
-  },
-  {
-    title: "화성그랜드파크 시공",
-    image:
-      "https://cdn.crowdpic.net/detail-thumb/thumb_d_3499D019D11D061A2C923EE589C60365.jpg",
-  },
-  {
-    title: "화성그랜드파크 시공",
-    image:
-      "https://www.su-wan.co.kr/wp-content/uploads/2021/03/main_visual.png",
-  },
-  {
-    title: "화성그랜드파크 시공",
-    image: "https://www.shillahotels.com/images/en/hub/sub/seoulMainImg.jpg",
-  },
-];
-const section2Layout = [
-  {
-    title: "화성그랜드파크 시공",
-    image:
-      "https://images.pexels.com/photos/1323615/pexels-photo-1323615.jpeg?cs=srgb&dl=pexels-macki-ladrera-1323615.jpg&fm=jpg",
-  },
-  {
-    title: "아주종합건설 \n공사실적",
-    sub:
-      "어느 누구도 자신의 집을 대충 짓지 않듯이\n 내 집처럼 고객의 입장에서 함께합니다",
-  },
-  {
-    title: "화성그랜드파크 시공",
-    image:
-      "https://cdn.crowdpic.net/detail-thumb/thumb_d_17EDE2C64AF7BFD76367AEE581408A6E.jpg",
-  },
-  {
-    title: "화성그랜드파크 시공",
-    image:
-      "https://cdn.crowdpic.net/detail-thumb/thumb_d_3499D019D11D061A2C923EE589C60365.jpg",
-  },
-  {
-    title: "화성그랜드파크 시공",
-    image:
-      "https://www.su-wan.co.kr/wp-content/uploads/2021/03/main_visual.png",
-  },
-  {
-    title: "화성그랜드파크 시공",
-    image: "https://www.shillahotels.com/images/en/hub/sub/seoulMainImg.jpg",
-  },
-];
+import { GetStaticProps } from "next";
+import {getMain} from '../firebase/store'
+
+// 
 const noticeArr = [
   { title: "아주종합건설의 다양한 소식을 만나보세요", time: Date.now() },
   { title: "아주종합건설의 다양한 소식을 만나보세요", time: Date.now() },
@@ -355,7 +296,10 @@ const Section3 = styled.div`
   }
 `;
 
-function Home() {
+function Home({data:{
+  prt,notice
+}}:{data:any}) {
+
   const agent = useSelector(
     (state: RootState) => state.config.identification.agent
   );
@@ -385,20 +329,29 @@ function Home() {
       }
     }
   }, [isHead, agent]);
+ const section2Data=  useMemo(() => {  
+   const pat = prt.slice()
+   if (agent ==='mobile') {
+    pat.splice(0,0,{
+    title: "아주종합건설 \n공사실적",
+    sub:
+      "어느 누구도 자신의 집을 대충 짓지 않듯이\n 내 집처럼 고객의 입장에서 함께합니다",
+  })     
+   }else {
+   pat.splice(1,0,{
+    title: "아주종합건설 \n공사실적",
+    sub:
+      "어느 누구도 자신의 집을 대충 짓지 않듯이\n 내 집처럼 고객의 입장에서 함께합니다",
+  },)
+   }
+  return pat
+ }, [prt,agent])
   useEffect(() => {
     document.addEventListener("scroll", __scrollHandle);
     return () => {
       document.removeEventListener("scroll", __scrollHandle);
     };
   }, [__scrollHandle]);
-  useEffect(() => {
-    getEditor().then((result)=>{
-      console.log(result)
-    })
-    return () => {
-      
-    }
-  }, [])
   return (
     <div className={styles.container}>
       <Head>
@@ -423,6 +376,7 @@ function Home() {
               {agent === "pc" ? (
                 <div className="main-video">
                   <Image
+                    loading='eager'
                     sizes="850px"
                     src="https://data.1freewallpapers.com/download/tall-buildings-in-the-city.jpg"
                     layout="fill"
@@ -440,6 +394,7 @@ function Home() {
           <MainVideo>
             <div className="wrapper">
               <Image
+               loading='eager'
                 src="https://data.1freewallpapers.com/download/tall-buildings-in-the-city.jpg"
                 layout="fill"
                 sizes="(max-width: 767px) 480px , 768px"
@@ -452,31 +407,21 @@ function Home() {
           </MainVideo>
         ) : undefined}
         <Section2>
-          {agent !== "mobile"
-            ? section2Layout.map(({ image, title, sub }, idx) => {
+          {section2Data.map(({ image, title, sub ,state,timestamp}:{image:any,title:string,sub:any,state:string,timestamp:number}, idx:number) => {
                 return (
                   <MainCard
                     image={image ? image : ""}
                     sub={sub ? sub : ""}
                     title={title}
                     key={idx}
+                    state={state}
                     index={idx}
                     agent={agent}
+                    timestamp={timestamp}
                   />
                 );
               })
-            : section2Mb.map(({ image, title, sub }, idx) => {
-                return (
-                  <MainCard
-                    image={image ? image : ""}
-                    sub={sub ? sub : ""}
-                    title={title}
-                    key={idx}
-                    index={idx}
-                    agent={agent}
-                  />
-                );
-              })}
+           }
         </Section2>
         <Section3>
           <div className="wrapper">
@@ -490,12 +435,12 @@ function Home() {
                 </Link>
               </div>
               <div className="notice">
-                {noticeArr.map(({ title, time }, idx) => {
+                {notice.map(({ title, timestamp }:{title:string,timestamp:number}, idx:number) => {
                   return (
                     <Link key={idx} href={`/detail/notice-${idx}`}>
                       <a className="notice-card">
                         <span className="title">{title}</span>
-                        <span className="time">{formatDate(time, ".")}</span>
+                        <span className="time">{formatDate(timestamp, ".")}</span>
                       </a>
                     </Link>
                   );
@@ -528,4 +473,15 @@ function Home() {
   );
 }
 
+export const getStaticProps: GetStaticProps = async ( )=>{
+  let data 
+   await getMain().then((result)=>{
+    data = result
+   })
+  return {
+    props:{
+      data
+    }
+  }
+}
 export default Home;

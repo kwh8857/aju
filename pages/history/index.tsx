@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { Top, List, dummy } from "../../components/history/style";
+import { Top, List } from "../../components/history/style";
 import { useSelector } from "react-redux";
 import { RootState } from "../../reducer";
 import styles from "../../styles/Home.module.css";
@@ -8,7 +8,9 @@ import Header from "../header/Header";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
-function Index() {
+import { GetStaticProps } from "next";
+import {getPrt} from "../../firebase/store"
+function Index({data}:{data:any}) {
   const agent = useSelector(
     (state: RootState) => state.config.identification.agent
   );
@@ -42,28 +44,36 @@ function Index() {
       <Header agent={agent} isHead={isHead} />
       <Top>공사실적</Top>
       <List>
-        {dummy.map(
+        {data.map(
           (
             {
               title,
               sub,
-              image,
-            }: { title: string; sub: string; image: string },
-            idx
+              image:{
+                url,resize
+              },
+              timestamp
+            }: { title: string; sub: string; timestamp:number; image:{
+              url:string;
+              resize:string;
+            }},
+            idx:number
           ) => {
             return (
               <div key={idx} className="card">
                 <div className="back">
                   <Image
-                    src={image}
-                    quality={100}
+                    src={url}
+                    quality={30}
+                    priority={true}
                     className="img-wrapper"
                     layout="fill"
                     objectFit="cover"
+                     loading='eager'
                     objectPosition="center"
                     sizes="(max-width: 767px) 480px,(max-width: 1365px)720Px ,993px"
                     placeholder="blur"
-                    blurDataURL="https://us.123rf.com/450wm/jakkapan/jakkapan1604/jakkapan160400006/54923627-%EC%B6%94%EC%83%81-%ED%9A%8C%EC%83%89-%EB%B0%B0%EA%B2%BD-%EB%AA%A8%EC%85%98-%EB%B8%94%EB%9F%AC-%ED%9A%A8%EA%B3%BC.jpg?ver=6"
+                    blurDataURL={resize}
                   />
                 </div>
                 <div className="bottom">
@@ -72,7 +82,7 @@ function Index() {
                     <div className="content">{sub}</div>
                   </div>
                   <div className="right">
-                    <Link href={`/detail/history-${idx}`}>
+                    <Link href={`/detail/portfolio-${timestamp}`}>
                       <a className="btn">
                         자세히보기
                         <img src="/assets/red-arrow.svg" alt="상세보기" />
@@ -92,4 +102,15 @@ function Index() {
   );
 }
 
+export const getStaticProps: GetStaticProps = async ( )=>{
+let data
+await getPrt().then((result)=>{
+  data =result
+})
+  return {
+    props:{
+      data
+    }
+  }
+}
 export default Index;

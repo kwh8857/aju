@@ -30,6 +30,7 @@ export const List = styled.div`
   padding-bottom: 190px;
   display: grid;
   grid-template-columns: 993px;
+  row-gap: 80px;
   justify-content: center;
   .card {
     display: flex;
@@ -117,24 +118,3 @@ export const List = styled.div`
     }
   }
 `;
-
-export const dummy = [
-  {
-    title: "화성그랜드파크 시공",
-    sub: `내 집, 내 공장을 짓는다는 마음으로
-함께하는 종합건설기업 (주) 아주산업개발`,
-    image: "https://idoojin.co.kr/template/design/main/main1.jpg",
-  },
-  {
-    title: "화성그랜드파크 시공",
-    sub: `내 집, 내 공장을 짓는다는 마음으로
-함께하는 종합건설기업 (주) 아주산업개발`,
-    image: "https://idoojin.co.kr/template/design/main/main1.jpg",
-  },
-  {
-    title: "화성그랜드파크 시공",
-    sub: `내 집, 내 공장을 짓는다는 마음으로sdsdfsdfzdfasdasdasdsdfdsfsdfsdfjkasdsdfkksdfjsdklfjlksdvjlkdjwflkwjflkdsjflksdjflksdjflksdjflksdjflksdjfklsdfjlksdjflksdfsdfsdfsdfsdfsdfsdfsdfsdfs
-함께하는 종합건설기업 (주) 아주산업개발 sdflmksd jklfjsdlfj slkdfj sldkfj lksdjfk sjdlf jsdfjksdflk jsdklf jklsdfjk sdf sdfsdfsdf`,
-    image: "https://idoojin.co.kr/template/design/main/main1.jpg",
-  },
-];

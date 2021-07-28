@@ -5,10 +5,15 @@ import Image from "next/image";
 
 type cardProps = {
   title: string;
-  image: string;
+  image: {
+    url:string;
+    resize:string;
+  };
   sub: string;
   agent: string;
   index: number;
+  state:string;
+  timestamp:number;
 };
 const LeftCard = styled.div`
   width: 100%;
@@ -151,11 +156,11 @@ const Bottom = styled.div`
     }
   }
 `;
-function MainCard({ title, image, sub, index, agent }: cardProps) {
+function MainCard({ title, image, sub, index, agent,state,timestamp }: cardProps) {
   const filt = index % 2;
   if (filt === 0 && sub.length === 0) {
     return (
-      <Link href={`/detail/history-${index}`}>
+      <Link href={`/detail/${state}-${timestamp}`}>
         <a>
           <LeftCard
             style={{
@@ -167,14 +172,16 @@ function MainCard({ title, image, sub, index, agent }: cardProps) {
           >
             <div className="image-wrapper">
               <Image
+                   loading='eager'
                 className="test"
-                src={image}
+                src={image.url}
                 sizes="(max-width: 1365px)360Px ,533px"
                 layout="fill"
                 objectFit="cover"
                 objectPosition="center"
                 placeholder="blur"
-                blurDataURL="https://us.123rf.com/450wm/jakkapan/jakkapan1604/jakkapan160400006/54923627-%EC%B6%94%EC%83%81-%ED%9A%8C%EC%83%89-%EB%B0%B0%EA%B2%BD-%EB%AA%A8%EC%85%98-%EB%B8%94%EB%9F%AC-%ED%9A%A8%EA%B3%BC.jpg?ver=6"
+                blurDataURL={image.resize}
+               quality={30}
               />
             </div>
             <Bottom>
@@ -205,7 +212,7 @@ function MainCard({ title, image, sub, index, agent }: cardProps) {
     );
   } else {
     return (
-      <Link href={`/detail/history-${index}`}>
+      <Link href={`/detail/${state}-${index}`}>
         <a>
           <RightCard
             style={{
@@ -221,13 +228,15 @@ function MainCard({ title, image, sub, index, agent }: cardProps) {
           >
             <div className="image-wrapper">
               <Image
-                src={image}
+                   loading='eager'
+                src={image.url}
                 layout="fill"
+                quality={30}
                 objectFit="cover"
                 objectPosition="center"
                 sizes="(max-width: 1365px)360Px ,533px"
                 placeholder="blur"
-                blurDataURL="https://us.123rf.com/450wm/jakkapan/jakkapan1604/jakkapan160400006/54923627-%EC%B6%94%EC%83%81-%ED%9A%8C%EC%83%89-%EB%B0%B0%EA%B2%BD-%EB%AA%A8%EC%85%98-%EB%B8%94%EB%9F%AC-%ED%9A%A8%EA%B3%BC.jpg?ver=6"
+                blurDataURL={image.resize}
               />
             </div>
             <Bottom>

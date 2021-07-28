@@ -4,7 +4,7 @@ import Image from "next/image";
 
 interface ImType {
   resize: string;
-  url: string;
+  img: string;
 }
 type Props = {
   content:
@@ -92,34 +92,36 @@ const Wrapper = styled.div`
   }
 `;
 
-function Summary({ content: { text, image } }: Props) {
-  const [now, setNow] = useState(image[0]);
+function Summary({ content: { text, images } }: Props) {
+  const [now, setNow] = useState(images[0] ? images[0] : "");
   return (
     <Wrapper>
       <div className="left">
+        {now.img? 
         <Image
-          src={now.url}
+          src={now.img}
           layout="fill"
           placeholder="blur"
           objectFit="cover"
           objectPosition="center"
           blurDataURL={now.resize}
         />
+      : undefined }
       </div>
       <div className="right">
         <div className="content">{text}</div>
         <div className="list">
-          {image.map(({ resize, url }: ImType, idx: number) => {
+          {images.map(({ resize, img }: ImType, idx: number) => {
             return (
               <div
                 key={idx}
                 className="list-card"
                 onClick={() => {
-                  setNow({ url, resize });
+                  setNow({ img, resize });
                 }}
               >
                 <Image
-                  src={url}
+                  src={img}
                   layout="fill"
                   placeholder="blur"
                   objectFit="cover"

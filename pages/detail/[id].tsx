@@ -12,11 +12,10 @@ import Title from "../../components/detail/components/Title";
 import Image from "../../components/detail/components/Image";
 import Video from "../../components/detail/components/Video";
 import Summary from "../../components/detail/components/Summary";
-import {getEditor} from "../../firebase/store"
-import { GetStaticPaths, GetStaticProps } from "next";
+import {getDetail, getEditor} from "../../firebase/store"
+import { GetStaticPaths, GetStaticProps, GetStaticPropsResult } from "next";
 type Props = {
-  type: string;
-  content: any;
+  data:any;
 };
  const dummy = [
     {
@@ -66,12 +65,13 @@ type Props = {
     },
   ];
 function Detail(
-  // { dummy }: { dummy: Array<Props> }
+ {data}:Props
   ) {
-  const route = useRouter();
-  const { id } = route.query;
-
-  const type = id?.toString().split("-")[0];
+  const {
+    state,
+    template,
+    timestamp
+  }=data
   const agent = useSelector(
     (state: RootState) => state.config.identification.agent
   );
@@ -89,14 +89,7 @@ function Detail(
       }
     }
   }, [isHead, agent]);
-  useEffect(() => {
-    getEditor().then((res)=>{
-      console.log(res)
-    })
-    return () => {
-      
-    }
-  }, [])
+
   useEffect(() => {
     document.addEventListener("scroll", __scrollHandle);
     return () => {
@@ -111,7 +104,7 @@ function Detail(
       }}
     >
       <Header agent={agent} isHead={isHead} />
-      {type === "history" ? (
+      {state === "portfolio" ? (
         <Top>공사실적</Top>
       ) : (
         <NoticeTop>공지사항</NoticeTop>
@@ -127,7 +120,7 @@ function Detail(
             <div className="grey-bar" />
           </div>
           <div className="templates">
-            {dummy.map(({ type, content }, idx) => {
+            {template.map(({ type, content }:{type:string; content:string;}, idx:number) => {
               if (type === "TITLE") {
                 return <Title key={idx} content={content} />;
               } else if (type === "IMAGE") {
@@ -156,8 +149,9 @@ export const getStaticPaths: GetStaticPaths<any> = async (context) => {
    const popo = await getEditor().then((res)=>{
       return res
   })
+
   const paths = await popo.map((post:string,idx:number)=>({
-   params:{id:`history-${idx}`}
+   params:{id:post}
   }))
   return {
     paths,
@@ -165,13 +159,18 @@ export const getStaticPaths: GetStaticPaths<any> = async (context) => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({params} )=>{
-  console.log(params)
-  return {
-    props:{
-      id:params
-    }
-  }
+export async function getStaticProps(params:{params:{id:string}}): Promise<GetStaticPropsResult<Props>> {
+  const temId = params.params.id.split("-")
+    let data
+   await getDetail(temId[1]).then((result)=>{
+      data = result
+    })
+    console.log(data)
+    return {
+        props: {
+            data,
+        },
+    };
 }
 
 
