@@ -13,7 +13,8 @@ function Index() {
   );
   const [isHead, setIsHead] = useState(false);
   const __clipboard = useCallback(() => {
-    document.execCommand("경북 구미시 형곡로 8길 14, 301호");
+   navigator.clipboard.writeText("경북 구미시 형곡로 8길 14, 301호").catch(()=>{
+   })
   }, []);
   const __scrollHandle = useCallback(() => {
     if (window.scrollY <= 163) {
@@ -108,7 +109,7 @@ function Index() {
             <div className="top-right">
               <div className="address-wrapper">
                 <img src="/assets/white-pin.svg" alt="pin" />
-                <div className="address">경북 구미시 형곡로 8길 14, 301호</div>
+                <div className="address" id='copy-address'>경북 구미시 형곡로 8길 14, 301호</div>
               </div>
               <div className="clip" onClick={__clipboard}>
                 주소복사
