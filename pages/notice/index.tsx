@@ -10,19 +10,29 @@ import {
   Wrapper,
   BodyTop,
   NoticeList,
-  dummy,
   BtnSection,
 } from "../../components/notice/style";
 import Link from "next/link";
 import { formatDate } from "../../lib/factory";
 import Head from "next/head";
+import { GetServerSideProps } from "next";
+import { getNotice } from "../../firebase/store";
 
-function Index() {
+interface dataFace {
+  title:string;
+  timestamp:number;
+  index:number;
+}
+
+function Index({data}:{data:Array<dataFace>}) {
+  const length = parseInt(String(data.length / 10))
   const agent = useSelector(
     (state: RootState) => state.config.identification.agent
   );
   const [isHead, setIsHead] = useState(false);
   const [paging, setPaging] = useState(1);
+  const [ogList, setOgList] = useState(data)
+  const [List, setList] = useState<dataFace[]>([]);
   const __changePaging = useCallback(
     (type: string) => {
       console.log(paging);
@@ -34,6 +44,7 @@ function Index() {
     },
     [paging]
   );
+  
   const __scrollHandle = useCallback(() => {
     if (window.scrollY <= 157) {
       if (isHead) {
@@ -46,12 +57,30 @@ function Index() {
       }
     }
   }, [isHead]);
+  const __searchTitle = useCallback(
+    (e) => {
+      if (e.target.value) {
+        const searching = data.filter(({title},idx)=>title.includes(e.target.value))
+        setOgList(searching)
+      }else {
+        setOgList(data)
+      }
+    },
+    [data],
+  )
   useEffect(() => {
     document.addEventListener("scroll", __scrollHandle);
     return () => {
       document.removeEventListener("scroll", __scrollHandle);
     };
   }, [__scrollHandle]);
+ useEffect(() => {
+    const filt = ogList.slice(parseInt(`${paging >1 ? paging : ''}0`),parseInt(`${paging  === 0 ? 1 : paging}0`))
+    setList(filt)
+ 
+   return () => {
+   }
+ }, [paging,ogList])
   return (
     <div>
       <Head>
@@ -68,17 +97,17 @@ function Index() {
               아주종합건설의 <br /> 다양한 소식을 만나보세요
             </div>
             <div className="search">
-              <input type="text" placeholder="검색어를 입력해주세요" />
+              <input type="text" placeholder="검색어를 입력해주세요" onChange={__searchTitle}/>
               <img src="/assets/grey-search.svg" alt="검색" />
             </div>
           </BodyTop>
           <NoticeList>
-            {dummy.map(({ title, timestamp }, idx) => {
+            {List.map(({ title, timestamp ,index }, idx) => {
               return (
-                <Link href={`/detail/notice-${idx}`} key={idx}>
+                <Link href={`/detail/notice-${timestamp}`} key={idx}>
                   <a className="card">
                     <div className="left">
-                      <div className="num">{dummy.length - idx}</div>
+                      <div className="num">{data.length - index}</div>
                       <div className="title">{title}</div>
                     </div>
                     <div className="time">{formatDate(timestamp, ".")}</div>
@@ -93,26 +122,38 @@ function Index() {
               alt="뒤로가기"
               className="left"
               onClick={() => {
-                __changePaging("minus");
+                if (paging > 1) {
+                  __changePaging("minus");
+                }
               }}
             />
-            <div className="page">
+            <div className="page"
+            style={length !== 0 && paging <length  ? undefined: {
+              display:'flex',
+              justifyContent:'center',
+              alignItems:"center"
+            }}
+            >
               <div className="now">{paging}</div>
+              {length !== 0 && paging <length ?
               <div
                 className="next"
                 onClick={() => {
-                  __changePaging("plus");
+                      __changePaging("plus");
                 }}
               >
                 {paging + 1}
-              </div>
+              </div> : undefined}
             </div>
             <img
               src="/assets/right-arrow.svg"
               alt="더보기"
               className="right"
               onClick={() => {
-                __changePaging("plus");
+                if (length !== 0 && paging <length) {
+                __changePaging("plus");                  
+                }
+
               }}
             />
           </BtnSection>
@@ -125,4 +166,15 @@ function Index() {
   );
 }
 
+export const getServerSideProps: GetServerSideProps = async () => {
+  let data
+  await getNotice().then((res)=>{
+   data=res
+  })
+  return {
+    props:{
+      data
+    }
+  }
+}
 export default Index;
