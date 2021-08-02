@@ -6,7 +6,7 @@ import { Top } from "../../components/history/style";
 import { NoticeTop } from "../../components/notice/style";
 import { Body } from "../../components/detail/styles";
 import styles from "../../styles/Home.module.css";
-import Footer from "../footer/Footer";
+import Footer from "../../components/footer/Footer";
 import Title from "../../components/detail/components/Title";
 import Image from "../../components/detail/components/Image";
 import Video from "../../components/detail/components/Video";
@@ -14,6 +14,7 @@ import Summary from "../../components/detail/components/Summary";
 import {getDetail, getEditor, updateHit} from "../../firebase/store"
 import { GetStaticPaths,  GetStaticPropsResult } from "next";
 import { formatDate } from "../../lib/factory";
+import Head from "next/head";
 type Props = {
   data:any;
 };
@@ -66,6 +67,31 @@ function Detail(
         height: "auto",
       }}
     >
+        <Head>
+        <title> 아주 건설 </title>
+        <meta name="description" content="아주 건설 공사실적 페이지입니다." />
+        <link rel="icon" href="/favicon.ico" />
+                  <meta property="og:title" content='아주건설' />
+          <meta property="og:description" content="믿고 맡기는 아주건설" />
+          <meta property="og:image" content="/ogtag.jpg" />
+        <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png"/>
+        <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png"/>
+        <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png"/>
+        <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png"/>
+        <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png"/>
+        <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png"/>
+        <link rel="manifest" href="favicon/manifest.json"/>
+        <meta name="msapplication-TileColor" content="#ffffff"/>
+        <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png"/>
+        <meta name="theme-color" content="#ffffff"></meta>
+      </Head>
       <Header agent={agent} isHead={isHead} />
       {state === "portfolio" ? (
         <Top>공사실적</Top>
