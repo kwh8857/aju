@@ -15,7 +15,7 @@ import {
 import Link from "next/link";
 import { formatDate } from "../../lib/factory";
 import Head from "next/head";
-import {GetStaticProps } from "next";
+import {GetServerSideProps } from "next";
 import { getNotice } from "../../firebase/store";
 
 interface dataFace {
@@ -186,7 +186,7 @@ function Index({data}:{data:Array<dataFace>}) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSidProps: GetServerSideProps= async () => {
   let data
   await getNotice().then((res)=>{
    data=res

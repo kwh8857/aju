@@ -8,7 +8,7 @@ import Header from "../header/Header";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
-import { GetStaticProps } from "next";
+import { GetServerSideProps} from "next";
 import {getPrt} from "../../firebase/store"
 import Footer from "../../components/footer/Footer";
 function Index({data}:{data:any}) {
@@ -123,7 +123,7 @@ function Index({data}:{data:any}) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async ( )=>{
+export const getServerSidProps: GetServerSideProps = async ( )=>{
 let data
 await getPrt().then((result)=>{
   data =result

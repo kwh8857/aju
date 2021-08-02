@@ -10,17 +10,10 @@ import { RootState } from "../reducer";
 import { useEffect, useCallback, useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import {getMain} from '../firebase/store'
 
-// 
-const noticeArr = [
-  { title: "아주종합건설의 다양한 소식을 만나보세요", time: Date.now() },
-  { title: "아주종합건설의 다양한 소식을 만나보세요", time: Date.now() },
-  { title: "아주종합건설의 다양한 소식을 만나보세요", time: Date.now() },
-  { title: "아주종합건설의 다양한 소식을 만나보세요", time: Date.now() },
-  { title: "아주종합건설의 다양한 소식을 만나보세요", time: Date.now() },
-];
+
 // 스타일 영역
 const Section1 = styled.div`
   width: 100%;
@@ -496,7 +489,7 @@ function Home({data:{
   );
 }
 
-export const getStaticProps: GetStaticProps = async ( )=>{
+export const getServerSidProps: GetServerSideProps = async ( )=>{
   let data 
    await getMain().then((result)=>{
     data = result
