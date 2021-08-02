@@ -123,7 +123,7 @@ function Index({data}:{data:any}) {
   );
 }
 
-export const getServerSidProps: GetServerSideProps = async ( )=>{
+export const getServerSideProps: GetServerSideProps = async ( )=>{
 let data
 await getPrt().then((result)=>{
   data =result

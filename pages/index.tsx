@@ -489,11 +489,13 @@ function Home({data:{
   );
 }
 
-export const getServerSidProps: GetServerSideProps = async ( )=>{
+export const getServerSideProps: GetServerSideProps = async ( )=>{
   let data 
    await getMain().then((result)=>{
+     console.log(result)
     data = result
    })
+   console.log(data)
   return {
     props:{
       data

@@ -186,7 +186,7 @@ function Index({data}:{data:Array<dataFace>}) {
   );
 }
 
-export const getServerSidProps: GetServerSideProps= async () => {
+export const getServerSideProps: GetServerSideProps= async () => {
   let data
   await getNotice().then((res)=>{
    data=res
