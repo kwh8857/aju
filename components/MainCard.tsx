@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
@@ -16,6 +16,7 @@ type cardProps = {
   timestamp:number;
 };
 const LeftCard = styled.div`
+
   width: 100%;
   height: 355px;
   background-position: center;
@@ -33,7 +34,14 @@ const LeftCard = styled.div`
         rgba(84, 84, 84, 0)
       );
     }
-
+   &> div:hover{
+        background-image: linear-gradient(
+        to top,
+        rgb(5, 10, 10),
+        40%,
+        rgba(84, 84, 84, 0)
+      );
+   }
     img {
       z-index: -1;
     }
@@ -119,7 +127,14 @@ const RightCard = styled.div`
         rgba(84, 84, 84, 0)
       );
     }
-
+   &> div:hover{
+        background-image: linear-gradient(
+        to top,
+        rgb(5, 10, 10),
+        40%,
+        rgba(84, 84, 84, 0)
+      );
+   }
     img {
       z-index: -1;
     }
@@ -158,10 +173,44 @@ const Bottom = styled.div`
 `;
 function MainCard({ title, image, sub, index, agent,state,timestamp }: cardProps) {
   const filt = index % 2;
+      const dom = useRef<HTMLDivElement>(null);
+
+      const handleScroll = useCallback(
+    ([entry]) => {
+      const {current} = dom
+        if (current && entry.isIntersecting) {
+        current.style.transitionProperty = "opacity ,transform";
+        current.style.transitionDuration = "0.7s";
+        current.style.transitionTimingFunction = "ease";
+        current.style.transitionDelay = `0.2s`;
+        current.style.opacity = "1";
+        current.style.transform = "translate3d(0, 0, 0)";
+      }
+    },
+    [dom]
+  );
+
+  useEffect(() => {
+    let observer :any;
+    const { current } = dom;
+
+    if (current) {
+      observer = new IntersectionObserver(handleScroll, {
+        threshold: 0.2,
+        root: null,
+        rootMargin: "0px",
+      });
+      observer.observe(current);
+
+      return () => observer && observer.disconnect();
+    }
+  }, [handleScroll,dom]);
   if (filt === 0 && sub.length === 0) {
     return (
-      <Link href={`/detail/${state}-${timestamp}`}>
-        <a>
+      <div ref={dom} style={{  opacity: 0,
+      transform: "translate3d(0, 30%, 0)",}}>
+        <Link href={`/detail/${state}-${timestamp}`}>
+        <a >
           <LeftCard
             style={{
               transform:
@@ -191,10 +240,13 @@ function MainCard({ title, image, sub, index, agent,state,timestamp }: cardProps
           </LeftCard>
         </a>
       </Link>
+      </div>
     );
   } else if (sub.length > 1) {
     return (
-      <SecondCard>
+      <div ref={dom} style={{  opacity: 0,
+      transform: "translate3d(0, 30%, 0)",}}>
+      <SecondCard >
         <div className="title">
           아주종합건설 <br /> 공사실적
         </div>
@@ -209,11 +261,15 @@ function MainCard({ title, image, sub, index, agent,state,timestamp }: cardProps
           </a>
         </Link>
       </SecondCard>
+      </div>
+
     );
   } else {
     return (
-      <Link href={`/detail/${state}-${timestamp}`}>
-        <a>
+      <div ref={dom} style={{  opacity: 0,
+      transform: "translate3d(0, 30%, 0)",}}>
+        <Link href={`/detail/${state}-${timestamp}`}>
+        <a >
           <RightCard
             style={{
               height:
@@ -228,7 +284,7 @@ function MainCard({ title, image, sub, index, agent,state,timestamp }: cardProps
           >
             <div className="image-wrapper">
               <Image
-                   loading='eager'
+                loading='eager'
                 src={image.url}
                 layout="fill"
                 quality={30}
@@ -246,6 +302,7 @@ function MainCard({ title, image, sub, index, agent,state,timestamp }: cardProps
           </RightCard>
         </a>
       </Link>
+      </div>
     );
   }
 }
