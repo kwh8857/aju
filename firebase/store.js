@@ -15,6 +15,22 @@ const getEditor = () => {
       });
   });
 };
+const updateHit = (timestamp) => {
+  firebase
+    .firestore()
+    .collection("editor")
+    .where("timestamp", "==", parseInt(timestamp))
+    .get()
+    .then((res) => {
+      res.forEach((item) => {
+        const { hit } = item.data();
+        item.ref.update({
+          hit: hit ? hit + 1 : 1,
+        });
+      });
+    });
+};
+
 const getDetail = (timestamp) => {
   return new Promise((resolve, reject) => {
     firebase
@@ -58,10 +74,10 @@ const getMain = () => {
       .firestore()
       .collection("editor")
       .get()
-      .then((result) => {
+      .then(async (result) => {
         let notice = [];
         let prt = [];
-        result.docs.forEach((item) => {
+        await result.docs.forEach((item) => {
           const value = item.data();
           if (value.state === "notice") {
             notice.push(value);
@@ -84,4 +100,27 @@ const getMain = () => {
       });
   });
 };
-export { getEditor, getMain, getPrt, getDetail };
+const getNotice = () => {
+  return new Promise((resolve, reject) => {
+    firebase
+      .firestore()
+      .collection("editor")
+      .get()
+      .then(async (result) => {
+        let notice = [];
+        await result.docs.forEach((item) => {
+          const value = item.data();
+          if (value.state === "notice") {
+            notice.push({ title: value.title, timestamp: value.timestamp });
+          }
+        });
+        const noticeFilt = notice.sort((a, b) => b.timestamp - a.timestamp);
+        const insertIndex = noticeFilt.map((item, idx) => {
+          return Object.assign(item, { index: idx });
+        });
+
+        resolve(insertIndex);
+      });
+  });
+};
+export { getEditor, getMain, getPrt, getDetail, getNotice, updateHit };

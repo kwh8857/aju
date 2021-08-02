@@ -115,7 +115,9 @@ function Index() {
               </div>
             </div>
           </div>
-          <div className="map"></div>
+          <div className="map">
+            <img src={`/assets/gps-${agent}.webp`} srcSet={`/assets/gps-${agent}@2x.webp 2x , /assets/gps-${agent}@3x.webp 3x`} alt="지도" />
+          </div>
         </div>
       </Section2>
       <footer className={styles.footer}>

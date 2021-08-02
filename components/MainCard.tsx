@@ -172,7 +172,7 @@ function MainCard({ title, image, sub, index, agent,state,timestamp }: cardProps
           >
             <div className="image-wrapper">
               <Image
-                   loading='eager'
+                 loading='eager'
                 className="test"
                 src={image.url}
                 sizes="(max-width: 1365px)360Px ,533px"
@@ -212,7 +212,7 @@ function MainCard({ title, image, sub, index, agent,state,timestamp }: cardProps
     );
   } else {
     return (
-      <Link href={`/detail/${state}-${index}`}>
+      <Link href={`/detail/${state}-${timestamp}`}>
         <a>
           <RightCard
             style={{

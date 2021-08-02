@@ -176,10 +176,16 @@ export const Section2 = styled.div`
       }
     }
     .map {
-      height: 656px;
+      height: 533px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
       background-color: white;
       margin-top: 36px;
+      img{
+        width: 100%;
+      }
     }
   }
   @media screen and (max-width: 1365px) {
