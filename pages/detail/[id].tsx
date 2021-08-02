@@ -133,22 +133,22 @@ function Detail(
 // You should use getStaticPaths if you’re statically pre-rendering pages that use dynamic routes
 
 
-export const getStaticPaths: GetStaticPaths<any> = async (context) => {
+// export const getStaticPaths: GetStaticPaths<any> = async (context) => {
   
-   const popo = await getEditor().then((res)=>{
-      return res
-  })
+//    const popo = await getEditor().then((res)=>{
+//       return res
+//   })
 
-  const paths = await popo.map((post:string,idx:number)=>({
-   params:{id:post}
-  }))
-  return {
-    paths,
-    fallback: false
-  }
-}
+//   const paths = await popo.map((post:string,idx:number)=>({
+//    params:{id:post}
+//   }))
+//   return {
+//     paths,
+//     fallback: false
+//   }
+// }
 
-export async function getStaticProps(params:{params:{id:string}}): Promise<GetStaticPropsResult<Props>> {
+export async function getServerSideProps(params:{params:{id:string}}): Promise<GetStaticPropsResult<Props>> {
   const temId = params.params.id.split("-")
     let data
    await getDetail(temId[1]).then((result)=>{
