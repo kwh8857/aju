@@ -67,7 +67,8 @@ export const BodyTop = styled.div`
     }
     input {
       border: 0;
-      background-color: transparent;
+      width: 90%;
+      background-color: transparent !important;
       font-family: "Noto Sans KR";
       font-size: 15px;
       font-weight: 500;
@@ -187,25 +188,25 @@ export const BtnSection = styled.div`
     }
   }
 `;
-export const EmtySearch =styled.div`
- width: 100%;
-   height: 126px;
-   background-color: white;
-   border-radius: 5px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
-   img{
-     width: 46px;
-   }
-   .emty-title{
-     color: #bfbfbf;
-     font-weight: bold;
-     font-size: 16px;
-     margin-top: 7.3px;
-   }
-     @media screen and (max-width: 1365px) {
-       height: 111px;
-     }
-`
+export const EmtySearch = styled.div`
+  width: 100%;
+  height: 126px;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  img {
+    width: 46px;
+  }
+  .emty-title {
+    color: #bfbfbf;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 7.3px;
+  }
+  @media screen and (max-width: 1365px) {
+    height: 111px;
+  }
+`;

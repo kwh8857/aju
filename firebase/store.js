@@ -111,7 +111,10 @@ const getNotice = () => {
         await result.docs.forEach((item) => {
           const value = item.data();
           if (value.state === "notice") {
-            notice.push({ title: value.title, timestamp: value.timestamp });
+            notice.push({
+              title: value.title ? value.title : "",
+              timestamp: value.timestamp,
+            });
           }
         });
         const noticeFilt = notice.sort((a, b) => b.timestamp - a.timestamp);

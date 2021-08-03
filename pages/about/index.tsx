@@ -7,8 +7,11 @@ import styles from "../../styles/Home.module.css";
 import Header from "../header/Header";
 // import { server } from "../../components/config/config";
 import { useRouter } from "next/dist/client/router";
-import Image from "next/image";
 import Head from "next/head";
+import S1 from "../../components/about/S1";
+import S2 from "../../components/about/S2";
+import S3 from "../../components/about/S3";
+import { useScrollFadeIn } from "../../lib/Fadein";
 
 const Wrapper = styled.div`
   background-color: white;
@@ -785,29 +788,88 @@ function Index() {
   }
   return (
     <Wrapper>
-        <Head>
+      <Head>
         <title> 아주 건설 : 회사소개</title>
         <meta name="description" content="아주 건설 회사소개 페이지입니다." />
         <link rel="icon" href="/favicon.ico" />
-          <meta property="og:title" content='아주건설' />
-          <meta property="og:description" content="믿고 맡기는 아주건설" />
-          <meta property="og:image" content="/ogtag.jpg" />
-           <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png"/>
-        <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png"/>
-        <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png"/>
-        <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png"/>
-        <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png"/>
-        <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png"/>
-        <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png"/>
-        <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png"/>
-        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png"/>
-        <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png"/>
-        <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png"/>
-        <link rel="manifest" href="favicon/manifest.json"/>
-        <meta name="msapplication-TileColor" content="#ffffff"/>
-        <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png"/>
+        <meta property="og:title" content="아주건설" />
+        <meta property="og:description" content="믿고 맡기는 아주건설" />
+        <meta property="og:image" content="/ogtag.jpg" />
+        <link
+          rel="apple-touch-icon"
+          sizes="57x57"
+          href="favicon/apple-icon-57x57.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="60x60"
+          href="favicon/apple-icon-60x60.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="72x72"
+          href="favicon/apple-icon-72x72.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="76x76"
+          href="favicon/apple-icon-76x76.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="114x114"
+          href="favicon/apple-icon-114x114.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="120x120"
+          href="favicon/apple-icon-120x120.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="144x144"
+          href="favicon/apple-icon-144x144.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="152x152"
+          href="favicon/apple-icon-152x152.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="favicon/apple-icon-180x180.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="192x192"
+          href="favicon/android-icon-192x192.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="favicon/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="96x96"
+          href="favicon/favicon-96x96.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="favicon/favicon-16x16.png"
+        />
+        <link rel="manifest" href="favicon/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta
+          name="msapplication-TileImage"
+          content="favicon/ms-icon-144x144.png"
+        />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
       <Header agent={agent} isHead={isHead} />
@@ -815,84 +877,16 @@ function Index() {
         <div className="title">회사소개</div>
       </Top>
       <Section1>
-        <div className="wrapper">
-          <div className="left">
-            <div className="title">
-              사소한 부분이라도 <br /> 내 집처럼 꼼꼼하게
-            </div>
-            {agent === "pc" ? <div className="grey-bar" /> : undefined}
-            <div className="sub">
-              저희 아주는 회사 설립 때부터 내 집, 내 공장을 짓는
-              <br /> 다는 창립이념을 바탕으로 어느 누구도 자신의 집을 <br />{" "}
-              대충 짓지 않듯이 고객의 입장에서 내 집을 짓는다는 <br /> 마음을
-              가지고 사소한 부분이라도 대충 지나치지 않<br /> 을 각오와 다짐으로
-              회사 상호를 아주로 정했습니다.
-            </div>
-          </div>
-          <Image
-                  loading='eager'
-            src={`/assets/about-s1${agent === "mobile" ? "mb" : ""}@3x.png`}
-            width={agent !== "mobile" ? 588 : 193}
-            height={agent !== "mobile" ? 222 : 437}
-            alt="image"
-            placeholder="blur"
-            blurDataURL={`/assets/about-s1${
-              agent === "mobile" ? "mb" : ""
-            }.png`}
-          />
-        </div>
+        <S1 agent={agent} />
       </Section1>
       <Section2>
-        <div className="wrapper">
-          <div className="title">
-            <span>신용과 정직</span>이 바탕인 기업
-          </div>
-          <div className="content">
-            {agent === "pc"
-              ? " 고객과의 인연을 소중히 생각하며 기업의 이익에 앞서 신용과 정직을 바탕으로 고객에\n 대한 의무를 우선하는 윤리경영을 통하여 고객에게 신뢰받는 기업이 될 것을 약속드리며 \n 당사의 발전하는 모습을 지켜봐 주시고 격려해 주시기 바랍니다. \n 감사합니다."
-              : agent === "tablet"
-              ? " 고객과의 인연을 소중히 생각하며 기업의 이익에\n 앞서 신용과 정직을 바탕으로 고객에  대한 의무를 \n우선하는 윤리경영을 통하여 고객에게 신뢰받는\n 기업이 될 것을 약속드리며 당사의 발전하는 모습을 \n지켜봐 주시고 격려해 주시기 바랍니다. \n 감사합니다."
-              : " 고객과의 인연을 소중히 생각하며 기업의 이익에 앞서 신용과 정직을 바탕으로 고객에  대한 의무를 우선하는 윤리경영을 통하여 고객에게 신뢰받는 기업이 될 것을 약속드리며 \n 당사의 발전하는 모습을 지켜봐 주시고 격려해 주시기 바랍니다. \n 감사합니다."}
-            <br />
-            <br /> <span>(주)아주산업개발 대표이사 전상현</span>
-          </div>
-          <div className="card-wrapper">
-            {s2.map(({ title, sub }, idx) => {
-              return (
-                <div key={idx} className="card">
-                  <div className="card-title">{title}</div>
-                  <div className="card-sub">{sub}</div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <S2 s2={s2} agent={agent} />
       </Section2>
       <Section3>
-        <div className="wrapper">
-          <div className="left">
-            <div className="top">회사개요</div>
-            <div className="title">회사개요</div>
-          </div>
-          <div className="right">
-            {s3.map(({ title, sub }, idx) => {
-              return (
-                <div
-                  key={idx}
-                  className={`${
-                    idx === 0 ? "card one" : idx === 5 ? "card five" : "card"
-                  }`}
-                >
-                  <div className="card-title">{title}</div>
-                  <div className="card-sub">{sub}</div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <S3 s3={s3} />
       </Section3>
       <Section4>
-        <div className="wrapper">
+        <div className="wrapper" {...useScrollFadeIn(0.2)}>
           <div className="left">
             <div className="step">주요연혁</div>
             <div className="title">
@@ -943,7 +937,7 @@ function Index() {
         </div>
       </Section4>
       <Section5>
-        <div className="wrapper">
+        <div className="wrapper" {...useScrollFadeIn(0.2)}>
           <div className="top">조직도</div>
           <div className="title">아주종합건설 {`\n`} 회사조직도</div>
 

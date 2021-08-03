@@ -160,13 +160,30 @@ function Detail({ data }: Props) {
           <div className="templates">
             {template.map(
               (
-                { type, content }: { type: string; content: string },
+                {
+                  type,
+                  content,
+                  width,
+                  height,
+                }: {
+                  type: string;
+                  content: string;
+                  width: number | undefined;
+                  height: number | undefined;
+                },
                 idx: number
               ) => {
                 if (type === "TITLE") {
                   return <Title key={idx} content={content} />;
                 } else if (type === "IMAGE") {
-                  return <Image key={idx} content={content} />;
+                  return (
+                    <Image
+                      key={idx}
+                      content={content}
+                      width={width}
+                      height={height}
+                    />
+                  );
                 } else if (type === "VIDEO") {
                   return <Video key={idx} content={content} />;
                 } else if (type === "SUMMARY") {
