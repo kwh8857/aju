@@ -6,17 +6,16 @@ import Image from "next/image";
 type cardProps = {
   title: string;
   image: {
-    url:string;
-    resize:string;
+    url: string;
+    resize: string;
   };
   sub: string;
   agent: string;
   index: number;
-  state:string;
-  timestamp:number;
+  state: string;
+  timestamp: number;
 };
 const LeftCard = styled.div`
-
   width: 100%;
   height: 355px;
   background-position: center;
@@ -34,14 +33,14 @@ const LeftCard = styled.div`
         rgba(84, 84, 84, 0)
       );
     }
-   &> div:hover{
-        background-image: linear-gradient(
+    & > div:hover {
+      background-image: linear-gradient(
         to top,
         rgb(5, 10, 10),
         40%,
         rgba(84, 84, 84, 0)
       );
-   }
+    }
     img {
       z-index: -1;
     }
@@ -127,14 +126,14 @@ const RightCard = styled.div`
         rgba(84, 84, 84, 0)
       );
     }
-   &> div:hover{
-        background-image: linear-gradient(
+    & > div:hover {
+      background-image: linear-gradient(
         to top,
         rgb(5, 10, 10),
         40%,
         rgba(84, 84, 84, 0)
       );
-   }
+    }
     img {
       z-index: -1;
     }
@@ -171,14 +170,22 @@ const Bottom = styled.div`
     }
   }
 `;
-function MainCard({ title, image, sub, index, agent,state,timestamp }: cardProps) {
+function MainCard({
+  title,
+  image,
+  sub,
+  index,
+  agent,
+  state,
+  timestamp,
+}: cardProps) {
   const filt = index % 2;
-      const dom = useRef<HTMLDivElement>(null);
+  const dom = useRef<HTMLDivElement>(null);
 
-      const handleScroll = useCallback(
+  const handleScroll = useCallback(
     ([entry]) => {
-      const {current} = dom
-        if (current && entry.isIntersecting) {
+      const { current } = dom;
+      if (current && entry.isIntersecting) {
         current.style.transitionProperty = "opacity ,transform";
         current.style.transitionDuration = "0.7s";
         current.style.transitionTimingFunction = "ease";
@@ -191,7 +198,7 @@ function MainCard({ title, image, sub, index, agent,state,timestamp }: cardProps
   );
 
   useEffect(() => {
-    let observer :any;
+    let observer: any;
     const { current } = dom;
 
     if (current) {
@@ -204,104 +211,109 @@ function MainCard({ title, image, sub, index, agent,state,timestamp }: cardProps
 
       return () => observer && observer.disconnect();
     }
-  }, [handleScroll,dom]);
+  }, [handleScroll, dom]);
   if (filt === 0 && sub.length === 0) {
     return (
-      <div ref={dom} style={{  opacity: 0,
-      transform: "translate3d(0, 30%, 0)",}}>
+      <div
+        ref={dom}
+        style={{ opacity: 0, transform: "translate3d(0, 30%, 0)" }}
+      >
         <Link href={`/detail/${state}-${timestamp}`}>
-        <a >
-          <LeftCard
-            style={{
-              transform:
-                agent === "tablet" && index === 4
-                  ? `translateY(-38px)`
-                  : undefined,
-            }}
-          >
-            <div className="image-wrapper">
-              <Image
-                 loading='eager'
-                className="test"
-                src={image.url}
-                sizes="(max-width: 1365px)360Px ,533px"
-                layout="fill"
-                objectFit="cover"
-                objectPosition="center"
-                placeholder="blur"
-                blurDataURL={image.resize}
-               quality={30}
-              />
-            </div>
-            <Bottom>
-              <div className="title">{title}</div>
-              <img src="/assets/white-plus.svg" alt="이동" />
-            </Bottom>
-          </LeftCard>
-        </a>
-      </Link>
+          <a>
+            <LeftCard
+              style={{
+                transform:
+                  agent === "tablet" && index === 4
+                    ? `translateY(-38px)`
+                    : undefined,
+              }}
+            >
+              <div className="image-wrapper">
+                <Image
+                  loading="eager"
+                  className="test"
+                  src={image.url}
+                  sizes="(max-width: 1365px)360Px ,533px"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  placeholder="blur"
+                  blurDataURL={image.resize}
+                  quality={30}
+                />
+              </div>
+              <Bottom>
+                <div className="title">{title}</div>
+                <img src="/assets/white-plus.svg" alt="이동" />
+              </Bottom>
+            </LeftCard>
+          </a>
+        </Link>
       </div>
     );
   } else if (sub.length > 1) {
     return (
-      <div ref={dom} style={{  opacity: 0,
-      transform: "translate3d(0, 30%, 0)",}}>
-      <SecondCard >
-        <div className="title">
-          아주종합건설 <br /> 공사실적
-        </div>
-        <div className="sub">
-          어느 누구도 자신의 집을 대충 짓지 않듯이 <br /> 내 집처럼 고객의
-          입장에서 함께합니다
-        </div>
-        <Link href="/history">
-          <a className="btn">
-            공사실적 전체보기
-            <img src="/assets/card-shortarrow.svg" alt="arrow" />
-          </a>
-        </Link>
-      </SecondCard>
+      <div
+        ref={dom}
+        style={{ opacity: 0, transform: "translate3d(0, 30%, 0)" }}
+      >
+        <SecondCard>
+          <div className="title">
+            아주종합건설 <br /> 공사실적
+          </div>
+          <div className="sub">
+            어느 누구도 자신의 집을 대충 짓지 않듯이 <br /> 내 집처럼 고객의
+            입장에서 함께합니다
+          </div>
+          <Link href="/history">
+            <a className="btn">
+              공사실적 전체보기
+              <img src="/assets/card-shortarrow.svg" alt="arrow" />
+            </a>
+          </Link>
+        </SecondCard>
       </div>
-
     );
   } else {
     return (
-      <div ref={dom} style={{  opacity: 0,
-      transform: "translate3d(0, 30%, 0)",}}>
+      <div
+        ref={dom}
+        style={{ opacity: 0, transform: "translate3d(0, 30%, 0)" }}
+      >
         <Link href={`/detail/${state}-${timestamp}`}>
-        <a >
-          <RightCard
-            style={{
-              height:
-                index === 5
-                  ? agent === "pc"
-                    ? "483px"
-                    : "378px"
-                  : index === 3 && agent === "mobile"
-                  ? "278px"
-                  : undefined,
-            }}
-          >
-            <div className="image-wrapper">
-              <Image
-                loading='eager'
-                src={image.url}
-                layout="fill"
-                quality={30}
-                objectFit="cover"
-                objectPosition="center"
-                sizes="(max-width: 1365px)360Px ,533px"
-                placeholder="blur"
-                blurDataURL={image.resize}
-              />
-            </div>
-            <Bottom>
-              <div className="title">{title}</div>
-              <img src="/assets/white-plus.svg" alt="이동" />
-            </Bottom>
-          </RightCard>
-        </a>
-      </Link>
+          <a>
+            <RightCard
+              style={{
+                height:
+                  index === 5
+                    ? agent === "pc"
+                      ? "483px"
+                      : "378px"
+                    : index === 3 && agent === "mobile"
+                    ? "278px"
+                    : undefined,
+              }}
+            >
+              <div className="image-wrapper">
+                <Image
+                  loading="eager"
+                  src={image.url}
+                  layout="fill"
+                  quality={30}
+                  objectFit="cover"
+                  objectPosition="center"
+                  sizes="(max-width: 1365px)360Px ,533px"
+                  placeholder="blur"
+                  blurDataURL={image.resize}
+                />
+              </div>
+              <Bottom>
+                <div className="title">{title}</div>
+                <img src="/assets/white-plus.svg" alt="이동" />
+              </Bottom>
+            </RightCard>
+          </a>
+        </Link>
       </div>
     );
   }

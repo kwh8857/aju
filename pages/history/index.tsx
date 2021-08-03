@@ -5,13 +5,12 @@ import { RootState } from "../../reducer";
 import styles from "../../styles/Home.module.css";
 
 import Header from "../header/Header";
-import Image from "next/image";
-import Link from "next/link";
 import Head from "next/head";
-import { GetServerSideProps} from "next";
-import {getPrt} from "../../firebase/store"
+import { GetServerSideProps } from "next";
+import { getPrt } from "../../firebase/store";
 import Footer from "../../components/footer/Footer";
-function Index({data}:{data:any}) {
+import Card from "../../components/history/Card";
+function Index({ data }: { data: any }) {
   const agent = useSelector(
     (state: RootState) => state.config.identification.agent
   );
@@ -41,25 +40,84 @@ function Index({data}:{data:any}) {
         <title> 아주 건설 : 공사실적</title>
         <meta name="description" content="아주 건설 공사실적 페이지입니다." />
         <link rel="icon" href="/favicon.ico" />
-                  <meta property="og:title" content='아주건설' />
-          <meta property="og:description" content="믿고 맡기는 아주건설" />
-          <meta property="og:image" content="/ogtag.jpg" />
-           <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png"/>
-        <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png"/>
-        <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png"/>
-        <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png"/>
-        <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png"/>
-        <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png"/>
-        <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png"/>
-        <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png"/>
-        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png"/>
-        <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png"/>
-        <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png"/>
-        <link rel="manifest" href="favicon/manifest.json"/>
-        <meta name="msapplication-TileColor" content="#ffffff"/>
-        <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png"/>
+        <meta property="og:title" content="아주건설" />
+        <meta property="og:description" content="믿고 맡기는 아주건설" />
+        <meta property="og:image" content="/ogtag.jpg" />
+        <link
+          rel="apple-touch-icon"
+          sizes="57x57"
+          href="favicon/apple-icon-57x57.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="60x60"
+          href="favicon/apple-icon-60x60.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="72x72"
+          href="favicon/apple-icon-72x72.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="76x76"
+          href="favicon/apple-icon-76x76.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="114x114"
+          href="favicon/apple-icon-114x114.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="120x120"
+          href="favicon/apple-icon-120x120.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="144x144"
+          href="favicon/apple-icon-144x144.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="152x152"
+          href="favicon/apple-icon-152x152.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="favicon/apple-icon-180x180.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="192x192"
+          href="favicon/android-icon-192x192.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="favicon/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="96x96"
+          href="favicon/favicon-96x96.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="favicon/favicon-16x16.png"
+        />
+        <link rel="manifest" href="favicon/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta
+          name="msapplication-TileImage"
+          content="favicon/ms-icon-144x144.png"
+        />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
       <Header agent={agent} isHead={isHead} />
@@ -70,48 +128,28 @@ function Index({data}:{data:any}) {
             {
               title,
               sub,
-              image:{
-                url,resize
-              },
-              timestamp
-            }: { title: string; sub: string; timestamp:number; image:{
-              url:string;
-              resize:string;
-            }},
-            idx:number
+              image: { url, resize },
+              timestamp,
+            }: {
+              title: string;
+              sub: string;
+              timestamp: number;
+              image: {
+                url: string;
+                resize: string;
+              };
+            },
+            idx: number
           ) => {
             return (
-              <div key={idx} className="card">
-                <div className="back">
-                  <Image
-                    src={url}
-                    quality={30}
-                    priority={true}
-                    className="img-wrapper"
-                    layout="fill"
-                    objectFit="cover"
-                     loading='eager'
-                    objectPosition="center"
-                    sizes="(max-width: 767px) 480px,(max-width: 1365px)720Px ,993px"
-                    placeholder="blur"
-                    blurDataURL={resize}
-                  />
-                </div>
-                <div className="bottom">
-                  <div className="left">
-                    <div className="title">{title}</div>
-                    <div className="content">{sub}</div>
-                  </div>
-                  <div className="right">
-                    <Link href={`/detail/portfolio-${timestamp}`}>
-                      <a className="btn">
-                        자세히보기
-                        <img src="/assets/red-arrow.svg" alt="상세보기" />
-                      </a>
-                    </Link>
-                  </div>
-                </div>
-              </div>
+              <Card
+                key={idx}
+                title={title}
+                sub={sub}
+                url={url}
+                resize={resize}
+                timestamp={timestamp}
+              />
             );
           }
         )}
@@ -123,15 +161,15 @@ function Index({data}:{data:any}) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ( )=>{
-let data
-await getPrt().then((result)=>{
-  data =result
-})
+export const getServerSideProps: GetServerSideProps = async () => {
+  let data;
+  await getPrt().then((result) => {
+    data = result;
+  });
   return {
-    props:{
-      data
-    }
-  }
-}
+    props: {
+      data,
+    },
+  };
+};
 export default Index;

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46">
+    <defs>
+        <style>
+            .cls-2{fill:none;stroke:#dbdbdb;stroke-linecap:round;stroke-width:3px}
+        </style>
+    </defs>
+    <g id="icon" transform="translate(-660 -424.709)">
+        <path id="search" fill="#dbdbdb" d="M49.96 47.164L37.167 34.253a18.233 18.233 0 1 0-2.767 2.8l12.71 12.826a1.969 1.969 0 0 0 2.779.072 1.981 1.981 0 0 0 .071-2.787zm-27.12-9.952A14.395 14.395 0 1 1 33.022 33a14.309 14.309 0 0 1-10.182 4.212z" transform="translate(655.5 420.216)"/>
+        <g id="그룹_5251" transform="translate(674.243 438.989)">
+            <path id="선_757" d="M0 0L8.729 8.729" class="cls-2"/>
+            <path id="선_758" d="M8.729 0L0 8.729" class="cls-2"/>
+        </g>
+    </g>
+</svg>

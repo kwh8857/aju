@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 
@@ -93,23 +93,30 @@ const Wrapper = styled.div`
 `;
 
 function Summary({ content: { text, images } }: Props) {
+  const contentRef = useRef<HTMLDivElement>(null);
   const [now, setNow] = useState(images[0] ? images[0] : "");
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.innerHTML = text;
+    }
+    return () => {};
+  }, [contentRef]);
   return (
     <Wrapper>
       <div className="left">
-        {now.img? 
-        <Image
-          src={now.img}
-          layout="fill"
-          placeholder="blur"
-          objectFit="cover"
-          objectPosition="center"
-          blurDataURL={now.resize}
-        />
-      : undefined }
+        {now.img ? (
+          <Image
+            src={now.img}
+            layout="fill"
+            placeholder="blur"
+            objectFit="cover"
+            objectPosition="center"
+            blurDataURL={now.resize}
+          />
+        ) : undefined}
       </div>
       <div className="right">
-        <div className="content">{text}</div>
+        <div className="content" ref={contentRef}></div>
         <div className="list">
           {images.map(({ resize, img }: ImType, idx: number) => {
             return (
