@@ -187,15 +187,25 @@ export const BtnSection = styled.div`
     }
   }
 `;
-export const dummy = [
-  { title: "화성그랜드파크 시공 시작", timestamp: Date.now() },
-  { title: "화성그랜드파크 시공 시작", timestamp: Date.now() },
-  { title: "화성그랜드파크 시공 시작", timestamp: Date.now() },
-  { title: "화성그랜드파크 시공 시작", timestamp: Date.now() },
-  { title: "화성그랜드파크 시공 시작", timestamp: Date.now() },
-  { title: "화성그랜드파크 시공 시작", timestamp: Date.now() },
-  { title: "화성그랜드파크 시공 시작", timestamp: Date.now() },
-  { title: "화성그랜드파크 시공 시작", timestamp: Date.now() },
-  { title: "화성그랜드파크 시공 시작", timestamp: Date.now() },
-  { title: "화성그랜드파크 시공 시작", timestamp: Date.now() },
-];
+export const EmtySearch =styled.div`
+ width: 100%;
+   height: 126px;
+   background-color: white;
+   border-radius: 5px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   img{
+     width: 46px;
+   }
+   .emty-title{
+     color: #bfbfbf;
+     font-weight: bold;
+     font-size: 16px;
+     margin-top: 7.3px;
+   }
+     @media screen and (max-width: 1365px) {
+       height: 111px;
+     }
+`

@@ -32,6 +32,33 @@ export const Body = styled.div`
     .templates {
       padding-top: 25px;
       box-sizing: border-box;
+      font[size="1"] {
+        font-size: 13px;
+      }
+
+      font[size="2"] {
+        font-size: 15px;
+      }
+
+      font[size="3"] {
+        font-size: 17px;
+      }
+
+      font[size="4"] {
+        font-size: 19px;
+      }
+
+      font[size="5"] {
+        font-size: 21px;
+      }
+
+      font[size="6"] {
+        font-size: 23px;
+      }
+
+      font[size="7"] {
+        font-size: 25px;
+      }
     }
   }
   @media screen and (max-width: 1365px) {

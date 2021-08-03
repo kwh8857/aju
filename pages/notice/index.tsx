@@ -11,6 +11,7 @@ import {
   BodyTop,
   NoticeList,
   BtnSection,
+  EmtySearch,
 } from "../../components/notice/style";
 import Link from "next/link";
 import { formatDate } from "../../lib/factory";
@@ -87,10 +88,10 @@ function Index({data}:{data:Array<dataFace>}) {
         <title> 아주 건설 : 공지사항</title>
         <meta name="description" content="아주 건설 공지사항 페이지입니다" />
         <link rel="icon" href="/favicon.ico" />
-                  <meta property="og:title" content='아주건설' />
-          <meta property="og:description" content="믿고 맡기는 아주건설" />
-          <meta property="og:image" content="/ogtag.jpg" />
-      <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png"/>
+        <meta property="og:title" content='아주건설' />
+        <meta property="og:description" content="믿고 맡기는 아주건설" />
+        <meta property="og:image" content="/ogtag.jpg" />
+        <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png"/>
         <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png"/>
         <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png"/>
         <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png"/>
@@ -122,7 +123,7 @@ function Index({data}:{data:Array<dataFace>}) {
             </div>
           </BodyTop>
           <NoticeList>
-            {List.map(({ title, timestamp ,index }, idx) => {
+            {List.length > 0 ?List.map(({ title, timestamp ,index }, idx) => {
               return (
                 <Link href={`/detail/notice-${timestamp}`} key={idx}>
                   <a className="card">
@@ -134,7 +135,11 @@ function Index({data}:{data:Array<dataFace>}) {
                   </a>
                 </Link>
               );
-            })}
+            }) :<EmtySearch>
+              <img src="/assets/search-emty.svg" alt="X" />
+              <div className='emty-title'>검색결과가 존재하지 않습니다</div>
+            </EmtySearch>
+            }
           </NoticeList>
           <BtnSection>
             <img

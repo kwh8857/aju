@@ -39,6 +39,20 @@ export const List = styled.div`
       width: 100%;
       position: relative;
       height: 291px;
+
+      img {
+        z-index: -1;
+      }
+    }
+    .back:hover {
+      & > div {
+        background-image: linear-gradient(
+          to top,
+          rgb(30, 34, 34),
+          35%,
+          rgba(84, 84, 84, 0)
+        );
+      }
     }
     .bottom {
       margin-top: 22px;
