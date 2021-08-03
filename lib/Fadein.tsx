@@ -22,18 +22,14 @@ export const useScrollFadeIn = (delay: number) => {
     let observer: any;
     const { current } = dom;
 
-    if (dom.current) {
-      observer = new IntersectionObserver(handleScroll, {
-        threshold: 0.3,
-        root: null,
-        rootMargin: "0px",
-      });
-      observer.observe(current);
+    observer = new IntersectionObserver(handleScroll, {
+      threshold: 0.3,
+      root: null,
+      rootMargin: "0px",
+    });
+    observer.observe(current);
 
-      return () => observer && observer.disconnect();
-    } else {
-      return () => {};
-    }
+    return () => observer && observer.disconnect();
   }, [handleScroll]);
 
   return {
