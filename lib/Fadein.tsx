@@ -31,6 +31,8 @@ export const useScrollFadeIn = (delay: number) => {
       observer.observe(current);
 
       return () => observer && observer.disconnect();
+    } else {
+      return () => {};
     }
   }, [handleScroll]);
 
