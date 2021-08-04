@@ -47,7 +47,7 @@ function Index() {
         <meta property="og:title" content="아주건설" />
         <meta property="og:description" content="믿고 맡기는 아주건설" />
         <meta property="og:image" content="/ogtag.jpg" />
-        {/* <meta property="og:url" content="https://tastesalon.shop" /> */}
+        {/* <meta property="og:url" content="https://www.ajoo.co.in/" /> */}
         <link
           rel="apple-touch-icon"
           sizes="57x57"
