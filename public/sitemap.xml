@@ -5,8 +5,6 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
 <url>
   <loc>https://www.ajoo.co.in/</loc>
   <lastmod>2021-08-05T01:36:39+00:00</lastmod>
@@ -32,61 +30,4 @@
   <lastmod>2021-08-05T01:36:39+00:00</lastmod>
   <priority>0.80</priority>
 </url>
-<url>
-  <loc>https://www.ajoo.co.in/detail/portfolio-1627972912585</loc>
-  <lastmod>2021-08-05T01:36:39+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.ajoo.co.in/detail/portfolio-1627887907728</loc>
-  <lastmod>2021-08-05T01:36:39+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.ajoo.co.in/detail/portfolio-1627448714548</loc>
-  <lastmod>2021-08-05T01:36:39+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.ajoo.co.in/detail/portfolio-1627444587395</loc>
-  <lastmod>2021-08-05T01:36:39+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.ajoo.co.in/detail/portfolio-1627444550094</loc>
-  <lastmod>2021-08-05T01:36:39+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.ajoo.co.in/detail/notice-1627974969181</loc>
-  <lastmod>2021-08-05T01:36:39+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.ajoo.co.in/detail/notice-1627974960722</loc>
-  <lastmod>2021-08-05T01:36:39+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.ajoo.co.in/detail/notice-1627974485778</loc>
-  <lastmod>2021-08-05T01:36:39+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.ajoo.co.in/detail/notice-1627974327624</loc>
-  <lastmod>2021-08-05T01:36:39+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.ajoo.co.in/detail/notice-1627959212086</loc>
-  <lastmod>2021-08-05T01:36:39+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.ajoo.co.in/detail/portfolio-1627442839348</loc>
-  <lastmod>2021-08-05T01:36:39+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-
-
 </urlset>
