@@ -368,13 +368,18 @@ function Home({ data: { prt, notice } }: { data: any }) {
           name="description"
           content="내 집, 내 공장을 짓는다는 마음으로 아주종합건설"
         />
+        <h1 style={{ display: "none" }}>아주종합건설</h1>
+        <h2 style={{ display: "none" }}>아주건설</h2>
+        <h3 style={{ display: "none" }}>AJOO</h3>
+        <h4 style={{ display: "none" }}>종합건설기업</h4>
+        <h5 style={{ display: "none" }}>공사실적</h5>
         <link rel="canonical" href="https://www.ajoo.co.in/"></link>
         <meta name="subject" content="(주)아주종합건설" />
         <meta name="title" content="(주)아주종합건설" />
         <meta name="author" content="(주)아주종합건설" />
         <meta
           name="keywords"
-          content="내 집, 내 공장을 짓는다는 마음으로 아주종합건설"
+          content="종합건설기업,아주건설,구미,구미 건설기업"
         />
         <meta
           name="classification"

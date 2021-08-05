@@ -47,7 +47,12 @@ function Index() {
         <meta property="og:title" content="아주건설" />
         <meta property="og:description" content="믿고 맡기는 아주건설" />
         <meta property="og:image" content="/ogtag.jpg" />
-        {/* <meta property="og:url" content="https://www.ajoo.co.in/" /> */}
+        <meta property="og:url" content="https://www.ajoo.co.in/" />
+        <h1 style={{ display: "none" }}>아주종합건설 문의/연락</h1>
+        <h2 style={{ display: "none" }}>구미 건설기업</h2>
+        <h3 style={{ display: "none" }}>경북 구미시</h3>
+        <h4 style={{ display: "none" }}>종합건설기업</h4>
+        <h5 style={{ display: "none" }}>연락처</h5>
         <link
           rel="apple-touch-icon"
           sizes="57x57"

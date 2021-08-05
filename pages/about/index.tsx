@@ -654,18 +654,6 @@ const Section5 = styled.div`
   }
 `;
 
-// type propType = {
-//   s2: Array<ArrType>;
-//   s3: Array<ArrType>;
-//   s4: Array<S4Type>;
-// };
-
-// export async function getStaticProps() {
-//   const res = await fetch(`${server}/api/hello`);
-//   const result = await res.json();
-//   return { props: { s2: result.s2, s3: result.s3, s4: result.s4 } };
-// }
-
 const s2 = [
   { title: "공장신축 및 개축공사", sub: "공장 / 창고 등의 조립식 건축공사" },
 
@@ -784,11 +772,19 @@ function Index() {
     <Wrapper>
       <Head>
         <title> 아주 건설 : 회사소개</title>
-        <meta name="description" content="아주 건설 회사소개 페이지입니다." />
+        <meta
+          name="description"
+          content="아주종합건설 회사소개 페이지입니다."
+        />
         <link rel="icon" href="/favicon.ico" />
-        <meta property="og:title" content="아주건설" />
-        <meta property="og:description" content="믿고 맡기는 아주건설" />
+        <meta property="og:title" content="아주종합건설" />
+        <meta property="og:description" content="아주종합건설 회사소개" />
         <meta property="og:image" content="/ogtag.jpg" />
+        <h1 style={{ display: "none" }}>아주종합건설 회사소개</h1>
+        <h2 style={{ display: "none" }}>아주건설</h2>
+        <h3 style={{ display: "none" }}>구미</h3>
+        <h4 style={{ display: "none" }}>종합건설기업</h4>
+        <h5 style={{ display: "none" }}>공사실적</h5>
         <link
           rel="apple-touch-icon"
           sizes="57x57"
