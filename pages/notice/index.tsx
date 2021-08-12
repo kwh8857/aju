@@ -36,7 +36,6 @@ function Index({ data }: { data: Array<dataFace> }) {
   const [List, setList] = useState<dataFace[]>([]);
   const __changePaging = useCallback(
     (type: string) => {
-      console.log(paging);
       if (type === "plus") {
         setPaging(paging + 1);
       } else {

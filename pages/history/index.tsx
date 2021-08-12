@@ -49,11 +49,6 @@ function Index({ data }: { data: any }) {
           content="내 집, 내 공장을 짓는다는 마음으로 아주종합건설 공사실적"
         />
         <meta property="og:image" content="/ogtag.jpg" />
-        <h1 style={{ display: "none" }}>아주종합건설 공사실적</h1>
-        <h2 style={{ display: "none" }}>아주건설</h2>
-        <h3 style={{ display: "none" }}>구미</h3>
-        <h4 style={{ display: "none" }}>종합건설기업</h4>
-        <h5 style={{ display: "none" }}>공사실적</h5>
         <link rel="canonical" href="https://www.ajoo.co.in/"></link>
         <meta name="subject" content="(주)아주종합건설" />
         <meta name="title" content="(주)아주종합건설" />
@@ -139,6 +134,11 @@ function Index({ data }: { data: any }) {
         />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
+      <h1 style={{ display: "none" }}>아주종합건설 공사실적</h1>
+      <h2 style={{ display: "none" }}>아주건설</h2>
+      <h3 style={{ display: "none" }}>구미</h3>
+      <h4 style={{ display: "none" }}>종합건설기업</h4>
+      <h5 style={{ display: "none" }}>공사실적</h5>
       <Header agent={agent} isHead={isHead} />
       <Top>공사실적</Top>
       <List>

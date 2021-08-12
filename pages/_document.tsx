@@ -35,6 +35,10 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
             rel="stylesheet"
           ></link>
+          <meta
+            name="naver-site-verification"
+            content="58ed3ea3d0407ecd3f2fc66d147175114e163f23"
+          />
         </Head>
         <body>
           <Main />

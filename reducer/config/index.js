@@ -2,7 +2,7 @@ const initialState = {
   identification: {
     state: "production",
     agent: "pc",
-    version: "1.0.11",
+    version: "1.0.0",
   },
   isMenu: false,
 };
