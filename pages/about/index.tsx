@@ -780,11 +780,6 @@ function Index() {
         <meta property="og:title" content="아주종합건설" />
         <meta property="og:description" content="아주종합건설 회사소개" />
         <meta property="og:image" content="/ogtag.jpg" />
-        <h1 style={{ display: "none" }}>아주종합건설 회사소개</h1>
-        <h2 style={{ display: "none" }}>아주건설</h2>
-        <h3 style={{ display: "none" }}>구미</h3>
-        <h4 style={{ display: "none" }}>종합건설기업</h4>
-        <h5 style={{ display: "none" }}>공사실적</h5>
         <link
           rel="apple-touch-icon"
           sizes="57x57"
@@ -862,6 +857,11 @@ function Index() {
         />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
+      <h1 style={{ display: "none" }}>아주종합건설 회사소개</h1>
+      <h2 style={{ display: "none" }}>아주건설</h2>
+      <h3 style={{ display: "none" }}>구미</h3>
+      <h4 style={{ display: "none" }}>종합건설기업</h4>
+      <h5 style={{ display: "none" }}>공사실적</h5>
       <Header agent={agent} isHead={isHead} />
       <Top>
         <div className="title">회사소개</div>

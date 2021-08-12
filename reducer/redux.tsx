@@ -5,12 +5,15 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import reducer from ".";
 
 const configureStore = () => {
-  const logger = createLogger();
-  const enhancer = compose(composeWithDevTools(applyMiddleware(logger)));
+  //test
+  // const logger = createLogger();
+  // const enhancer = compose(composeWithDevTools(applyMiddleware(logger)));
 
-  const store = createStore(reducer, enhancer);
+  // const store = createStore(reducer, enhancer);
+  //product
+  const store = createStore(reducer);
   return store;
 };
 
-const wrapper = createWrapper(configureStore, { debug: true });
+const wrapper = createWrapper(configureStore, { debug: false });
 export default wrapper;

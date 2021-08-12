@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import ImageComponent from "next/image";
 
 const Temimg = styled.div`
   width: 100%;
@@ -23,10 +22,9 @@ type Props = {
   height: number;
 };
 function Image({ content: { resize, url }, width, height }: Props) {
-  const [now, setNow] = useState(resize);
-
+  const [now, setNow] = useState(undefined);
   return (
-    <Temimg style={{ height }}>
+    <Temimg style={{ height: now ? "auto" : `${height}px` }}>
       <img
         src={url}
         style={{ display: "none" }}
@@ -35,7 +33,7 @@ function Image({ content: { resize, url }, width, height }: Props) {
         }}
         alt=""
       />
-      <img src={now} alt="" />
+      <img src={now ? now : resize} alt="" />
     </Temimg>
   );
 }

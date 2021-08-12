@@ -368,11 +368,6 @@ function Home({ data: { prt, notice } }: { data: any }) {
           name="description"
           content="내 집, 내 공장을 짓는다는 마음으로 아주종합건설"
         />
-        <h1 style={{ display: "none" }}>아주종합건설</h1>
-        <h2 style={{ display: "none" }}>아주건설</h2>
-        <h3 style={{ display: "none" }}>AJOO</h3>
-        <h4 style={{ display: "none" }}>종합건설기업</h4>
-        <h5 style={{ display: "none" }}>공사실적</h5>
         <link rel="canonical" href="https://www.ajoo.co.in/"></link>
         <meta name="subject" content="(주)아주종합건설" />
         <meta name="title" content="(주)아주종합건설" />
@@ -469,12 +464,12 @@ function Home({ data: { prt, notice } }: { data: any }) {
           content="favicon/ms-icon-144x144.png"
         />
         <meta name="theme-color" content="#ffffff"></meta>
-        {/* 네이버 검색최적화 */}
-        <meta
-          name="naver-site-verification"
-          content="58ed3ea3d0407ecd3f2fc66d147175114e163f23"
-        />
       </Head>
+      <h1 style={{ display: "none" }}>아주종합건설</h1>
+      <h2 style={{ display: "none" }}>아주건설</h2>
+      <h3 style={{ display: "none" }}>AJOO</h3>
+      <h4 style={{ display: "none" }}>종합건설기업</h4>
+      <h5 style={{ display: "none" }}>공사실적</h5>
       <Header agent={agent} isHead={isHead} />
       <main className={styles.main}>
         <Section1>
