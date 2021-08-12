@@ -1,18 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ImageComponent from "next/image";
 
 const Temimg = styled.div`
-  max-width: 100%;
+  width: 100%;
+  height: auto;
   display: flex;
   justify-content: center;
-  position: relative;
-  margin: 0 auto;
   margin-bottom: 43px;
   img {
     max-width: 100%;
-    width: 100%;
-    height: 100%;
   }
 `;
 type Props = {
@@ -22,23 +19,23 @@ type Props = {
         resize?: string;
         url?: string;
       };
-  width: number | undefined;
-  height: number | undefined;
+  width: number;
+  height: number;
 };
 function Image({ content: { resize, url }, width, height }: Props) {
-  console.log(width);
+  const [now, setNow] = useState(resize);
+
   return (
-    <Temimg style={{ width: `${width}px`, height: `${height}px` }}>
-      <ImageComponent
-        className="custom"
+    <Temimg style={{ height }}>
+      <img
         src={url}
-        layout="fill"
-        objectFit="contain"
-        objectPosition="center"
-        sizes="(max-width: 767px)320px,(max-width: 1365px)720Px ,992px"
-        placeholder="blur"
-        blurDataURL={resize}
+        style={{ display: "none" }}
+        onLoad={() => {
+          setNow(url);
+        }}
+        alt=""
       />
+      <img src={now} alt="" />
     </Temimg>
   );
 }

@@ -35,11 +35,6 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
             rel="stylesheet"
           ></link>
-          {/* <link
-            rel="preload"
-            href="https://data.1freewallpapers.com/download/tall-buildings-in-the-city.jpg"
-            as="image"
-          ></link> */}
         </Head>
         <body>
           <Main />
