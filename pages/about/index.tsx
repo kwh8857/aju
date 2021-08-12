@@ -346,7 +346,7 @@ const Section4 = styled.div`
         position: absolute;
         left: 156.3px;
         border: none;
-        height: 540px;
+        height: 590px;
         border-left: 1px dashed white;
       }
       .year-card {
