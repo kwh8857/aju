@@ -8,7 +8,6 @@ import Footer from "../components/footer/Footer";
 import { useSelector } from "react-redux";
 import { RootState } from "../reducer";
 import { useEffect, useCallback, useState, useMemo, useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { GetServerSideProps } from "next";
 import { getMain } from "../firebase/store";
@@ -360,6 +359,7 @@ function Home({ data: { prt, notice } }: { data: any }) {
       document.removeEventListener("scroll", __scrollHandle);
     };
   }, [__scrollHandle]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -492,10 +492,10 @@ function Home({ data: { prt, notice } }: { data: any }) {
                 <div className="main-video">
                   <video
                     ref={VideoRef}
-                    src="test.mp4"
-                    autoPlay
-                    muted
+                    src="https://firebasestorage.googleapis.com/v0/b/ajoo-office.appspot.com/o/ajoo.mp4?alt=media&token=ca90b8a2-3d7c-4c3d-b540-af7f2e75e39a"
                     loop={true}
+                    muted
+                    autoPlay
                   ></video>
                 </div>
               ) : undefined}
@@ -507,7 +507,7 @@ function Home({ data: { prt, notice } }: { data: any }) {
             <div className="wrapper">
               <video
                 ref={VideoRef}
-                src="test.mp4"
+                src="https://firebasestorage.googleapis.com/v0/b/ajoo-office.appspot.com/o/ajoo.mp4?alt=media&token=ca90b8a2-3d7c-4c3d-b540-af7f2e75e39a"
                 autoPlay
                 muted
                 loop={true}
