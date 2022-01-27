@@ -168,8 +168,8 @@ function Detail({ data }: Props) {
                 }: {
                   type: string;
                   content: string;
-                  width: number | undefined;
-                  height: number | undefined;
+                  width: number;
+                  height: number;
                 },
                 idx: number
               ) => {

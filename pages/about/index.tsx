@@ -11,7 +11,8 @@ import Head from "next/head";
 import S1 from "../../components/about/S1";
 import S2 from "../../components/about/S2";
 import S3 from "../../components/about/S3";
-import { useScrollFadeIn } from "../../lib/Fadein";
+import S4 from "../../components/about/S4";
+import S5 from "../../components/about/S5";
 
 const Wrapper = styled.div`
   background-color: white;
@@ -345,7 +346,7 @@ const Section4 = styled.div`
         position: absolute;
         left: 156.3px;
         border: none;
-        height: 540px;
+        height: 590px;
         border-left: 1px dashed white;
       }
       .year-card {
@@ -652,25 +653,6 @@ const Section5 = styled.div`
     }
   }
 `;
-interface ArrType {
-  title: string;
-  sub: string;
-}
-interface S4Type {
-  year: string;
-  list: Array<ArrType>;
-}
-// type propType = {
-//   s2: Array<ArrType>;
-//   s3: Array<ArrType>;
-//   s4: Array<S4Type>;
-// };
-
-// export async function getStaticProps() {
-//   const res = await fetch(`${server}/api/hello`);
-//   const result = await res.json();
-//   return { props: { s2: result.s2, s3: result.s3, s4: result.s4 } };
-// }
 
 const s2 = [
   { title: "공장신축 및 개축공사", sub: "공장 / 창고 등의 조립식 건축공사" },
@@ -790,10 +772,13 @@ function Index() {
     <Wrapper>
       <Head>
         <title> 아주 건설 : 회사소개</title>
-        <meta name="description" content="아주 건설 회사소개 페이지입니다." />
+        <meta
+          name="description"
+          content="아주종합건설 회사소개 페이지입니다."
+        />
         <link rel="icon" href="/favicon.ico" />
-        <meta property="og:title" content="아주건설" />
-        <meta property="og:description" content="믿고 맡기는 아주건설" />
+        <meta property="og:title" content="아주종합건설" />
+        <meta property="og:description" content="아주종합건설 회사소개" />
         <meta property="og:image" content="/ogtag.jpg" />
         <link
           rel="apple-touch-icon"
@@ -872,6 +857,11 @@ function Index() {
         />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
+      <h1 style={{ display: "none" }}>아주종합건설 회사소개</h1>
+      <h2 style={{ display: "none" }}>아주산업개발</h2>
+      <h3 style={{ display: "none" }}>구미</h3>
+      <h4 style={{ display: "none" }}>종합건설기업</h4>
+      <h5 style={{ display: "none" }}>공사실적</h5>
       <Header agent={agent} isHead={isHead} />
       <Top>
         <div className="title">회사소개</div>
@@ -886,95 +876,10 @@ function Index() {
         <S3 s3={s3} />
       </Section3>
       <Section4>
-        <div className="wrapper" {...useScrollFadeIn(0.2)}>
-          <div className="left">
-            <div className="step">주요연혁</div>
-            <div className="title">
-              아주종합건설 <br /> 주요연혁
-            </div>
-          </div>
-          <div className="right">
-            <hr className="dashed-bar" />
-            {s4.map(({ year, list }: S4Type, idx) => {
-              return (
-                <div className="year-card" key={idx}>
-                  <div className="year-left">
-                    <div className="year">{year}</div>
-                    <hr className="white-bar" />
-                    <div className="white-circle" />
-                  </div>
-                  <div
-                    className={`month-list  ${
-                      idx === 0
-                        ? "one"
-                        : idx === 1
-                        ? "two"
-                        : idx === 6
-                        ? "six"
-                        : ""
-                    }`}
-                  >
-                    {list.map(({ title, sub }, idx) => {
-                      return (
-                        <div
-                          className={`month-card ${
-                            agent !== "pc" && idx !== list.length - 1
-                              ? "point"
-                              : ""
-                          }`}
-                          key={idx}
-                        >
-                          <b>{title}</b>
-                          <div className="month-sub">{sub} </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <S4 s4={s4} agent={agent} />
       </Section4>
       <Section5>
-        <div className="wrapper" {...useScrollFadeIn(0.2)}>
-          <div className="top">조직도</div>
-          <div className="title">아주종합건설 {`\n`} 회사조직도</div>
-
-          <img
-            src={`/assets/about-s5${agent === "mobile" ? "mb" : ""}.png`}
-            srcSet={`/assets/about-s5${
-              agent === "mobile" ? "mb" : agent === "tablet" ? "tb" : ""
-            }@2x.png 2x ,/assets/about-s5${
-              agent === "mobile" ? "mb" : agent === "tablet" ? "tb" : ""
-            }@3x.png 3x`}
-            alt="image"
-            className="image"
-          />
-
-          <div className="bottom">
-            <div className="box">
-              <div className="red" />
-              <div className="title">관리부</div>
-              <hr />
-              <div className="content">
-                {agent === "pc"
-                  ? "저희 아주는 회사 설립 때부터 내 집, 내 공장을 짓는다는 창립이념을 바탕으로 어느 누구도 자신의 집을 대충 짓지 않듯이 고객의 입\n장에서 내 집을 짓는다는 마음을 가지고 사소한 부분이라도 대충 지나치지 않을 각오와 다짐으로 회사 상호를 아주로 정했습니다."
-                  : "저희 아주는 회사 설립 때부터 내 집, 내 공장을 짓는다\n는 창립이념을 바탕으로 어느 누구도 자신의 집을 대충\n 짓지 않듯이 고객의 입장에서 내 집을 짓는다는 마음을\n 가지고 사소한 부분이라도 대충 지나치지 않을 각오와\n 다짐으로 회사 상호를 아주로 정했습니다."}
-              </div>
-            </div>
-            <div className="box">
-              <div className="red" />
-              <div className="title">공사부</div>
-              <hr />
-              <div className="content">
-                {agent === "pc"
-                  ? "저희 아주는 회사 설립 때부터 내 집, 내 공장을 짓는다는 창립이념을 바탕으로 어느 누구도 자신의 집을 대충 짓지 않듯이 고객의 입\n장에서 내 집을 짓는다는 마음을 가지고 사소한 부분이라도 대충 지나치지 않을 각오와 다짐으로 회사 상호를 아주로 정했습니다."
-                  : "저희 아주는 회사 설립 때부터 내 집, 내 공장을 짓는다\n는 창립이념을 바탕으로 어느 누구도 자신의 집을 대충\n 짓지 않듯이 고객의 입장에서 내 집을 짓는다는 마음을\n 가지고 사소한 부분이라도 대충 지나치지 않을 각오와\n 다짐으로 회사 상호를 아주로 정했습니다."}
-              </div>
-            </div>
-          </div>
-        </div>
+        <S5 agent={agent} />
       </Section5>
       <footer className={styles.footer}>
         <Footer agent={agent} />

@@ -38,11 +38,25 @@ function Index({ data }: { data: any }) {
     <div>
       <Head>
         <title> 아주 건설 : 공사실적</title>
-        <meta name="description" content="아주 건설 공사실적 페이지입니다." />
+        <meta
+          name="description"
+          content="아주종합건설 공사실적 페이지입니다."
+        />
         <link rel="icon" href="/favicon.ico" />
-        <meta property="og:title" content="아주건설" />
-        <meta property="og:description" content="믿고 맡기는 아주건설" />
+        <meta property="og:title" content="아주종합건설" />
+        <meta
+          property="og:description"
+          content="내 집, 내 공장을 짓는다는 마음으로 아주종합건설 공사실적"
+        />
         <meta property="og:image" content="/ogtag.jpg" />
+        <link rel="canonical" href="https://www.ajoo.co.in/"></link>
+        <meta name="subject" content="(주)아주종합건설" />
+        <meta name="title" content="(주)아주종합건설" />
+        <meta name="author" content="(주)아주종합건설" />
+        <meta
+          name="keywords"
+          content="아주종합건설,아주산업개발,구미 건설회사,구미 공장공사,건축,건설회사"
+        />
         <link
           rel="apple-touch-icon"
           sizes="57x57"
@@ -120,6 +134,11 @@ function Index({ data }: { data: any }) {
         />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
+      <h1 style={{ display: "none" }}>아주종합건설 공사실적</h1>
+      <h2 style={{ display: "none" }}>아주산업개발</h2>
+      <h3 style={{ display: "none" }}>구미</h3>
+      <h4 style={{ display: "none" }}>종합건설기업</h4>
+      <h5 style={{ display: "none" }}>공사실적</h5>
       <Header agent={agent} isHead={isHead} />
       <Top>공사실적</Top>
       <List>

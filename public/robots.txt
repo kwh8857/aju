@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow:/
+
+Sitemap: https://www.ajoo.co.in/sitemap.xml

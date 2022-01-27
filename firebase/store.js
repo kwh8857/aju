@@ -53,6 +53,7 @@ const getPrt = () => {
       .where("state", "==", "portfolio")
       .get()
       .then((res) => {
+        console.log(res);
         const value = res.docs
           .map((item) => {
             const value = item.data();
@@ -80,14 +81,18 @@ const getMain = () => {
         await result.docs.forEach((item) => {
           const value = item.data();
           if (value.state === "notice") {
-            notice.push(value);
+            if (value.template) {
+              notice.push(value);
+            }
           } else {
-            prt.push({
-              title: value.title,
-              image: value.mainimg,
-              timestamp: value.timestamp,
-              state: value.state,
-            });
+            if (value.template) {
+              prt.push({
+                title: value.title ? value.title : "",
+                image: value.mainimg ? value.mainimg : "",
+                timestamp: value.timestamp ? value.timestamp : "",
+                state: value.state ? value.state : "",
+              });
+            }
           }
         });
         const noticeFilt = notice
@@ -110,7 +115,7 @@ const getNotice = () => {
         let notice = [];
         await result.docs.forEach((item) => {
           const value = item.data();
-          if (value.state === "notice") {
+          if (value.state === "notice" && value.template) {
             notice.push({
               title: value.title ? value.title : "",
               timestamp: value.timestamp,

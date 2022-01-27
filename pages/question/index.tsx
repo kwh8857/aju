@@ -47,7 +47,7 @@ function Index() {
         <meta property="og:title" content="아주건설" />
         <meta property="og:description" content="믿고 맡기는 아주건설" />
         <meta property="og:image" content="/ogtag.jpg" />
-        {/* <meta property="og:url" content="https://tastesalon.shop" /> */}
+        <meta property="og:url" content="https://www.ajoo.co.in/" />
         <link
           rel="apple-touch-icon"
           sizes="57x57"
@@ -125,6 +125,11 @@ function Index() {
         />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
+      <h1 style={{ display: "none" }}>아주종합건설 문의/연락</h1>
+      <h2 style={{ display: "none" }}>구미 건설기업</h2>
+      <h3 style={{ display: "none" }}>경북 구미시</h3>
+      <h4 style={{ display: "none" }}>종합건설기업</h4>
+      <h5 style={{ display: "none" }}>연락처</h5>
       <Header agent={agent} isHead={isHead} />
       <Top>문의 / 연락</Top>
       <Section1>
