@@ -3,15 +3,14 @@ import "firebase/performance";
 import "firebase/analytics";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-var firebaseConfig = {
-  apiKey: "AIzaSyB7m4H1jBYnMDERovliN6Kg2tLtCkgPBMg",
-  authDomain: "steadee-pf.firebaseapp.com",
-  databaseURL: "https://steadee-pf-default-rtdb.firebaseio.com",
-  projectId: "steadee-pf",
-  storageBucket: "steadee-pf.appspot.com",
-  messagingSenderId: "252193488049",
-  appId: "1:252193488049:web:82334bcd7c6ab226ba3690",
-  measurementId: "G-N7KJ58701D",
+const firebaseConfig = {
+  apiKey: "AIzaSyD1fsk0l0ksJl9lDpHY0XLnL3MCHXQLRlE",
+  authDomain: "ajoo-office.firebaseapp.com",
+  projectId: "ajoo-office",
+  storageBucket: "ajoo-office.appspot.com",
+  messagingSenderId: "547492296181",
+  appId: "1:547492296181:web:594f4009a3a17822e59cbc",
+  measurementId: "G-73MKY5EZRK",
 };
 
 // Initialize Firebase

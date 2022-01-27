@@ -858,7 +858,7 @@ function Index() {
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
       <h1 style={{ display: "none" }}>아주종합건설 회사소개</h1>
-      <h2 style={{ display: "none" }}>아주건설</h2>
+      <h2 style={{ display: "none" }}>아주산업개발</h2>
       <h3 style={{ display: "none" }}>구미</h3>
       <h4 style={{ display: "none" }}>종합건설기업</h4>
       <h5 style={{ display: "none" }}>공사실적</h5>
