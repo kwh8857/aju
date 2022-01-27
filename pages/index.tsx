@@ -363,7 +363,9 @@ function Home({ data: { prt, notice } }: { data: any }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>(주)아주종합건설</title>
+        <title>
+          아주종합건설 - 아주산업개발,구미 건설회사,구미 공장공사,건축,건설회사
+        </title>
         <meta
           name="description"
           content="내 집, 내 공장을 짓는다는 마음으로 아주종합건설"
@@ -374,7 +376,7 @@ function Home({ data: { prt, notice } }: { data: any }) {
         <meta name="author" content="(주)아주종합건설" />
         <meta
           name="keywords"
-          content="종합건설기업,아주건설,구미,구미 건설기업"
+          content="아주종합건설,아주산업개발,구미 건설회사,구미 공장공사,건축,건설회사"
         />
         <meta
           name="classification"
@@ -466,10 +468,11 @@ function Home({ data: { prt, notice } }: { data: any }) {
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
       <h1 style={{ display: "none" }}>아주종합건설</h1>
-      <h2 style={{ display: "none" }}>아주건설</h2>
-      <h3 style={{ display: "none" }}>AJOO</h3>
-      <h4 style={{ display: "none" }}>종합건설기업</h4>
-      <h5 style={{ display: "none" }}>공사실적</h5>
+      <h2 style={{ display: "none" }}>아주산업개발</h2>
+      <h3 style={{ display: "none" }}>구미 건설회사</h3>
+      <h4 style={{ display: "none" }}>구미 공장공사</h4>
+      <h5 style={{ display: "none" }}>건축</h5>
+      <h6 style={{ display: "none" }}>건설회사</h6>
       <Header agent={agent} isHead={isHead} />
       <main className={styles.main}>
         <Section1>

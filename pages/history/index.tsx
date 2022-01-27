@@ -55,7 +55,7 @@ function Index({ data }: { data: any }) {
         <meta name="author" content="(주)아주종합건설" />
         <meta
           name="keywords"
-          content="종합건설기업,아주건설,구미,구미 건설기업"
+          content="아주종합건설,아주산업개발,구미 건설회사,구미 공장공사,건축,건설회사"
         />
         <link
           rel="apple-touch-icon"
@@ -135,7 +135,7 @@ function Index({ data }: { data: any }) {
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
       <h1 style={{ display: "none" }}>아주종합건설 공사실적</h1>
-      <h2 style={{ display: "none" }}>아주건설</h2>
+      <h2 style={{ display: "none" }}>아주산업개발</h2>
       <h3 style={{ display: "none" }}>구미</h3>
       <h4 style={{ display: "none" }}>종합건설기업</h4>
       <h5 style={{ display: "none" }}>공사실적</h5>
