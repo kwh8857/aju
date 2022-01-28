@@ -65,6 +65,9 @@ const Container = styled.div`
       margin-top: 45px;
       cursor: pointer;
     }
+    .mute {
+      margin-left: 9px;
+    }
   }
   .main-video {
     width: 871px;
@@ -304,6 +307,7 @@ function Home({ data: { prt, notice } }: { data: any }) {
   );
   const [isHead, setIsHead] = useState(false);
   const [isPause, setIsPause] = useState(true);
+  const [isMute, setIsMute] = useState(true);
   const __scrollHandle = useCallback(() => {
     if (
       agent === "pc"
@@ -328,6 +332,16 @@ function Home({ data: { prt, notice } }: { data: any }) {
       }
     }
   }, [isHead, agent]);
+  const __changeMute = useCallback(() => {
+    if (VideoRef.current) {
+      if (VideoRef.current.muted) {
+        VideoRef.current.muted = false;
+      } else {
+        VideoRef.current.muted = true;
+      }
+      setIsMute(VideoRef.current.muted);
+    }
+  }, []);
   const __changeVideo = useCallback(() => {
     if (VideoRef.current) {
       if (VideoRef.current.paused) {
@@ -489,6 +503,12 @@ function Home({ data: { prt, notice } }: { data: any }) {
                   src={`/assets/${isPause ? "pause" : "play"}.svg`}
                   alt="재생"
                   onClick={__changeVideo}
+                />
+                <img
+                  src={`/assets/mute-${isMute ? "on" : "off"}.svg`}
+                  className="mute"
+                  alt="음소거"
+                  onClick={__changeMute}
                 />
               </div>
               {agent === "pc" ? (
