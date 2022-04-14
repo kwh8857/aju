@@ -89,7 +89,7 @@ function Index({ data }: { data: Array<dataFace> }) {
   return (
     <div>
       <Head>
-        <title> 아주 건설 : 공지사항</title>
+        <title>아주종합건설</title>
         <meta name="description" content="아주 건설 공지사항 페이지입니다" />
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content="아주건설" />

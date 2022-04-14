@@ -13,6 +13,7 @@ import S2 from "../../components/about/S2";
 import S3 from "../../components/about/S3";
 import S4 from "../../components/about/S4";
 import S5 from "../../components/about/S5";
+import S6 from "../../components/about/S6";
 
 const Wrapper = styled.div`
   background-color: white;
@@ -356,6 +357,7 @@ const Section4 = styled.div`
           display: flex;
           align-items: center;
           .year {
+            color: #a50006;
             font-size: 26px;
             font-weight: bold;
             margin-right: 13px;
@@ -653,7 +655,138 @@ const Section5 = styled.div`
     }
   }
 `;
-
+const Section6 = styled.div`
+  width: 100%;
+  height: 768px;
+  background-color: #f7f7f7;
+  & > .wrapper {
+    width: 993px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding-top: 82.3px;
+    & > .sub {
+      width: 94px;
+      height: 31px;
+      background-color: #a50006;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    & > .title {
+      font-size: 32px;
+      margin-top: 15px;
+      margin-bottom: 37px;
+      font-weight: bold;
+    }
+    & > .list {
+      display: grid;
+      row-gap: 27.4px;
+      & > .card {
+        align-items: center;
+        display: flex;
+        column-gap: 25px;
+        & > .category {
+          width: 212px;
+          height: 56px;
+          background-color: #595757;
+          border-radius: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 16px;
+          font-weight: bold;
+          color: white;
+        }
+        & > .content {
+          display: flex;
+          flex-direction: column;
+          row-gap: 3px;
+          & > .title {
+            font-size: 16px;
+            font-weight: bold;
+          }
+          & > .sub {
+            font-size: 14px;
+            color: #434343;
+          }
+        }
+      }
+      & > .card:nth-child(even) {
+        & > .category {
+          background-color: #a50006;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1365px) {
+    & > .wrapper {
+      width: 720px;
+      padding-top: 95px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      & > .sub {
+        width: 96px;
+      }
+      & > .title {
+        font-size: 25px;
+        margin-top: 17px;
+        margin-bottom: 52.3px;
+      }
+      & > .list {
+        & > .card {
+          column-gap: 18.7px;
+          & > .category {
+            width: 171.5px;
+            height: 56px;
+            font-size: 15px;
+          }
+          & > .content {
+            row-gap: 4px;
+            & > .title {
+              font-size: 15px;
+            }
+            & > .sub {
+              font-size: 13px;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 767px) {
+    height: 1279px;
+    & > .wrapper {
+      width: 320px;
+      padding-top: 195.7px;
+      & > .title {
+        margin-top: 13px;
+        margin-bottom: 48.3px;
+      }
+      & > .list {
+        row-gap: 46.7px;
+        & > .card {
+          flex-direction: column;
+          column-gap: unset;
+          row-gap: 13.8px;
+          & > .category {
+            height: 39.5px;
+          }
+          & > .content {
+            text-align: center;
+            & > .sub {
+              line-height: 1.64;
+              white-space: pre-line;
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 const s2 = [
   { title: "공장신축 및 개축공사", sub: "공장 / 창고 등의 조립식 건축공사" },
 
@@ -740,6 +873,40 @@ const s4 = [
     ],
   },
 ];
+const s6 = [
+  {
+    category: "신축 · 증축 · 개축공사",
+    title: "신축 · 증축 · 개축공사",
+    sub: "공장 및 창고  |  상가 및 주택  |  가설 건축물",
+    mbsub: `공장 및 창고  |  상가 및 주택  |  가설 건축물`,
+  },
+  {
+    category: "리모델링 공사",
+    title: "리모델링 공사",
+    sub: "기존 건물 내부 및 외부 리모델링  |  크린룸 공사  |  내부 레이아웃 변경 및 칸막이 공사",
+    mbsub:
+      "기존 건물 내부 및 외부 리모델링  |  크린룸 공사 \n내부 레이아웃 변경 및 칸막이 공사",
+  },
+  {
+    category: "시설물 유지 보수 공사",
+    title: "시설물 유지 보수 공사",
+    sub: "경량 칸막이 및 천정  |  창호 및 금속  |  설비 및 타일  | 도배 및 도장  |  전기 및 소방",
+    mbsub:
+      "경량 칸막이 및 천정  |  창호 및 금속  |  설비 및 타일 \n도배 및 도장  |  전기 및 소방",
+  },
+  {
+    category: "토목 공사",
+    title: "토목 공사",
+    sub: "옹벽 공사  |  마당포장 공사  |  배수로 공사  |  기계 기초 공사",
+    mbsub: "옹벽 공사  |  마당포장 공사 \n배수로 공사  |  기계 기초 공사",
+  },
+  {
+    category: "부동산업",
+    title: "부동산업",
+    sub: "부동산 개발  |  부동산 임대  |  부동산 매매  |  건물 신축 판매",
+    mbsub: "부동산 개발  |  부동산 임대 \n부동산 매매  |  건물 신축 판매",
+  },
+];
 
 function Index() {
   const route = useRouter();
@@ -771,7 +938,7 @@ function Index() {
   return (
     <Wrapper>
       <Head>
-        <title> 아주 건설 : 회사소개</title>
+        <title>아주종합건설</title>
         <meta
           name="description"
           content="아주종합건설 회사소개 페이지입니다."
@@ -875,6 +1042,9 @@ function Index() {
       <Section3>
         <S3 s3={s3} />
       </Section3>
+      <Section6>
+        <S6 agent={agent} s6={s6} />
+      </Section6>
       <Section4>
         <S4 s4={s4} agent={agent} />
       </Section4>

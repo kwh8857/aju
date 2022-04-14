@@ -32,9 +32,9 @@ const HeadStyle = styled.div`
 `;
 const MenuStyle = styled.div`
   display: grid;
-  column-gap: 48px;
+  column-gap: 45px;
   grid-template-columns: repeat(4, auto);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: bold;
   @media screen and (max-width: 1365px) {
     display: flex;

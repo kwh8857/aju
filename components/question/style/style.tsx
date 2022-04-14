@@ -55,7 +55,7 @@ export const Section1 = styled.div`
       }
       .content {
         text-align: right;
-        font-size: 17px;
+        font-size: 15px;
         font-weight: bold;
         white-space: pre-line;
         line-height: 1.47;
@@ -64,9 +64,11 @@ export const Section1 = styled.div`
   }
   .bottom {
     width: 993px;
-    height: 124px;
+    /* height: 124px; */
+    height: 90px;
     background-color: #f2f3f7;
-    margin-top: 45px;
+    /* margin-top: 45px; */
+    margin-top: 29px;
     padding-top: 17px;
     box-sizing: border-box;
     padding-left: 24px;
@@ -183,7 +185,7 @@ export const Section2 = styled.div`
       width: 100%;
       background-color: white;
       margin-top: 36px;
-      img{
+      img {
         width: 100%;
       }
     }

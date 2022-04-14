@@ -377,9 +377,7 @@ function Home({ data: { prt, notice } }: { data: any }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>
-          아주종합건설 - 아주산업개발,구미 건설회사,구미 공장공사,건축,건설회사
-        </title>
+        <title>아주종합건설</title>
         <meta
           name="description"
           content="내 집, 내 공장을 짓는다는 마음으로 아주종합건설"
@@ -497,7 +495,7 @@ function Home({ data: { prt, notice } }: { data: any }) {
                 <br />
                 <div>
                   내 집, 내 공장을 짓는다는 마음으로 <br /> 함께하는
-                  종합건설기업 (주) 아주산업개발
+                  종합건설기업 아주종합건설
                 </div>
                 <img
                   src={`/assets/${isPause ? "pause" : "play"}.svg`}
@@ -610,7 +608,7 @@ function Home({ data: { prt, notice } }: { data: any }) {
               </div>
               <div className="white-bar" style={{ marginTop: "9.7px" }} />
               <div className="content">
-                Call 010-1234-1234 <br /> Fax &nbsp;054-123-4567
+                Call 054-455-2326 <br /> Fax &nbsp;054-458-2327
               </div>
               <div className="top">
                 <img src="/assets/white-pin.svg" alt="gps" />

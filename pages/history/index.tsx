@@ -37,7 +37,7 @@ function Index({ data }: { data: any }) {
   return (
     <div>
       <Head>
-        <title> 아주 건설 : 공사실적</title>
+        <title>아주종합건설</title>
         <meta
           name="description"
           content="아주종합건설 공사실적 페이지입니다."
