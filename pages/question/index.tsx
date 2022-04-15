@@ -7,7 +7,11 @@ import { boxlayout, mblayout } from "../../components/question/layout/layout";
 import styles from "../../styles/Home.module.css";
 import Footer from "../../components/footer/Footer";
 import Head from "next/head";
-
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
 function Index() {
   const agent = useSelector(
     (state: RootState) => state.config.identification.agent
