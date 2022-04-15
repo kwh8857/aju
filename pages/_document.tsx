@@ -42,7 +42,6 @@ class MyDocument extends Document {
         </Head>
         <body>
           <script
-            async
             type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	912e13d0226b4d857a7a74e749e1a888"
           ></script>
