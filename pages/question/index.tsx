@@ -44,21 +44,34 @@ function Index() {
     };
   }, [__scrollHandle]);
   useEffect(() => {
-    let container = document.getElementById("map");
+    const mapScript = document.createElement("script");
 
-    let options = {
-      center: new window.kakao.maps.LatLng(
-        36.11607295051233,
-        128.33130730236442
-      ),
-      level: 2,
+    mapScript.async = true;
+    mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=	912e13d0226b4d857a7a74e749e1a888`;
+
+    document.head.appendChild(mapScript);
+    const onLoadKakaoMap = () => {
+      window.kakao.maps.load(() => {
+        const container = document.getElementById("map");
+        const options = {
+          center: new window.kakao.maps.LatLng(
+            36.11607295051233,
+            128.33130730236442
+          ),
+        };
+        const map = new window.kakao.maps.Map(container, options);
+        const markerPosition = new window.kakao.maps.LatLng(
+          36.11607295051233,
+          128.33130730236442
+        );
+        const marker = new window.kakao.maps.Marker({
+          position: markerPosition,
+        });
+        marker.setMap(map);
+      });
     };
-    let map = new window.kakao.maps.Map(container, options);
-    var marker = new window.kakao.maps.Marker({
-      position: map.getCenter(),
-    });
-    marker.setMap(map);
-    console.log("loading kakaomap");
+    mapScript.addEventListener("load", onLoadKakaoMap);
+    return () => mapScript.removeEventListener("load", onLoadKakaoMap);
   }, []);
 
   return (
