@@ -47,7 +47,7 @@ function Index() {
     const mapScript = document.createElement("script");
 
     mapScript.async = true;
-    mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=	912e13d0226b4d857a7a74e749e1a888`;
+    mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=	912e13d0226b4d857a7a74e749e1a888&autoload=false`;
 
     document.head.appendChild(mapScript);
     const onLoadKakaoMap = () => {
