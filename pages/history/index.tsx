@@ -1,5 +1,10 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { Top, List } from "../../components/history/style";
+import {
+  Top,
+  List,
+  Category,
+  BodyWrapper,
+} from "../../components/history/style";
 import { useSelector } from "react-redux";
 import { RootState } from "../../reducer";
 import styles from "../../styles/Home.module.css";
@@ -15,7 +20,11 @@ function Index({ data }: { data: any }) {
     (state: RootState) => state.config.identification.agent
   );
   const [isHead, setIsHead] = useState(false);
-
+  const [category, setCategory] = useState(0);
+  const [yearArray, setYearArray] = useState<Array<number>>([]);
+  const [nowYear, setnowYear] = useState<any>(undefined);
+  const [ListData, setListData] = useState<Array<any>>([]);
+  const [isOpen, setIsOpen] = useState(false);
   const __scrollHandle = useCallback(() => {
     if (window.scrollY <= 163) {
       if (isHead) {
@@ -34,6 +43,41 @@ function Index({ data }: { data: any }) {
       document.removeEventListener("scroll", __scrollHandle);
     };
   }, [__scrollHandle]);
+  useEffect(() => {
+    const now = new Date().getFullYear();
+    let yeararr: number[] = [];
+    let thisyear = 2018;
+    while (thisyear <= now) {
+      yeararr.push(thisyear);
+      thisyear++;
+    }
+    setYearArray(yeararr);
+    return () => {};
+  }, []);
+  useEffect(() => {
+    setListData([]);
+    let arr = [];
+    for (let idx = 0; idx < data.length; idx++) {
+      const e = data[idx];
+      if (
+        (e.kind === "시공 현장" && category === 0) ||
+        (e.kind === "3D 작업" && category === 1)
+      ) {
+        if (nowYear) {
+          if (e.year === "~2018" && nowYear === 2018) {
+            arr.push(e);
+          } else if (e.year === nowYear) {
+            arr.push(e);
+          }
+        } else {
+          arr.push(e);
+        }
+      }
+      setListData(arr);
+    }
+    return () => {};
+  }, [category, data, nowYear]);
+
   return (
     <div>
       <Head>
@@ -134,45 +178,137 @@ function Index({ data }: { data: any }) {
         />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
-      <h1 style={{ display: "none" }}>아주종합건설 공사실적</h1>
+      <h1 style={{ display: "none" }}>아주종합건설</h1>
       <h2 style={{ display: "none" }}>아주산업개발</h2>
       <h3 style={{ display: "none" }}>구미</h3>
       <h4 style={{ display: "none" }}>종합건설기업</h4>
       <h5 style={{ display: "none" }}>공사실적</h5>
       <Header agent={agent} isHead={isHead} />
       <Top>공사실적</Top>
-      <List>
-        {data.map(
-          (
-            {
-              title,
-              sub,
-              image: { url, resize },
-              timestamp,
-            }: {
-              title: string;
-              sub: string;
-              timestamp: number;
-              image: {
-                url: string;
-                resize: string;
-              };
-            },
-            idx: number
-          ) => {
-            return (
-              <Card
-                key={idx}
-                title={title}
-                sub={sub}
-                url={url}
-                resize={resize}
-                timestamp={timestamp}
-              />
-            );
-          }
-        )}
-      </List>
+      <Category category={category}>
+        <div className="button-wrapper">
+          <button
+            onClick={() => {
+              if (category !== 0) {
+                setCategory(0);
+              }
+            }}
+            className="one"
+          >
+            시공현장
+          </button>
+          <button
+            className="two"
+            onClick={() => {
+              if (category !== 1) {
+                setCategory(1);
+              }
+            }}
+          >
+            3D작업
+          </button>
+        </div>
+        <div className="bar-wrapper">
+          <div className="bar" />
+        </div>
+      </Category>
+      <BodyWrapper open={isOpen} length={yearArray.length + 2}>
+        <div className="wrapper">
+          <div className="year-wrapper">
+            <div
+              className={`year ${nowYear === undefined ? "on" : ""} nowyear`}
+              onClick={() => {
+                if (agent === "pc") {
+                  setnowYear(undefined);
+                } else {
+                  setIsOpen(!isOpen);
+                }
+              }}
+            >
+              {agent === "pc" ? (
+                "전체보기"
+              ) : (
+                <>
+                  {nowYear === undefined
+                    ? "전체보기"
+                    : nowYear === 2018
+                    ? `~${nowYear}`
+                    : nowYear}
+                  <img src="/assets/grey-arrow.svg" alt="" />
+                </>
+              )}
+            </div>
+            <div className="year-kind">
+              {agent !== "pc" ? (
+                <div
+                  className={`year ${nowYear === undefined ? "on" : ""}`}
+                  onClick={() => {
+                    setnowYear(undefined);
+                    setIsOpen(!isOpen);
+                  }}
+                >
+                  전체보기
+                </div>
+              ) : undefined}
+              {yearArray.map((item, idx) => {
+                return (
+                  <div
+                    key={idx}
+                    className={`year ${item === nowYear ? "on" : ""}`}
+                    style={
+                      idx === yearArray.length - 1
+                        ? {
+                            border: "unset",
+                          }
+                        : undefined
+                    }
+                    onClick={() => {
+                      setnowYear(item);
+                      if (agent !== "pc") {
+                        setIsOpen(!isOpen);
+                      }
+                    }}
+                  >
+                    {item === 2018 ? `~${item}` : item}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <List>
+            {ListData.map(
+              (
+                {
+                  title,
+                  sub,
+                  image: { url, resize },
+                  timestamp,
+                }: {
+                  title: string;
+                  sub: string;
+                  timestamp: number;
+                  image: {
+                    url: string;
+                    resize: string;
+                  };
+                },
+                idx: number
+              ) => {
+                return (
+                  <Card
+                    key={idx}
+                    title={title}
+                    sub={sub}
+                    url={url}
+                    resize={resize}
+                    timestamp={timestamp}
+                  />
+                );
+              }
+            )}
+          </List>
+        </div>
+      </BodyWrapper>
       <footer className={styles.footer}>
         <Footer agent={agent} />
       </footer>

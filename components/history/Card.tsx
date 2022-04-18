@@ -70,18 +70,7 @@ function Card({
               blurDataURL={resize}
             />
           </div>
-          <div className="bottom">
-            <div className="left">
-              <div className="title">{title}</div>
-              <div className="content">{sub}</div>
-            </div>
-            <div className="right">
-              <div className="btn">
-                자세히보기
-                <img src="/assets/red-arrow.svg" alt="상세보기" />
-              </div>
-            </div>
-          </div>
+          <div className="title">{title}</div>
         </div>
       </a>
     </Link>

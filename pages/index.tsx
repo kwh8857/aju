@@ -17,6 +17,7 @@ const Section1 = styled.div`
   width: 100%;
   height: 767px;
   .wrapper {
+    position: relative;
     width: 100%;
     height: 767px;
     background-image: url("/assets/main.png");
@@ -70,10 +71,16 @@ const Container = styled.div`
     }
   }
   .main-video {
-    width: 871px;
-    height: 529px;
+    bottom: 0;
+    right: 0;
+    width: 50.5vw;
+    height: 29.7vw;
     margin-left: 54px;
-    position: relative;
+    position: absolute;
+    min-height: 529px;
+    min-width: 871px;
+    max-height: 686px;
+    max-width: 1167px;
     video {
       width: 100%;
       height: 100%;
@@ -511,13 +518,9 @@ function Home({ data: { prt, notice } }: { data: any }) {
               </div>
               {agent === "pc" ? (
                 <div className="main-video">
-                  <video
-                    ref={VideoRef}
-                    src="https://firebasestorage.googleapis.com/v0/b/ajoo-office.appspot.com/o/ajoo.mp4?alt=media&token=ca90b8a2-3d7c-4c3d-b540-af7f2e75e39a"
-                    loop={true}
-                    muted
-                    autoPlay
-                  ></video>
+                  <video ref={VideoRef} autoPlay muted loop={true} playsInline>
+                    <source src="main.mp4" type="video/mp4" />
+                  </video>
                 </div>
               ) : undefined}
             </Container>
@@ -528,7 +531,7 @@ function Home({ data: { prt, notice } }: { data: any }) {
             <div className="wrapper">
               <video
                 ref={VideoRef}
-                src="https://firebasestorage.googleapis.com/v0/b/ajoo-office.appspot.com/o/ajoo.mp4?alt=media&token=ca90b8a2-3d7c-4c3d-b540-af7f2e75e39a"
+                src="main.mp4"
                 autoPlay
                 muted
                 loop={true}

@@ -53,7 +53,6 @@ const getPrt = () => {
       .where("state", "==", "portfolio")
       .get()
       .then((res) => {
-        console.log(res);
         const value = res.docs
           .map((item) => {
             const value = item.data();
@@ -62,6 +61,8 @@ const getPrt = () => {
               sub: value.sub,
               timestamp: value.timestamp,
               image: value.mainimg,
+              kind: value.kind,
+              year: value.year,
             };
           })
           .sort((a, b) => b.timestamp - a.timestamp);

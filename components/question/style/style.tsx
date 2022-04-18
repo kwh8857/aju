@@ -99,7 +99,7 @@ export const Section1 = styled.div`
     }
     .bottom {
       width: 666px;
-      height: 139px;
+      height: 100px;
       margin-top: 50.5px;
       padding-left: 9px;
       row-gap: 14px;
@@ -109,14 +109,14 @@ export const Section1 = styled.div`
     }
   }
   @media screen and (max-width: 767px) {
-    height: 1168px;
+    height: 1090px;
     .top {
       grid-template-columns: 320px;
       row-gap: 18px;
     }
     .bottom {
       width: 320px;
-      height: 175px;
+      height: 145px;
       margin-top: 18.4px;
       row-gap: 15px;
       padding-top: 17px;

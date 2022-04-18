@@ -1,6 +1,6 @@
 export const boxlayout = [
-  { title: "연락처", content: "010-1234-1234", image: "question1" },
-  { title: "FAX", content: "054-123-1234", image: "question2" },
+  { title: "연락처", content: "054-455-2326", image: "question1" },
+  { title: "FAX", content: "054-458-2327", image: "question2" },
   {
     title: "주소지",
     content:
@@ -11,8 +11,8 @@ export const boxlayout = [
 ];
 
 export const mblayout = [
-  { title: "연락처", content: "010-1234-1234", image: "question1" },
-  { title: "FAX", content: "054-123-1234", image: "question2" },
+  { title: "연락처", content: "054-455-2326", image: "question1" },
+  { title: "FAX", content: "054-458-2327", image: "question2" },
   { title: "영업시간", content: "평일 9시 - 18시", image: "question4" },
   {
     title: "주소지",
