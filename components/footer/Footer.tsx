@@ -38,7 +38,7 @@ function Footer({ agent }: FootProps) {
         사업자등록번호 250-86-01874 | 대표자 김성호, 전영민 <br /> 주소 경상북도
         구미시 형곡로 8길 14, 201호, 301호 |
         {agent !== "pc" ? <br /> : undefined} 전화문의 054-455-2326 <br />{" "}
-        아주종합건설. All rights reserved.
+        (주)아주종합건설. All rights reserved.
       </div>
     </Wrapper>
   );

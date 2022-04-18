@@ -16,16 +16,23 @@ const HeadStyle = styled.div`
   top: 0;
   left: 0;
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   box-sizing: border-box;
   padding: 0 75px;
   z-index: 1000;
   transition: background-color 0.2s ease-in-out;
-  .logo {
-    cursor: pointer;
+  & > .wrapper {
+    width: 100%;
+    max-width: 1224px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo {
+      cursor: pointer;
+    }
   }
+
   @media screen and (max-width: 1365px) {
     padding: 0 32px;
   }
@@ -94,43 +101,45 @@ function Header({ agent, isHead }: HeadProps) {
           : undefined
       }
     >
-      <Link href={"/"}>
-        <img
-          src={`/assets/logo${isHead && !isMenu ? "black" : ""}.svg`}
-          alt="Aju"
-          className="logo"
-        />
-      </Link>
-      <MenuStyle>
-        {agent === "pc" ? (
-          menu_layout.map(({ link, title }, idx) => {
-            return (
-              <Link href={link} key={idx}>
-                <a style={isHead && !isMenu ? { color: "black" } : undefined}>
-                  {title}
-                </a>
-              </Link>
-            );
-          })
-        ) : (
-          <div
-            className="menu-icon"
-            onClick={() => {
-              dispatch({
-                type: "CONFIG/MENU/CHANGE",
-                payload: !isMenu,
-              });
-            }}
-          >
-            <img
-              src={`/assets/menu${
-                isMenu ? "-cancel" : isHead ? "black" : ""
-              }.svg`}
-              alt="메뉴"
-            />
-          </div>
-        )}
-      </MenuStyle>
+      <div className="wrapper">
+        <Link href={"/"}>
+          <img
+            src={`/assets/logo${isHead && !isMenu ? "black" : ""}.svg`}
+            alt="Aju"
+            className="logo"
+          />
+        </Link>
+        <MenuStyle>
+          {agent === "pc" ? (
+            menu_layout.map(({ link, title }, idx) => {
+              return (
+                <Link href={link} key={idx}>
+                  <a style={isHead && !isMenu ? { color: "black" } : undefined}>
+                    {title}
+                  </a>
+                </Link>
+              );
+            })
+          ) : (
+            <div
+              className="menu-icon"
+              onClick={() => {
+                dispatch({
+                  type: "CONFIG/MENU/CHANGE",
+                  payload: !isMenu,
+                });
+              }}
+            >
+              <img
+                src={`/assets/menu${
+                  isMenu ? "-cancel" : isHead ? "black" : ""
+                }.svg`}
+                alt="메뉴"
+              />
+            </div>
+          )}
+        </MenuStyle>
+      </div>
     </HeadStyle>
   );
 }

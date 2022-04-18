@@ -56,16 +56,19 @@ const getPrt = () => {
         const value = res.docs
           .map((item) => {
             const value = item.data();
-            return {
-              title: value.title,
-              sub: value.sub,
-              timestamp: value.timestamp,
-              image: value.mainimg,
-              kind: value.kind,
-              year: value.year,
-            };
+            if (value.title && value.mainimg && value.kind && value.year) {
+              return {
+                title: value.title,
+                timestamp: value.timestamp,
+                image: value.mainimg,
+                kind: value.kind,
+                year: value.year,
+              };
+            }
           })
-          .sort((a, b) => b.timestamp - a.timestamp);
+          .sort((a, b) => b.timestamp - a.timestamp)
+          .filter((item) => item);
+        console.log(value);
         resolve(value);
       });
   });

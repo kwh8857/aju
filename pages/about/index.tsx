@@ -97,7 +97,7 @@ const Section1 = styled.div`
     }
   }
   @media screen and (max-width: 767px) {
-    height: 855px;
+    height: 905px;
     .wrapper {
       width: 320px;
       .left {
@@ -525,44 +525,65 @@ const Section5 = styled.div`
     .bottom {
       margin-top: 80px;
       display: grid;
-      row-gap: 14px;
+      grid-template-columns: repeat(2, 378px);
+      column-gap: 34px;
       .box {
         position: relative;
         white-space: nowrap;
-        padding-left: 62px;
         box-sizing: border-box;
         display: flex;
-        align-items: center;
-        width: 993px;
-        height: 130px;
+        flex-direction: column;
+        width: 100%;
+        height: 244px;
         border-radius: 10px;
         background-color: white;
         overflow: hidden;
+        padding: 28px 20.8px 0 20.8px;
         .red {
           position: absolute;
+          top: 0;
           left: 0;
-          width: 9px;
-          height: 100%;
+          width: 100%;
+          height: 11px;
           background-color: #a50006;
+          z-index: 100;
         }
         .title {
-          font-size: 26px;
+          font-size: 23px;
           font-weight: bold;
         }
         hr {
-          height: 85px;
-          margin-top: 0;
-          margin-bottom: 0;
-          margin-left: 52px;
-          margin-right: 32px;
-          width: 1px;
+          height: 1px;
+          width: 336.5px;
+          margin-top: 15.4px;
+
+          margin-bottom: 20.6px;
+          width: 100%;
         }
         .content {
-          font-size: 14px;
-          white-space: pre-line;
-          font-weight: normal;
-          line-height: 1.73;
-          color: #434343;
+          display: grid;
+          row-gap: 12px;
+          & > .subject-wrapper {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            column-gap: 8.2px;
+            & > .team {
+              width: 87px;
+              height: 31px;
+              background-color: #bfbfbf;
+              border-radius: 50px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-weight: bold;
+              color: #42454a;
+            }
+            & > .subject {
+              color: #595b60;
+              font-weight: 500;
+            }
+          }
         }
       }
     }
@@ -585,35 +606,34 @@ const Section5 = styled.div`
       }
       .bottom {
         margin-top: 85px;
-        column-gap: 25px;
+        column-gap: 29px;
         grid-template-columns: 320px 320px;
         .box {
           white-space: nowrap;
-          padding-left: 0;
-          padding-top: 26px;
-          box-sizing: border-box;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+          padding: 24px 17.5px 0 17.5px;
           width: 320px;
-          height: 228px;
+          height: 207px;
           .red {
-            position: absolute;
-            top: 0;
-            width: 100%;
             height: 9px;
           }
           .title {
-            font-size: 18px;
+            font-size: 20px;
           }
           hr {
             height: 1px;
-            margin: 13.5px 0px;
-            width: 285px;
+            margin-top: 12.5px;
+            margin-bottom: 17.5px;
           }
           .content {
-            font-size: 13px;
-            line-height: 1.71;
+            row-gap: 10px;
+            & > .subject-wrapper {
+              font-size: 12px;
+              column-gap: 6.7px;
+              & > .team {
+                width: 74px;
+                height: 26px;
+              }
+            }
           }
         }
       }
@@ -635,21 +655,11 @@ const Section5 = styled.div`
       .bottom {
         margin-top: 113px;
         grid-template-columns: 320px;
-        row-gap: 17px;
+        row-gap: 27px;
         .box {
           position: relative;
           white-space: nowrap;
-          box-sizing: border-box;
-          display: flex;
-          align-items: center;
-          width: 320px;
-          height: 228px;
-          .red {
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 9px;
-          }
+          height: 207px;
         }
       }
     }

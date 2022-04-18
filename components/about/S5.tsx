@@ -57,9 +57,14 @@ function S5({ agent }: { agent: string }) {
           <div className="title">관리부</div>
           <hr />
           <div className="content">
-            {agent === "pc"
-              ? "저희 아주는 회사 설립 때부터 내 집, 내 공장을 짓는다는 창립이념을 바탕으로 어느 누구도 자신의 집을 대충 짓지 않듯이 고객의 입\n장에서 내 집을 짓는다는 마음을 가지고 사소한 부분이라도 대충 지나치지 않을 각오와 다짐으로 회사 상호를 아주로 정했습니다."
-              : "저희 아주는 회사 설립 때부터 내 집, 내 공장을 짓는다\n는 창립이념을 바탕으로 어느 누구도 자신의 집을 대충\n 짓지 않듯이 고객의 입장에서 내 집을 짓는다는 마음을\n 가지고 사소한 부분이라도 대충 지나치지 않을 각오와\n 다짐으로 회사 상호를 아주로 정했습니다."}
+            {arr1.map(({ title, sub }, idx) => {
+              return (
+                <div className="subject-wrapper" key={idx}>
+                  <div className="team">{title}</div>
+                  <div className="subject">{sub}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="box">
@@ -67,9 +72,14 @@ function S5({ agent }: { agent: string }) {
           <div className="title">공사부</div>
           <hr />
           <div className="content">
-            {agent === "pc"
-              ? "저희 아주는 회사 설립 때부터 내 집, 내 공장을 짓는다는 창립이념을 바탕으로 어느 누구도 자신의 집을 대충 짓지 않듯이 고객의 입\n장에서 내 집을 짓는다는 마음을 가지고 사소한 부분이라도 대충 지나치지 않을 각오와 다짐으로 회사 상호를 아주로 정했습니다."
-              : "저희 아주는 회사 설립 때부터 내 집, 내 공장을 짓는다\n는 창립이념을 바탕으로 어느 누구도 자신의 집을 대충\n 짓지 않듯이 고객의 입장에서 내 집을 짓는다는 마음을\n 가지고 사소한 부분이라도 대충 지나치지 않을 각오와\n 다짐으로 회사 상호를 아주로 정했습니다."}
+            {arr2.map(({ title, sub }, idx) => {
+              return (
+                <div className="subject-wrapper" key={idx}>
+                  <div className="team">{title}</div>
+                  <div className="subject">{sub}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -78,3 +88,33 @@ function S5({ agent }: { agent: string }) {
 }
 
 export default S5;
+
+const arr1 = [
+  {
+    title: "관리팀",
+    sub: "총무/회계, 관급입찰, 하도급계약, 운영지원",
+  },
+  {
+    title: "구매팀",
+    sub: "구매 관리",
+  },
+  {
+    title: "견적팀",
+    sub: "도면접수, 견적작성",
+  },
+];
+
+const arr2 = [
+  {
+    title: "공사팀",
+    sub: "공사관리, 공사시공, 품질관리, 리모델링",
+  },
+  {
+    title: "공무팀",
+    sub: "외주관리, 엽업관리, 고객관리, 환경안전",
+  },
+  {
+    title: "설계및디자인",
+    sub: "도면설계, 3D",
+  },
+];

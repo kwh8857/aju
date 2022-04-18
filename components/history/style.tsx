@@ -41,6 +41,7 @@ export const BodyWrapper = styled.div<BodyIn>`
       padding: 0 7.8px;
       box-sizing: border-box;
       position: sticky;
+      top: 100px;
       left: 0;
       height: fit-content;
       background-color: #f7f7f7;
@@ -95,7 +96,8 @@ export const BodyWrapper = styled.div<BodyIn>`
         overflow: hidden;
         padding: 0 11px 0 12px;
         position: absolute;
-        left: 39.5%;
+        right: 0;
+        left: unset;
         top: 27px;
         z-index: 300;
         transition: height 0.2s ease-in-out;
@@ -125,9 +127,6 @@ export const BodyWrapper = styled.div<BodyIn>`
   @media screen and (max-width: 767px) {
     & > .wrapper {
       width: 320px;
-      & > .year-wrapper {
-        left: 25%;
-      }
     }
   }
 `;
