@@ -7,6 +7,7 @@ interface ImType {
   img: string;
 }
 type Props = {
+  agent: string;
   content:
     | any
     | {
@@ -17,76 +18,85 @@ type Props = {
 
 const Wrapper = styled.div`
   width: 100%;
-  display: flex;
   border-bottom: solid 1px #dbdbdb;
-  padding-bottom: 45.5px;
-  .left {
-    width: 503px;
-    height: 490px;
-    position: relative;
-    img {
-      max-width: 100%;
+  padding-bottom: 86.5px;
+  .top {
+    display: flex;
+    & > .main-img {
+      width: 671px;
+      height: 490px;
+      position: relative;
+      margin-right: 31px;
+      img {
+        max-width: 100%;
+      }
     }
-  }
-  .right {
-    margin-left: 35px;
-    .content {
-      width: 454px;
-      height: 332px;
+    & > .content {
+      width: 290px;
+      height: 490px;
       font-size: 17px;
       font-weight: normal;
       line-height: 2.06;
     }
+  }
+  .bottom {
+    margin-top: 39px;
     .list {
-      margin-top: 15px;
       display: grid;
-      grid-template-columns: repeat(3, 143px);
-      column-gap: 13px;
+      grid-template-columns: repeat(6, 153px);
+      column-gap: 15px;
       .list-card {
         cursor: pointer;
         width: 100%;
-        height: 143px;
+        height: 153px;
         position: relative;
       }
     }
   }
   @media screen and (max-width: 1365px) {
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 44px;
-    .left {
-      width: 720px;
-      height: 702px;
-    }
-    .right {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-left: 0;
-      margin-top: 38px;
+    padding-bottom: 55px;
+    .top {
+      & > .main-img {
+        width: 480px;
+        height: 480px;
+        margin-right: 15px;
+      }
       .content {
-        width: 720px;
+        width: 220px;
         min-height: 130px;
         height: auto;
+        font-size: 16px;
       }
+    }
+    .bottom {
       .list {
-        margin-top: 27px;
-        grid-template-columns: repeat(3, 100px);
-        column-gap: 9px;
+        margin-top: 39px;
+        grid-template-columns: repeat(6, 110px);
+        column-gap: 13px;
         .list-card {
-          height: 100px;
+          height: 120px;
         }
       }
     }
   }
   @media screen and (max-width: 767px) {
-    .left {
-      width: 100%;
-      height: 320px;
-    }
-    .right {
-      .content {
+    .top {
+      flex-direction: column;
+      & > .main-img {
+        width: 320px;
+        height: 320px;
+      }
+      & > .content {
         width: 100%;
+      }
+    }
+    .bottom {
+      & > .list {
+        grid-template-columns: repeat(3, 100px);
+        gap: 9px;
+        & > .list-card {
+          height: 100px;
+        }
       }
     }
   }
@@ -103,20 +113,22 @@ function Summary({ content: { text, images } }: Props) {
   }, [contentRef]);
   return (
     <Wrapper>
-      <div className="left">
-        {now.img ? (
-          <Image
-            src={now.img}
-            layout="fill"
-            placeholder="blur"
-            objectFit="cover"
-            objectPosition="center"
-            blurDataURL={now.resize}
-          />
-        ) : undefined}
-      </div>
-      <div className="right">
+      <div className="top">
+        <div className="main-img">
+          {now.img ? (
+            <Image
+              src={now.img}
+              layout="fill"
+              placeholder="blur"
+              objectFit="cover"
+              objectPosition="center"
+              blurDataURL={now.resize}
+            />
+          ) : undefined}
+        </div>
         <div className="content" ref={contentRef}></div>
+      </div>
+      <div className="bottom">
         <div className="list">
           {images.map(({ resize, img }: ImType, idx: number) => {
             return (

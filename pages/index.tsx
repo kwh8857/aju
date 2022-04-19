@@ -56,6 +56,7 @@ const Container = styled.div`
     font-size: 35px;
     line-height: 1.37;
     font-weight: bold;
+    position: relative;
     div {
       font-weight: normal;
       font-size: 16px;
@@ -69,24 +70,25 @@ const Container = styled.div`
     .mute {
       margin-left: 9px;
     }
-  }
-  .main-video {
-    bottom: 0;
-    right: 0;
-    width: 50.5vw;
-    height: 29.7vw;
-    margin-left: 54px;
-    position: absolute;
-    min-height: 529px;
-    min-width: 871px;
-    max-height: 686px;
-    max-width: 1167px;
-    video {
-      width: 100%;
-      height: 100%;
-      object-fit: fill;
+    .main-video {
+      bottom: 0;
+      left: 100%;
+      width: 50.5vw;
+      height: 29.7vw;
+      margin-left: 54px;
+      position: absolute;
+      min-height: 529px;
+      min-width: 871px;
+      max-height: 686px;
+      max-width: 1167px;
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+      }
     }
   }
+
   @media screen and (max-width: 1365px) {
     max-width: 768px;
     flex-direction: column;
@@ -515,14 +517,20 @@ function Home({ data: { prt, notice } }: { data: any }) {
                   alt="음소거"
                   onClick={__changeMute}
                 />
+                {agent === "pc" ? (
+                  <div className="main-video">
+                    <video
+                      ref={VideoRef}
+                      autoPlay
+                      muted
+                      loop={true}
+                      playsInline
+                    >
+                      <source src="main.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                ) : undefined}
               </div>
-              {agent === "pc" ? (
-                <div className="main-video">
-                  <video ref={VideoRef} autoPlay muted loop={true} playsInline>
-                    <source src="main.mp4" type="video/mp4" />
-                  </video>
-                </div>
-              ) : undefined}
             </Container>
           </div>
         </Section1>

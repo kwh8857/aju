@@ -187,7 +187,7 @@ function Detail({ data }: Props) {
                 } else if (type === "VIDEO") {
                   return <Video key={idx} content={content} />;
                 } else if (type === "SUMMARY") {
-                  return <Summary key={idx} content={content} />;
+                  return <Summary key={idx} content={content} agent={agent} />;
                 }
               }
             )}
