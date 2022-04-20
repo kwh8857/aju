@@ -34,9 +34,11 @@ const Wrapper = styled.div`
     & > .content {
       width: 290px;
       height: 490px;
-      font-size: 17px;
-      font-weight: normal;
-      line-height: 2.06;
+      overflow-y: hidden;
+      & > p {
+        margin: unset;
+        font-family: "Noto Sans KR", sans-serif !important;
+      }
     }
   }
   .bottom {
@@ -54,55 +56,65 @@ const Wrapper = styled.div`
     }
   }
   @media screen and (max-width: 1365px) {
-    padding-bottom: 55px;
+    padding-bottom: 48.7px;
     .top {
+      width: 100%;
+      justify-content: center;
       & > .main-img {
-        width: 480px;
-        height: 480px;
-        margin-right: 15px;
-      }
-      .content {
-        width: 220px;
-        min-height: 130px;
-        height: auto;
-        font-size: 16px;
+        max-width: 100%;
+        width: fit-content;
+        height: fit-content;
+        margin-right: unset;
       }
     }
     .bottom {
+      width: 100%;
+      margin-top: 39px;
       .list {
-        margin-top: 39px;
-        grid-template-columns: repeat(6, 110px);
-        column-gap: 13px;
+        width: 100%;
+        grid-template-columns: repeat(6, 151px);
+        column-gap: 15px;
+        overflow-x: scroll;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none;
         .list-card {
-          height: 120px;
+          height: 151px;
         }
+      }
+      .list::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    & > .content {
+      & > p {
+        margin: unset;
+        font-family: "Noto Sans KR", sans-serif !important;
       }
     }
   }
   @media screen and (max-width: 767px) {
     .top {
       flex-direction: column;
-      & > .main-img {
-        width: 320px;
-        height: 320px;
-      }
       & > .content {
         width: 100%;
       }
     }
     .bottom {
       & > .list {
-        grid-template-columns: repeat(3, 100px);
-        gap: 9px;
+        grid-template-columns: repeat(6, 97px);
+        column-gap: 10px;
         & > .list-card {
-          height: 100px;
+          height: 97px;
         }
       }
+    }
+    & > .content {
+      margin-top: 27px;
     }
   }
 `;
 
-function Summary({ content: { text, images } }: Props) {
+function Summary({ content: { text, images }, agent }: Props) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [now, setNow] = useState(images[0] ? images[0] : "");
   useEffect(() => {
@@ -110,23 +122,29 @@ function Summary({ content: { text, images } }: Props) {
       contentRef.current.innerHTML = text;
     }
     return () => {};
-  }, [contentRef]);
+  }, [contentRef, agent]);
   return (
     <Wrapper>
       <div className="top">
         <div className="main-img">
           {now.img ? (
-            <Image
-              src={now.img}
-              layout="fill"
-              placeholder="blur"
-              objectFit="cover"
-              objectPosition="center"
-              blurDataURL={now.resize}
-            />
+            agent === "pc" ? (
+              <Image
+                src={now.img}
+                layout="fill"
+                placeholder="blur"
+                objectFit="cover"
+                objectPosition="center"
+                blurDataURL={now.resize}
+              />
+            ) : (
+              <img src={now.img} alt="" />
+            )
           ) : undefined}
         </div>
-        <div className="content" ref={contentRef}></div>
+        {agent === "pc" ? (
+          <div className="content" ref={contentRef}></div>
+        ) : undefined}
       </div>
       <div className="bottom">
         <div className="list">
@@ -152,6 +170,9 @@ function Summary({ content: { text, images } }: Props) {
           })}
         </div>
       </div>
+      {agent !== "pc" ? (
+        <div className="content" ref={contentRef}></div>
+      ) : undefined}
     </Wrapper>
   );
 }
