@@ -119,7 +119,7 @@ const getNotice = () => {
         let notice = [];
         await result.docs.forEach((item) => {
           const value = item.data();
-          if (value.state === "notice" && value.template) {
+          if (value.state === "notice" && value.title !== "임시저장") {
             notice.push({
               title: value.title ? value.title : "",
               timestamp: value.timestamp,
