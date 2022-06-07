@@ -259,7 +259,7 @@ function MainCard({
       >
         <SecondCard>
           <div className="title">
-            아주종합건설 <br /> 공사실적
+            (주)아주건설 <br /> 공사실적
           </div>
           <div className="sub">
             어느 누구도 자신의 집을 대충 짓지 않듯이 <br /> 내 집처럼 고객의

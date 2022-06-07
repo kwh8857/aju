@@ -120,7 +120,7 @@ const Section2 = styled.div`
     url("/assets/about-s2@3x.jpg") 3x
   );
   width: 100%;
-  height: 763px;
+  height: 420px;
   .wrapper {
     width: 993px;
     height: 100%;
@@ -144,7 +144,7 @@ const Section2 = styled.div`
         font-weight: bold;
       }
     }
-    .card-wrapper {
+    /* .card-wrapper {
       margin-top: 64px;
       display: grid;
       grid-template-columns: repeat(3, 321px);
@@ -168,10 +168,10 @@ const Section2 = styled.div`
           font-size: 16px;
         }
       }
-    }
+    } */
   }
   @media screen and (max-width: 1365px) {
-    height: 998px;
+    height: 450px;
     .wrapper {
       width: 720px;
       padding-top: 91px;
@@ -182,16 +182,16 @@ const Section2 = styled.div`
       .title {
         font-size: 26px;
       }
-      .card-wrapper {
+      /* .card-wrapper {
         margin-top: 68px;
         grid-template-columns: repeat(2, 321px);
         row-gap: 25px;
         column-gap: 25px;
-      }
+      } */
     }
   }
   @media screen and (max-width: 767px) {
-    height: 1493px;
+    height: 460px;
     .wrapper {
       width: 320px;
       .content {
@@ -868,17 +868,17 @@ const s4 = [
   {
     year: "2020",
     list: [
+      // {
+      //   title: "6월",
+      //   sub: "관계회사 (주) 아주종합건설\n 설립 (자본금 5억)",
+      // },
+      // {
+      //   title: "7월",
+      //   sub: "(주) 아주 종합건설 건축\n 공사업 면허 취득 (16-0745)",
+      // },
       {
-        title: "6월",
-        sub: "관계회사 (주) 아주종합건설\n 설립 (자본금 5억)",
-      },
-      {
-        title: "7월",
-        sub: "(주) 아주 종합건설 건축\n 공사업 면허 취득 (16-0745)",
-      },
-      {
-        title: "10월",
-        sub: "경쟁력강화를 위해 건설사업\n부분 분할로 (주)아주건설 설립",
+        title: "11월",
+        sub: "경쟁력강화를 위해 건설사업부분을\n (주)아주건설로 법인분할설립",
       },
     ],
   },
@@ -948,7 +948,7 @@ function Index() {
   return (
     <Wrapper>
       <Head>
-        <title>아주종합건설</title>
+        <title>(주)아주건설</title>
         <meta
           name="description"
           content="아주종합건설 회사소개 페이지입니다."

@@ -48,7 +48,7 @@ function S4({ s4, agent }: { s4: any; agent: string }) {
       <div className="left">
         <div className="step">주요연혁</div>
         <div className="title">
-          아주종합건설 <br /> 주요연혁
+          (주)아주건설 <br /> 주요연혁
         </div>
       </div>
       <div className="right">

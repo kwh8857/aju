@@ -32,6 +32,8 @@ const Wrapper = styled.div`
       }
     }
     & > .content {
+      white-space: pre-wrap;
+      word-wrap: break-word;
       width: 290px;
       height: 490px;
       overflow-y: hidden;

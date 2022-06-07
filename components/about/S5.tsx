@@ -38,7 +38,7 @@ function S5({ agent }: { agent: string }) {
       ref={dom}
     >
       <div className="top">조직도</div>
-      <div className="title">아주종합건설 {`\n`} 회사조직도</div>
+      <div className="title">(주)아주건설 {`\n`} 회사조직도</div>
 
       <img
         src={`/assets/about-s5${agent === "mobile" ? "mb" : ""}.png`}

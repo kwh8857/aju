@@ -386,7 +386,7 @@ function Home({ data: { prt, notice } }: { data: any }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>아주종합건설</title>
+        <title>(주)아주건설</title>
         <meta
           name="description"
           content="내 집, 내 공장을 짓는다는 마음으로 아주종합건설"
@@ -500,7 +500,7 @@ function Home({ data: { prt, notice } }: { data: any }) {
           <div className="wrapper">
             <Container>
               <div className="left">
-                내 집, 내 공장을 <br /> 짓는다는 마음으로 <br /> 아주종합건설
+                내 집, 내 공장을 <br /> 짓는다는 마음으로 <br /> (주)아주건설
                 <br />
                 <div>
                   내 집, 내 공장을 짓는다는 마음으로 <br /> 함께하는

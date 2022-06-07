@@ -89,7 +89,7 @@ function Index({ data }: { data: Array<dataFace> }) {
   return (
     <div>
       <Head>
-        <title>아주종합건설</title>
+        <title>(주)아주건설</title>
         <meta name="description" content="아주 건설 공지사항 페이지입니다" />
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content="아주건설" />
@@ -198,7 +198,7 @@ function Index({ data }: { data: Array<dataFace> }) {
         <Wrapper>
           <BodyTop>
             <div className="title">
-              아주종합건설의 <br /> 다양한 소식을 만나보세요
+              (주)아주건설의 <br /> 다양한 소식을 만나보세요
             </div>
             <div className="search">
               <input
