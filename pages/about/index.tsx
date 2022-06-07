@@ -126,7 +126,9 @@ const Section2 = styled.div`
     height: 100%;
     margin: 0 auto;
     box-sizing: border-box;
-    padding-top: 107px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     .title {
       font-size: 32px;
       font-weight: bold;
@@ -174,7 +176,6 @@ const Section2 = styled.div`
     height: 450px;
     .wrapper {
       width: 720px;
-      padding-top: 91px;
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -819,14 +820,28 @@ const s3 = [
   { title: "대표이사", sub: "전상현" },
   { title: "설립일", sub: "1999년 7월 15일" },
   { title: "소재지", sub: "경북 구미시 형곡로 8길 14, 301호" },
+  { title: "전화번호/팩스번호", sub: "054-455-2326 / 054-458-2327" },
   {
     title: "주요사업내용",
-    sub: `·공장신축 및 개축공사
-·상가 및 주택 신축공사
-·기존건축물 내 외부 리모델링 공사
-·기타 토목공사
-·부동산 개발업
-·부동산 임대업`,
+    sub: `부동산 개발업 
+부동산 임대업
+부동산 매매업
+건물 신축 판매업`,
+  },
+];
+const s3_1 = [
+  { title: "회사명", sub: "(주)아주건설" },
+  { title: "사업자등록번호", sub: "112-81-55296" },
+  { title: "대표이사", sub: "전상현" },
+  { title: "설립일", sub: "2020년 11월 1일" },
+  { title: "소재지", sub: "경북 구미시 형곡로 8길 14, 201호" },
+  { title: "전화번호/팩스번호", sub: "054-455-2326 / 054-458-2327" },
+  {
+    title: "주요사업내용",
+    sub: `공장신축 및 개축공사
+상가 및 주택 신축공사
+기존건축물 내 외부 리모델링 공사
+기타 토목공사 및 시설물 유지 관리`,
   },
 ];
 const s4 = [
