@@ -68,7 +68,6 @@ const getPrt = () => {
           })
           .sort((a, b) => b.timestamp - a.timestamp)
           .filter((item) => item);
-        console.log(value);
         resolve(value);
       });
   });

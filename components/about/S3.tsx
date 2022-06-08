@@ -5,7 +5,7 @@ interface three {
   sub: string;
 }
 
-function S3({ s3 }: { s3: Array<three> }) {
+function S3({ s3, s3_1 }: { s3: Array<three>; s3_1: Array<three> }) {
   const dom = useRef<HTMLDivElement>(null);
 
   const handleScroll = useCallback(
@@ -48,19 +48,36 @@ function S3({ s3 }: { s3: Array<three> }) {
         <div className="title">회사개요</div>
       </div>
       <div className="right">
-        {s3.map(({ title, sub }, idx) => {
-          return (
-            <div
-              key={idx}
-              className={`${
-                idx === 0 ? "card one" : idx === 5 ? "card five" : "card"
-              }`}
-            >
-              <div className="card-title">{title}</div>
-              <div className="card-sub">{sub}</div>
-            </div>
-          );
-        })}
+        <div className="card-wrapper">
+          {s3.map(({ title, sub }, idx) => {
+            return (
+              <div
+                key={idx}
+                className={`${
+                  idx === 0 ? "card one" : idx === 6 ? "card six" : "card"
+                }`}
+              >
+                <div className="card-title">{title}</div>
+                <div className="card-sub">{sub}</div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="card-wrapper">
+          {s3_1.map(({ title, sub }, idx) => {
+            return (
+              <div
+                key={idx}
+                className={`${
+                  idx === 0 ? "card one" : idx === 6 ? "card six" : "card"
+                }`}
+              >
+                <div className="card-title">{title}</div>
+                <div className="card-sub">{sub}</div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

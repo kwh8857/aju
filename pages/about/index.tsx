@@ -239,34 +239,38 @@ const Section3 = styled.div`
       }
     }
     .right {
-      display: flex;
-      flex-direction: column;
-      .card {
-        padding: 9px 0;
-        border-bottom: solid 1px #afafaf;
+      display: grid;
+      column-gap: 44.2px;
+      grid-template-columns: repeat(2, 365.8px);
+      & > .card-wrapper {
         display: flex;
-        width: 812.5px;
-        align-items: center;
-        .card-title {
-          width: 157px;
-          text-align: center;
-          font-size: 12px;
-          font-weight: bold;
+        flex-direction: column;
+        .card {
+          padding: 10px 0;
+          border-bottom: solid 1px #afafaf;
+          display: flex;
+          width: 100%;
+          align-items: center;
+          column-gap: 42.4px;
+          .card-title {
+            width: 100px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            white-space: nowrap;
+          }
+          .card-sub {
+            font-size: 13px;
+            white-space: pre-line;
+            line-height: 1.92;
+          }
         }
-        .card-sub {
-          font-size: 12px;
-          white-space: pre-line;
+        & > .six {
+          border-bottom: unset;
         }
-      }
-      .five {
-        padding-bottom: 26.3px;
-        padding-top: 18.7px;
-        .card-sub {
-          line-height: 1.92;
+        .one {
+          border-top: solid 2px #434343;
         }
-      }
-      .one {
-        border-top: solid 2px #434343;
       }
     }
   }
@@ -277,17 +281,27 @@ const Section3 = styled.div`
       align-items: center;
       .left {
         margin-right: 0;
-        margin-bottom: 20px;
+        margin-bottom: 19px;
         .title {
           font-size: 25px;
           margin-top: 13px;
         }
       }
       .right {
-        .card {
-          width: 320px;
-          .card-title {
-            width: 130px;
+        column-gap: unset;
+        row-gap: 43px;
+        grid-template-columns: 320px;
+        & > .card-wrapper {
+          .card {
+            width: 320px;
+            column-gap: 36.5px;
+            .card-title {
+              width: 92px;
+              font-size: 12px;
+            }
+            & > .card-sub {
+              font-size: 12px;
+            }
           }
         }
       }
@@ -893,7 +907,7 @@ const s4 = [
       // },
       {
         title: "11월",
-        sub: "경쟁력강화를 위해 건설사업부분을\n (주)아주건설로 법인분할설립",
+        sub: "경쟁력강화를 위해 건설사업부분\n을 (주)아주건설로 법인분할설립",
       },
     ],
   },
@@ -1065,7 +1079,7 @@ function Index() {
         <S2 s2={s2} agent={agent} />
       </Section2>
       <Section3>
-        <S3 s3={s3} />
+        <S3 s3={s3} s3_1={s3_1} />
       </Section3>
       <Section6>
         <S6 agent={agent} s6={s6} />
