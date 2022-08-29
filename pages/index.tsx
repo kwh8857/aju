@@ -125,7 +125,7 @@ const MainVideo = styled.div`
     video {
       width: 100%;
       height: 100%;
-      object-fit: fill;
+      object-fit: cover;
     }
   }
   @media screen and (max-width: 767px) {
@@ -526,7 +526,10 @@ function Home({ data: { prt, notice } }: { data: any }) {
                       loop={true}
                       playsInline
                     >
-                      <source src="main.mp4" type="video/mp4" />
+                      <source
+                        src="https://firebasestorage.googleapis.com/v0/b/ajoo-office.appspot.com/o/ajoo.mp4?alt=media&token=a37266e5-0abf-4a27-9c37-f2078562c982"
+                        type="video/mp4"
+                      />
                     </video>
                   </div>
                 ) : undefined}
@@ -537,14 +540,12 @@ function Home({ data: { prt, notice } }: { data: any }) {
         {agent !== "pc" ? (
           <MainVideo>
             <div className="wrapper">
-              <video
-                ref={VideoRef}
-                src="main.mp4"
-                autoPlay
-                muted
-                loop={true}
-                playsInline
-              ></video>
+              <video ref={VideoRef} autoPlay muted loop={true} playsInline>
+                <source
+                  src="https://firebasestorage.googleapis.com/v0/b/ajoo-office.appspot.com/o/ajoo.mp4?alt=media&token=a37266e5-0abf-4a27-9c37-f2078562c982"
+                  type="video/mp4"
+                />
+              </video>
             </div>
           </MainVideo>
         ) : undefined}
