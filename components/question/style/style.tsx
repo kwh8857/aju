@@ -24,12 +24,11 @@ export const Top = styled.div`
 `;
 export const Section1 = styled.div`
   width: 100%;
-  height: 620px;
+  padding: 85px 0 92px 0;
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 85px;
   box-sizing: border-box;
 
   .top {
@@ -86,9 +85,41 @@ export const Section1 = styled.div`
       }
     }
   }
+  .pdf-wrapper {
+    margin-top: 22px;
+    background-color: #f2f3f7;
+    padding: 20px 24px;
+    width: 993px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & > .left {
+      color: #434343;
+      & > b {
+        font-size: 18px;
+      }
+      & > .sub {
+        margin-top: 5px;
+        font-size: 14px;
+      }
+    }
+    & > .right {
+      display: flex;
+      column-gap: 8px;
+      & > button {
+        width: 163px;
+        height: 40px;
+        background-color: #434343;
+        color: white;
+        font-size: 14px;
+        padding: 0 12px;
+        justify-content: space-between;
+        cursor: pointer;
+      }
+    }
+  }
   @media screen and (max-width: 1365px) {
-    height: 730px;
-    padding-top: 50.5px;
+    padding: 50px 0 78px 0;
     .top {
       grid-template-columns: repeat(2, 320px);
       column-gap: 26px;
@@ -107,25 +138,40 @@ export const Section1 = styled.div`
         font-size: 14px;
       }
     }
+    .pdf-wrapper {
+      width: 666px;
+      flex-direction: column;
+      align-items: flex-start;
+      row-gap: 14.3px;
+    }
   }
   @media screen and (max-width: 767px) {
-    height: 1090px;
+    padding: 50px 0 95px 0;
     .top {
       grid-template-columns: 320px;
       row-gap: 18px;
     }
     .bottom {
       width: 320px;
-      height: 145px;
+      height: 120px;
       margin-top: 18.4px;
       row-gap: 15px;
       padding-top: 17px;
-      grid-template-rows: 40px 20px 40px;
+      grid-template-rows: 20px 40px;
       .card {
         font-size: 14px;
         white-space: pre-line;
         text-align: left;
         align-items: flex-start;
+      }
+    }
+    .pdf-wrapper {
+      width: 320px;
+      & > .right {
+        & > button {
+          width: 128.7px;
+          height: 40px;
+        }
       }
     }
   }

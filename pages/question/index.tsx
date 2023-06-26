@@ -227,6 +227,19 @@ function Index() {
             </div>
           </div>
         </div>
+        <div className="pdf-wrapper">
+          <div className="left">
+            <b>공사지명원</b>
+            <div className="sub">
+              공사지명원을 다운로드하여 아주건설에 대한 내용을 한눈에
+              확인해보세요
+            </div>
+          </div>
+          <div className="right">
+            <button>PDF - 1</button>
+            <button>PDF - 2</button>
+          </div>
+        </div>
       </Section1>
       <Section2>
         <div className="wrapper">

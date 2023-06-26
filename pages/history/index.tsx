@@ -51,7 +51,7 @@ function Index({ data }: { data: any }) {
       yeararr.push(thisyear);
       thisyear++;
     }
-    setYearArray(yeararr);
+    setYearArray(yeararr.reverse());
     return () => {};
   }, []);
   useEffect(() => {
@@ -205,7 +205,7 @@ function Index({ data }: { data: any }) {
               }
             }}
           >
-            3D작업
+            3D 디자인 설계
           </button>
         </div>
         <div className="bar-wrapper">

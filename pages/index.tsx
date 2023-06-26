@@ -504,7 +504,7 @@ function Home({ data: { prt, notice } }: { data: any }) {
                 <br />
                 <div>
                   내 집, 내 공장을 짓는다는 마음으로 <br /> 함께하는
-                  종합건설기업 아주종합건설
+                  종합건설기업 아주건설
                 </div>
                 <img
                   src={`/assets/${isPause ? "pause" : "play"}.svg`}
