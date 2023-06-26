@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   .top {
     & > .main-img {
       width: 100%;
-      height: 490px;
+      height: 744px;
       position: relative;
       img {
         max-width: 100%;

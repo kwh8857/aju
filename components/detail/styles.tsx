@@ -6,7 +6,7 @@ export const Body = styled.div`
   background-color: white;
   padding-bottom: 235px;
   .wrapper {
-    width: 992px;
+    width: 1224px;
     margin: 0 auto;
     padding-top: 58px;
     box-sizing: border-box;
