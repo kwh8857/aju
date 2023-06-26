@@ -15,6 +15,7 @@ import { getDetail, getEditor, updateHit } from "../../firebase/store";
 import { GetStaticPaths, GetStaticPropsResult } from "next";
 import { formatDate } from "../../lib/factory";
 import Head from "next/head";
+import Content from "../../components/detail/components/Content";
 type Props = {
   data: any;
 };
@@ -188,6 +189,8 @@ function Detail({ data }: Props) {
                   return <Video key={idx} content={content} />;
                 } else if (type === "SUMMARY") {
                   return <Summary key={idx} content={content} agent={agent} />;
+                } else if (type === "CONTENT") {
+                  return <Content key={idx} content={content} agent={agent} />;
                 }
               }
             )}

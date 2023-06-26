@@ -108,6 +108,7 @@ const getMain = () => {
       });
   });
 };
+
 const getNotice = () => {
   return new Promise((resolve, reject) => {
     firebase

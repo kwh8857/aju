@@ -1,4 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
+import firebase from "firebase/app";
+import "firebase/firestore";
 import Header from "../header/Header";
 import { useSelector } from "react-redux";
 import { RootState } from "../../reducer";
@@ -17,6 +19,7 @@ function Index() {
     (state: RootState) => state.config.identification.agent
   );
   const [isHead, setIsHead] = useState(false);
+  const [FileArr, setFileArr] = useState<any[]>([]);
   const __clipboard = useCallback(() => {
     navigator.clipboard
       .writeText("경북 구미시 형곡로 8길 14, 301호")
@@ -37,6 +40,22 @@ function Index() {
       }
     }
   }, [isHead, agent]);
+  const DownPDf = useCallback((down) => {
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = "blob";
+    xhr.onload = (event) => {
+      var blob = URL.createObjectURL(xhr.response);
+      var link = document.createElement("a");
+      link.href = blob;
+      link.download = down.filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    };
+    xhr.open("GET", down.url);
+    xhr.send();
+  }, []);
+
   useEffect(() => {
     document.addEventListener("scroll", __scrollHandle);
     return () => {
@@ -72,6 +91,20 @@ function Index() {
     };
     mapScript.addEventListener("load", onLoadKakaoMap);
     return () => mapScript.removeEventListener("load", onLoadKakaoMap);
+  }, []);
+  useEffect(() => {
+    let arr: any[] = [];
+    firebase
+      .firestore()
+      .collection("pdf")
+      .get()
+      .then((res) => {
+        res.forEach((item) => {
+          arr.push(item.data());
+        });
+        setFileArr(arr);
+      });
+    return () => {};
   }, []);
 
   return (
@@ -236,8 +269,20 @@ function Index() {
             </div>
           </div>
           <div className="right">
-            <button>PDF - 1</button>
-            <button>PDF - 2</button>
+            <button
+              onClick={() => {
+                DownPDf(FileArr[0]);
+              }}
+            >
+              PDF - 1 <img src="/assets/down.svg" alt="" />
+            </button>
+            <button
+              onClick={() => {
+                DownPDf(FileArr[1]);
+              }}
+            >
+              PDF - 2 <img src="/assets/down.svg" alt="" />
+            </button>
           </div>
         </div>
       </Section1>
