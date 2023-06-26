@@ -32,6 +32,9 @@ export const Body = styled.div`
     .templates {
       padding-top: 25px;
       box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      row-gap: 66px;
       font[size="1"] {
         font-size: 13px;
       }
