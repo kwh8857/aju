@@ -21,20 +21,20 @@ const Wrapper = styled.div`
   border-bottom: solid 1px #dbdbdb;
   padding-bottom: 86.5px;
   .top {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     & > .main-img {
-      width: 671px;
       height: 490px;
       position: relative;
-      margin-right: 31px;
       img {
         max-width: 100%;
       }
     }
     & > .content {
+      background-color: #f5f6f8;
+      padding: 20px 30px;
       white-space: pre-wrap;
       word-wrap: break-word;
-      width: 290px;
       height: 490px;
       overflow-y: hidden;
       & > p {
@@ -43,51 +43,21 @@ const Wrapper = styled.div`
       }
     }
   }
-  .bottom {
-    margin-top: 39px;
-    .list {
-      display: grid;
-      grid-template-columns: repeat(6, 153px);
-      column-gap: 15px;
-      .list-card {
-        cursor: pointer;
-        width: 100%;
-        height: 153px;
-        position: relative;
-      }
-    }
-  }
   @media screen and (max-width: 1365px) {
     padding-bottom: 48.7px;
     .top {
       width: 100%;
       justify-content: center;
+      display: flex;
       & > .main-img {
-        max-width: 100%;
-        width: fit-content;
-        height: fit-content;
-        margin-right: unset;
-      }
-    }
-    .bottom {
-      width: 100%;
-      margin-top: 39px;
-      .list {
         width: 100%;
-        grid-template-columns: repeat(6, 151px);
-        column-gap: 15px;
-        overflow-x: scroll;
-        -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none;
-        .list-card {
-          height: 151px;
-        }
-      }
-      .list::-webkit-scrollbar {
-        display: none;
+        height: unset;
+        display: flex;
       }
     }
     & > .content {
+      padding: 20px;
+      background-color: #f5f6f8;
       & > p {
         margin: unset;
         font-family: "Noto Sans KR", sans-serif !important;
@@ -101,24 +71,11 @@ const Wrapper = styled.div`
         width: 100%;
       }
     }
-    .bottom {
-      & > .list {
-        grid-template-columns: repeat(6, 97px);
-        column-gap: 10px;
-        & > .list-card {
-          height: 97px;
-        }
-      }
-    }
-    & > .content {
-      margin-top: 27px;
-    }
   }
 `;
 
-function Summary({ content: { text, images }, agent }: Props) {
+function Summary({ content: { text, img }, agent }: Props) {
   const contentRef = useRef<HTMLDivElement>(null);
-  const [now, setNow] = useState(images[0] ? images[0] : "");
   useEffect(() => {
     if (contentRef.current) {
       contentRef.current.innerHTML = text;
@@ -129,48 +86,24 @@ function Summary({ content: { text, images }, agent }: Props) {
     <Wrapper>
       <div className="top">
         <div className="main-img">
-          {now.img ? (
+          {img.img ? (
             agent === "pc" ? (
               <Image
-                src={now.img}
+                src={img.img}
                 layout="fill"
                 placeholder="blur"
                 objectFit="cover"
                 objectPosition="center"
-                blurDataURL={now.resize}
+                blurDataURL={img.resize}
               />
             ) : (
-              <img src={now.img} alt="" />
+              <img src={img.img} alt="" />
             )
           ) : undefined}
         </div>
         {agent === "pc" ? (
           <div className="content" ref={contentRef}></div>
         ) : undefined}
-      </div>
-      <div className="bottom">
-        <div className="list">
-          {images.map(({ resize, img }: ImType, idx: number) => {
-            return (
-              <div
-                key={idx}
-                className="list-card"
-                onClick={() => {
-                  setNow({ img, resize });
-                }}
-              >
-                <Image
-                  src={img}
-                  layout="fill"
-                  placeholder="blur"
-                  objectFit="cover"
-                  objectPosition="center"
-                  blurDataURL={resize}
-                />
-              </div>
-            );
-          })}
-        </div>
       </div>
       {agent !== "pc" ? (
         <div className="content" ref={contentRef}></div>
