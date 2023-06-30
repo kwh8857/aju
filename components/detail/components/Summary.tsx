@@ -24,7 +24,7 @@ const Wrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     & > .main-img {
-      height: 490px;
+      height: 312px;
       position: relative;
       img {
         max-width: 100%;
@@ -35,7 +35,7 @@ const Wrapper = styled.div`
       padding: 20px 30px;
       white-space: pre-wrap;
       word-wrap: break-word;
-      height: 490px;
+
       overflow-y: hidden;
       & > p {
         margin: unset;
