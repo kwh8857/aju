@@ -33,7 +33,7 @@ type FootProps = {
 function Footer({ agent }: FootProps) {
   return (
     <Wrapper>
-      <img src="/assets/footer.svg" alt="Aju" />
+      <img src="/assets/footer.svg" alt="Ajoo" />
       <div className="content">
         사업자등록번호 112-81-55296 | 대표자 전상현 <br /> 주소 경상북도 구미시
         형곡로 8길 14, 201호, 301호 |{agent !== "pc" ? <br /> : undefined}{" "}

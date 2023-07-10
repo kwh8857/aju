@@ -105,7 +105,7 @@ function Header({ agent, isHead }: HeadProps) {
         <Link href={"/"}>
           <img
             src={`/assets/logo${isHead && !isMenu ? "black" : ""}.svg`}
-            alt="Aju"
+            alt="Ajoo"
             className="logo"
           />
         </Link>
