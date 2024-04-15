@@ -20,6 +20,7 @@ function Index() {
   );
   const [isHead, setIsHead] = useState(false);
   const [FileArr, setFileArr] = useState<any[]>([]);
+  console.log(FileArr);
   const __clipboard = useCallback(() => {
     navigator.clipboard
       .writeText("경북 구미시 형곡로 8길 14, 301호")
@@ -274,14 +275,14 @@ function Index() {
                 DownPDf(FileArr[0]);
               }}
             >
-              PDF - 1 <img src="/assets/down.svg" alt="" />
+              {FileArr[0] && FileArr[0].filename} <img src="/assets/down.svg" alt="" />
             </button>
             <button
               onClick={() => {
                 DownPDf(FileArr[1]);
               }}
             >
-              PDF - 2 <img src="/assets/down.svg" alt="" />
+               {FileArr[1] && FileArr[1].filename} <img src="/assets/down.svg" alt="" />
             </button>
           </div>
         </div>

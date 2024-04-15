@@ -154,7 +154,7 @@ function Detail({ data }: Props) {
             <div className="title">{title}</div>
             <div className="time-wrapper">
               <div className="time">{formatDate(timestamp, ".")}</div>
-              <div className="view">조회수 {hit ? hit : 0}</div>
+              {/* <div className="view">조회수 {hit ? hit : 0}</div> */}
             </div>
             <div className="grey-bar" />
           </div>
