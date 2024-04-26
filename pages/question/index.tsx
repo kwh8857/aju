@@ -250,7 +250,7 @@ function Index() {
           <div className="card">
             <img src="/assets/red-check.svg" alt="check" />
             <div>
-              영업시간은&nbsp;<b>평일 9시~18시</b>&nbsp;입니다
+              영업시간은&nbsp;<b>평일 8시~17시</b>&nbsp;입니다
             </div>
           </div>
           <div className="card">
